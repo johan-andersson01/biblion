@@ -1,0 +1,40 @@
+@import "bootstrap-sprockets";
+@import "bootstrap";
+
+@mixin box_sizing {
+  -moz-box-sizing:    border-box;
+  -webkit-box-sizing: border-box;
+  box-sizing:         border-box;
+}
+
+html, body {
+  height:100%;
+}
+
+/* debug */
+
+.debug {
+  position:fixed;
+  bottom:0;
+  margin-bottom: 50px;
+  float: left;
+  width: 100%;
+  @include box_sizing;
+}
+
+/* header */
+
+header {
+
+}
+
+/* body */
+
+.main-content {
+  padding-top:70px;
+  height:1000px;
+}
+
+/* footer */
+
+footer {}
