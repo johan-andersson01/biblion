@@ -1,3 +1,33 @@
 // Place all the styles related to the Users controller here.
 // They will automatically be included in application.css.
 // You can use Sass (SCSS) here: http://sass-lang.com/
+$l-gray: hsl(0,0%,90%);
+$d-gray: hsl(0,0%,80%);
+
+
+
+.user_info   {
+  #name {
+    font-size: 150%;
+    padding-right: 5px;
+  }
+  ul {
+    li {
+      display: flex;
+      justify-content:flex-start;
+    }
+
+    .attr {
+      width:150px;
+      padding-right: 20px;
+      font-weight: bold;
+      background:$l-gray;
+    }
+
+    .info {
+      width:200px;
+      padding-left:20px;
+      background: $d-gray;
+    }
+  }
+}
