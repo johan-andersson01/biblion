@@ -1,25 +1,25 @@
 <nav  class="navbar navbar-default navbar-fixed-top">
   <ul class="nav navbar-nav">
     <li><div class="navbar-brand"><%= link_to "Biblion", '/' %> | <%= yield(:title) %></div></li>
-    <li><form class="form-inline"><input class="form-control mr-sm-2" type="text" placeholder="Title..."></form> </li>
-    <li><form class="form-inline"><input class="form-control mr-sm-2" type="text" placeholder="Author..."></form> </li>
-    <li><form class="form-inline"><input class="form-control mr-sm-2" type="text" placeholder="Location..."></form> </li>
+    <li><form class="form-inline"><input class="form-control mr-sm-2" type="text" placeholder="Titel..."></form> </li>
+    <li><form class="form-inline"><input class="form-control mr-sm-2" type="text" placeholder="Författare..."></form> </li>
+    <li><form class="form-inline"><input class="form-control mr-sm-2" type="text" placeholder="Stad..."></form> </li>
     <li class="dropdown">
-      <a class="dropdown-toggle" data-toggle="dropdown" href="#">Log in
+      <a class="dropdown-toggle" data-toggle="dropdown" href="#">Logga in
       <span class="caret"></span></a>
       <ul class="dropdown-menu">
         <form class="form-inline">
         <li>
-            <input class="form-control mr-sm-2" type="text" placeholder="User name">
+            <input class="form-control mr-sm-2" type="text" placeholder="E-mail">
         </li>
         <li>
-            <input class="form-control mr-sm-2" type="password" placeholder="Password">
+            <input class="form-control mr-sm-2" type="password" placeholder="Lösenord">
         </li>
         <li>
-          <button class="btn" type="submit">Log in</button>
+          <button class="btn" type="submit">Logga in</button>
         </li>
       </form>
-        <li><%= link_to "Not registered?", signup_path%></li>
+        <li><%= link_to "Inte registrerad?", signup_path%></li>
       </ul>
     </li>
   </ul>

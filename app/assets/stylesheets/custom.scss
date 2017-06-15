@@ -1,6 +1,12 @@
 @import "bootstrap-sprockets";
 @import "bootstrap";
 
+$error_color_light: hsla(0,90%,90%,50%);
+$error_color_dark:  hsla(0,90%,70%,50%);
+
+$success_color_light: hsla(230,90%,90%,50%);
+$success_color_dark:  hsla(230,90%,70%,50%);
+
 @mixin box_sizing {
   -moz-box-sizing:    border-box;
   -webkit-box-sizing: border-box;
@@ -16,15 +22,31 @@ html, body {
   height:100%;
 }
 
+h1 {
+  text-align: center;
+}
+
 /* debug */
 
 .debug {
-  position:fixed;
-  bottom:0;
+  margin-top:20px;
   margin-bottom: 50px;
   float: left;
   width: 100%;
   @include box_sizing;
+}
+
+/* forms */
+
+input, textarea, select, .uneditable-input {
+  border: 1px solid #bbb;
+  width: 100%;
+  margin-bottom: 15px;
+  @include box_sizing;
+}
+
+input {
+  height: auto !important;
 }
 
 /* header */
@@ -37,9 +59,71 @@ nav{
 
 .main-content { padding-top: 70px; }
 @media screen and (max-width: 768px) {
-    .main-content { padding-top: 228px; }
+    .main-content { padding-top: 238px; }
 }
 
 /* footer */
 
 footer {}
+
+/* signup */
+
+.field_with_errors input{
+  background:$error_color_light !important;
+  outline: 1px solid $error_color_dark !important;
+}
+
+.alert {
+  @include box-sizing;
+  margin-top:20px;
+  margin-bottom: 50px;
+  width:100%;
+  outline:1px solid $error_color_dark;
+  background: $error_color_light;
+
+    ul li {
+      list-style: none;
+    }
+
+    h2 {
+      font-size:170%;
+    }
+}
+
+.alert-success {
+  outline:1px solid $success_color_dark;
+  background: $success_color_light;
+  color:#fff;
+}
+
+#error {
+  width:100%;
+  display:flex;
+  justify-content: center;
+}
+
+.signup_form {
+  width:100%;
+  display:flex;
+  justify-content: center;
+    form {
+      width:500px;
+    }
+
+
+
+    .inline {
+      width:100%;
+      label {
+        float:left;
+        width:95%;
+      }
+
+      input {
+        float:right;
+        width:5%;
+        outline: 0;
+      }
+      //outline:1px solid #444;
+    }
+}

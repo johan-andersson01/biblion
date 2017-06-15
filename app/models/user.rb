@@ -1,4 +1,5 @@
 class User < ApplicationRecord
+#  attr_accessor :terms_of_service
   before_save { email.downcase!}
   validates :name, presence: true, length: {minimum: 2, maximum: 50}
   VALID_EMAIL = /\A[\w+\-.]+@[a-z\d]+[a-z\d\-.]+[a-z\d\-]+\.[a-z]+\z/i
@@ -7,4 +8,6 @@ class User < ApplicationRecord
   validates :telephone, presence: true, length: {minimum: 8, maximum: 11}
   has_secure_password
   validates :password, presence: true, length: { minimum: 6}
+  #validates_acceptance_of :terms_of_service, :on => :create, acceptance: { accept: true}
+
 end
