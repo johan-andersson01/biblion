@@ -73,6 +73,8 @@ nav{
     padding-left: 10px;
   }
   li:first-child {
+    @media screen and (max-width: 562px) {
+        display:none;}
     float:left;
   }
 }

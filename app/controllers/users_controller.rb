@@ -12,7 +12,6 @@ class UsersController < ApplicationController
       log_in @user
       flash[:success] = "Välkommen till Biblion, #{@user.name}!"
       redirect_to @user
-
     else
       render 'new'
     end

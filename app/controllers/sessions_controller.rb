@@ -5,17 +5,18 @@ class SessionsController < ApplicationController
   def create
     user = User.find_by(email: params[:session][:email].downcase)
     if user && user.authenticate(params[:session][:password])
-      flash[:success] = "Välkommen tillbaka, #{user.name}!"
+    #  flash[:success] = "Välkommen tillbaka, #{user.name}!"
       log_in user
+      remember user
       redirect_to user
     else
-      flash.now[:danger] = "Felaktigt lösenord/Email"
-    render 'new'
+      flash.now[:danger] = 'Felaktigt lösenord/Email'
+      render 'new'
     end
   end
 
   def destroy
-    log_out
+    log_out if logged_in?
     redirect_to root_url
   end
 end
