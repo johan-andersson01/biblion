@@ -64,7 +64,18 @@ nav{
 
 /* footer */
 
-footer {}
+.footer {
+  width:100%;
+
+  li {
+    float:right;
+    padding-right:10px;
+    padding-left: 10px;
+  }
+  li:first-child {
+    float:left;
+  }
+}
 
 /* signup */
 
@@ -107,10 +118,9 @@ footer {}
   display:flex;
   justify-content: center;
     form {
-      width:500px;
+      width:80%;
+      max-width:500px;
     }
-
-
 
     .inline {
       width:100%;
@@ -119,11 +129,12 @@ footer {}
         width:95%;
       }
 
-      input {
+      #terms_of_service {
         float:right;
         width:5%;
         outline: 0;
       }
+
       //outline:1px solid #444;
     }
 }
