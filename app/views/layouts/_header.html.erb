@@ -6,10 +6,7 @@
     <li><form class="form-inline"><input class="form-control mr-sm-2" type="text" placeholder="Stad..."></form> </li>
     <li class="dropdown">
       <% if !logged_in? %>
-        <a class="dropdown-toggle" data-toggle="dropdown" href="#">Logga in
-          <span class="caret"></span></a>
-          <ul class="dropdown-menu">
-          <%= render '/layouts/login' %>
+      <%= link_to 'Logga in', login_path %>
       <% else %>
         <a class="dropdown-toggle" data-toggle="dropdown" href="#">Mitt konto
           <span class="caret"></span></a>

@@ -26,6 +26,11 @@ h1 {
   text-align: center;
 }
 
+a:hover {
+  text-decoration: none;
+  color:#444;
+}
+
 /* debug */
 
 .debug {
@@ -115,6 +120,7 @@ nav{
   justify-content: center;
 }
 
+
 .signup_form {
   width:100%;
   display:flex;
@@ -122,21 +128,26 @@ nav{
     form {
       width:80%;
       max-width:500px;
-    }
 
-    .inline {
-      width:100%;
-      label {
-        float:left;
-        width:95%;
+      .checkbox {
+        margin-top: 10px;
+        margin-bottom: 20px;
+        vertical-align: middle;
+
+        span {
+          margin-left: 20px;
+          text-align: right;
+          font-weight: normal;
+        }
+
+        #checkbox {
+          width:auto;
+          margin:0px;
+          // margin-top:2px;
+          outline:0;
+
+        }
+
       }
-
-      #terms_of_service {
-        float:right;
-        width:5%;
-        outline: 0;
-      }
-
-      //outline:1px solid #444;
     }
 }

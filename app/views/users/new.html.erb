@@ -16,10 +16,10 @@
         <%= f.password_field :password %>
         <%= f.label :password_confirmation, "Bekräfta ditt lösenord" %>
         <%= f.password_field :password_confirmation %>
-        <div class="inline">
-        <%= label_tag :terms_of_service, "Jag har läst och förstått användaravtalet. [broken]" %>
-        <%= check_box_tag :terms_of_service %>
-        </div>
+        <%= f.label :terms_of_service, class: "checkbox inline" do %>
+          <%= f.check_box :terms_of_service, id: "checkbox" %>
+          <span>Jag godkänner användaravtalet</span>
+          <% end %>
         <%= f.submit "Skapa konto!", class: "btn btn-primary" %>
       <% end %>
   </div>

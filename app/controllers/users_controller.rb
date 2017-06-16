@@ -25,6 +25,6 @@ class UsersController < ApplicationController
 
     def user_params
       params.require(:user).permit(:name, :email, :telephone,
-       :password, :password_confirmation) # add :terms_of_service if needed
+       :password, :password_confirmation, :terms_of_service) # add :terms_of_service if needed
     end
 end

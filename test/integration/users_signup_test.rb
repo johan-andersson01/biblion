@@ -8,7 +8,7 @@ class UsersSignupTest < ActionDispatch::IntegrationTest
       post users_path, params: { user: { name:  "",
                                          email: "user@invalid",
                                          password:              "foo",
-                                         password_confirmation: "bar" } }
+                                         password_confirmation: "bar",  terms_of_service: "1"  } }
     end
     assert_template 'users/new'
     assert_select 'div.alert_danger'
@@ -16,16 +16,30 @@ class UsersSignupTest < ActionDispatch::IntegrationTest
   end
 
   test "valid signup information" do
-  get signup_path
-  assert_difference 'User.count', 1 do
-    post users_path, params: { user: { name:  "Example User",
-                                       email: "user@example.com",
-                                       telephone:"1234567890",
-                                       password: "password",
-                            password_confirmation: "password" } }
-  end
+    get signup_path
+    assert_difference 'User.count', 1 do
+      post users_path, params: { user: { name:  "Example User",
+                                         email: "user@example.com",
+                                         telephone:"1234567890",
+                                         password: "password",
+                              password_confirmation: "password", terms_of_service: "1" } }
+    end
     follow_redirect!
     assert_template 'users/show'
+    assert is_logged_in?
     assert_not flash.empty?
+  end
+
+  test "valid signup, but user agreement not agreed upon" do
+    get signup_path
+    assert_no_difference 'User.count' do
+      post users_path, params: { user: { name:  "Example User",
+                                         email: "user@example.com",
+                                         telephone:"1234567890",
+                                         password: "password",
+                              password_confirmation: "password", terms_of_service: "0" } }
+    end
+    assert_template 'users/new'
+    #assert_select 'div.alert_danger'
   end
 end

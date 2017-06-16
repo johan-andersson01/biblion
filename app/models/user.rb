@@ -1,5 +1,4 @@
 class User < ApplicationRecord
-#  attr_accessor :terms_of_service
   attr_accessor :remember_token
   before_save { email.downcase!}
   validates :name, presence: true, length: {minimum: 2, maximum: 50}
@@ -10,7 +9,7 @@ class User < ApplicationRecord
   validates :telephone, presence: true, length: {minimum: 8, maximum: 11}, format: {with: VALID_TEL}
   has_secure_password
   validates :password, presence: true, length: { minimum: 6}
-  #validates_acceptance_of :terms_of_service, :on => :create, acceptance: { accept: true}
+  validates :terms_of_service, acceptance: true
 
   def User.digest(string)
     cost = ActiveModel::SecurePassword.min_cost ? BCrypt::Engine::MIN_COST :
