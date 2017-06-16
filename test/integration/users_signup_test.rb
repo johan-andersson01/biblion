@@ -40,6 +40,6 @@ class UsersSignupTest < ActionDispatch::IntegrationTest
                               password_confirmation: "password", terms_of_service: "0" } }
     end
     assert_template 'users/new'
-    #assert_select 'div.alert_danger'
+    assert_select 'div.alert_danger'
   end
 end
