@@ -6,9 +6,9 @@ class User < ApplicationRecord
   VALID_TEL = /\A[\d]+\z/i #/\Ad{8,11}\z
   validates :email, presence: true, length: {minimum: 5, maximum: 255},
   format: {with: VALID_EMAIL}, uniqueness: {case_sensitive: false}
-  validates :telephone, presence: true, length: {minimum: 8, maximum: 11}, format: {with: VALID_TEL}
+  validates :telephone, presence: true, length: {minimum: 8, maximum: 11}, format: {with: VALID_TEL}#, uniqueness: true
   has_secure_password
-  validates :password, presence: true, length: { minimum: 6}
+  validates :password, presence: true, length: { minimum: 6}, allow_nil: true
   validates :terms_of_service, acceptance: true
 
   def User.digest(string)

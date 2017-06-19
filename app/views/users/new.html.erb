@@ -18,7 +18,7 @@
         <%= f.password_field :password_confirmation %>
         <%= f.label :terms_of_service, class: "checkbox inline" do %>
           <%= f.check_box :terms_of_service, id: "checkbox" %>
-          <span>Jag godkänner användaravtalet</span>
+          <span>Genom att registrera mig, godkänner jag Biblions <%= link_to 'användaravtal', terms_path, :target => "_blank", :rel => "noopener"  %></span>
           <% end %>
         <%= f.submit "Skapa konto!", class: "btn btn-primary" %>
       <% end %>

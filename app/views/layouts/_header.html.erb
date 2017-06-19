@@ -1,9 +1,8 @@
 <nav  class="navbar navbar-default navbar-fixed-top">
   <ul class="nav navbar-nav">
-    <li><div class="navbar-brand"><%= link_to "Biblion", '/' %> | <%= yield(:title) %></div></li>
-    <li><form class="form-inline"><input class="form-control mr-sm-2" type="text" placeholder="Titel..."></form> </li>
-    <li><form class="form-inline"><input class="form-control mr-sm-2" type="text" placeholder="Författare..."></form> </li>
-    <li><form class="form-inline"><input class="form-control mr-sm-2" type="text" placeholder="Stad..."></form> </li>
+    <li><div class="navbar-brand"><%= link_to "Biblion", root_url %> | <%= yield(:title) %></div></li>
+    <li><form class="form-inline"><input class="form-control mr-sm-2" type="text" placeholder="Boktitel eller författare"></form> </li>
+    <li><form class="form-inline"><input class="form-control mr-sm-2" type="text" placeholder="Stad"></form> </li>
     <li class="dropdown">
       <% if !logged_in? %>
       <%= link_to 'Logga in', login_path %>
@@ -12,7 +11,7 @@
           <span class="caret"></span></a>
           <ul class="dropdown-menu">
             <li><%= link_to 'Profil', current_user %></li>
-            <li><%= link_to 'Inställningar', current_user %></li>
+            <li><%= link_to 'Inställningar', edit_user_path(current_user) %></li>
             <li>
               <%= link_to "Logga ut", logout_path, method: :delete %>
             </li>
