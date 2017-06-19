@@ -6,7 +6,7 @@
     <div class="signup_form">
       <%= form_for(@user, url: signup_path) do |f| %>
         <%= render 'shared/error_messages' %>
-        <%= f.label :name, "Namn" %>
+        <%= f.label :name, "Förnamn" %>
         <%= f.text_field :name %>
         <%= f.label :telephone, "Mobilnummer" %>
         <%= f.text_field :telephone %>

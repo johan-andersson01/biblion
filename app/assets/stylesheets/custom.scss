@@ -13,6 +13,26 @@ $success_color_dark: rgb(46,119,182);
   box-sizing:         border-box;
 }
 
+@mixin center_container {
+  display:flex;
+  justify-content: center;
+}
+
+@mixin center_content {
+  width:80%;
+  max-width:500px;
+}
+
+@mixin flex-container {
+  -ms-box-orient: horizontal;
+  display: -webkit-box;
+  display: -moz-box;
+  display: -ms-flexbox;
+  display: -moz-flex;
+  display: -webkit-flex;
+  display: flex;
+}
+
 * {
   padding: 0px;
   margin: 0px;
@@ -31,6 +51,14 @@ a:hover {
   color:#444;
 }
 
+
+.center_container {
+  @include center_container;
+}
+
+.center_content {
+  @include center_content
+}
 /* debug */
 
 .debug {
@@ -58,6 +86,50 @@ input {
 
 nav{
   margin-bottom:20px;
+}
+
+@media screen and (min-width: 768px) {
+header nav {
+  width:100%;
+  ul {
+    width:100%;
+    li {
+      margin-right:0px;
+      margin-left:0px;
+      width:25%;
+      text-align:center;
+
+      .form-inline .form-control {
+        width:100%;
+        margin:0px;
+        margin-top:10px;
+      }
+    }
+
+    li:nth-of-type(1) {
+      width:200px;
+    }
+
+    li:nth-of-type(2) {
+      // width:50%;
+      margin-right: 10px;
+    }
+
+    li:nth-of-type(3) {
+      width:200px;
+    }
+
+    li:nth-of-type(4) {
+      width:150px;
+    }
+  }
+}
+}
+
+header nav ul
+
+header nav ul li:nth-of-type(1) {
+    margin-left:0px;
 }
 
 /* body */
@@ -139,11 +211,9 @@ nav{
 
 .signup_form {
   width:100%;
-  display:flex;
-  justify-content: center;
+  @include center_container;
     form {
-      width:80%;
-      max-width:500px;
+      @include center_content;
 
       .non-editable {
         background: hsl(0,0%,95%);
