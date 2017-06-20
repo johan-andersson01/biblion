@@ -1,0 +1,24 @@
+<% provide(:title, 'Användare') %>
+<h1>Användare</h1>
+<%= will_paginate %>
+<ul class="users">
+  <% @users.each do |user| %>
+    <li>
+      <span>
+        <span><%= user.id %></span>
+        <span><%= link_to user.name, user %></span>
+        <span><% if user.admin %>admin<% end %></span>
+
+
+      </span>
+      <span>
+        <%= user.telephone %>
+        <%= user.email %>
+        <%= user.created_at.to_formatted_s(:dmy) %>
+        <%= user.updated_at.to_formatted_s(:dmy) %>
+        <%= link_to 'Redigera', edit_user_path(user) %>
+    </span>
+    </li>
+  <% end %>
+</ul>
+<%= will_paginate %>

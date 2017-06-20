@@ -7,6 +7,7 @@ Rails.application.routes.draw do
   get '/terms',     to: 'pages#termsofservice'
   get '/signup',    to: 'users#new'
   post '/signup',   to: 'users#create'
+  get '/users',     to: 'users#index'
   get '/login',     to: 'sessions#new'
   post '/login',    to: 'sessions#create'
   delete 'logout',  to: 'sessions#destroy'

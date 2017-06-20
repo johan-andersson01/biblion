@@ -1,20 +1,20 @@
 <% provide(:title, "Profil") %>
 <div class="center_container">
-<div class="row center_content">
-  <aside class="col-md-4 center_container">
-    <section class="user_info center_content">
-      <% if current_user?(@user) %>
-        <span id="name"><%= @user.name %></span><%= link_to '[Inställningar]', edit_user_path(@user)%>
-      <% else %>
-        <span id="name"><%= @user.name %></span>
-      <% end %>
-      <ul>
-        <li><span class="attr">Email</span><span class="info"><%= @user.email %></span></li>
-        <li><span class="attr">Telephone</span><span class="info"><%= @user.telephone %></span></li>
-        <li><span class="attr">Signed up</span><span class="info"><%= @user.created_at %></span></li>
-        <li><span class="attr">Last updated</span><span class="info"><%= @user.updated_at %></span></li>
-      </ul>
-    </section>
-  </aside>
-</div>
+<ul class="users">
+  <% if current_user?(@user)||current_user.admin %>
+    <li><span>Namn </span><span><%= @user.name %></span></li>
+    <li><span class="attr">Omdömen</span><span class="info"> PADDING </span></li>
+    <li><span class="attr">Karma</span><span class="info"> PADDING </span></li>
+    <li><span>Telefon </span><span><%= @user.telephone %></span></li>
+    <li><span>Email </span><span><%= @user.email %></span></li>
+    <li><span>Medlem sedan </span><span><%= @user.created_at.to_formatted_s(:dmy) %></span></li>
+    <li><span>Information senast uppdaterad </span><span><%= @user.updated_at.to_formatted_s(:dmy) %></span></li>
+    <li><%= link_to 'Redigera kontoinformation', edit_user_path(@user) %>
+  <% else %>
+    <li><span>Namn </span><span><%= @user.name %></span></li>
+    <li><span class="attr">Omdömen</span><span class="info"> PADDING </span></li>
+    <li><span class="attr">Karma</span><span class="info"> PADDING </span></li>
+    <li><span class="attr">Medlem sedan</span><span class="info"><%= @user.updated_at.to_formatted_s(:dmy) %></span></li>
+  <% end %>
+</ul>
 </div>

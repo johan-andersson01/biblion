@@ -91,9 +91,9 @@ nav{
 @media screen and (min-width: 768px) {
 header nav {
   width:100%;
-  ul {
+  > ul:not(.dropdown-menu) {
     width:100%;
-    li {
+    > li {
       margin-right:0px;
       margin-left:0px;
       width:25%;
@@ -106,27 +106,25 @@ header nav {
       }
     }
 
-    li:nth-of-type(1) {
+    > li:nth-of-type(1) {
       width:200px;
     }
 
-    li:nth-of-type(2) {
+    > li:nth-of-type(2) {
       // width:50%;
       margin-right: 10px;
     }
 
-    li:nth-of-type(3) {
+    > li:nth-of-type(3) {
       width:200px;
     }
 
-    li:nth-of-type(4) {
+    > li:nth-of-type(4) {
       width:150px;
     }
   }
 }
 }
-
-header nav ul
 
 header nav ul li:nth-of-type(1) {
     margin-left:0px;
@@ -194,7 +192,7 @@ header nav ul li:nth-of-type(1) {
 }
 
 
-.delete {
+.confirm {
 
   .collapse {
     padding-top:10px;
@@ -206,6 +204,11 @@ header nav ul li:nth-of-type(1) {
 
   input span {
     font-size: 90%;
+  }
+
+  .btn {
+    margin-top:10px;
+    width:100%;
   }
 }
 
@@ -221,8 +224,7 @@ header nav ul li:nth-of-type(1) {
       }
 
       .btn-danger {
-        margin-top:10px;
-        width:100%;
+
       }
 
 
@@ -246,4 +248,24 @@ header nav ul li:nth-of-type(1) {
         }
       }
     }
+}
+
+.users {
+  list-style: none;
+  margin: 0;
+
+  li {
+    @include box-sizing;
+    display:flex;
+    justify-content: space-between;
+    align-items: center;
+    overflow: auto;
+    padding: 10px 0;
+
+    border-bottom: 1px solid $gray-lighter;
+
+    span {
+      margin:10px 20px 10px 5px;
+    }
+  }
 }

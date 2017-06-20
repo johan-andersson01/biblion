@@ -7,6 +7,17 @@
     <li class="dropdown">
       <% if !logged_in? %>
       <%= link_to 'Logga in', login_path %>
+
+      <% elsif current_user.admin? %>
+      <a class="dropdown-toggle" data-toggle="dropdown" href="#">Admin
+        <span class="caret"></span></a>
+        <ul class="dropdown-menu">
+          <li><%= link_to 'Profil', current_user %></li>
+          <li><%= link_to 'Inställningar', edit_user_path(current_user) %></li>
+          <li><%= link_to 'Användare', users_path %></li>
+          <li>
+            <%= link_to "Logga ut", logout_path, method: :delete %>
+          </li>
       <% else %>
         <a class="dropdown-toggle" data-toggle="dropdown" href="#">Mitt konto
           <span class="caret"></span></a>
@@ -22,16 +33,3 @@
   </ul>
 </nav>
 </header>
-
-<!-- <form class="form-inline">
-<li>
-    <input class="form-control mr-sm-2" type="text" placeholder="E-mail">
-</li>
-<li>
-    <input class="form-control mr-sm-2" type="password" placeholder="Lösenord">
-</li>
-<li>
-  <button class="btn" type="submit">Logga in</button>
-</li>
-</form>
-<li><%= link_to "Inte registrerad?", signup_path%></li> -->

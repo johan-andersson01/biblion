@@ -1,6 +1,12 @@
 class UsersController < ApplicationController
-  before_action :logged_in_user, only: [:edit, :update, :show]
-  before_action :correct_user, only: [:edit, :update]
+  before_action :logged_in_user, only: [:edit, :update, :show, :index, :destroy]
+  before_action :authorize_user, only: [:edit, :update, :destroy]
+  before_action :authorize_admin, only: [:index]
+
+  def index
+    @users = User.paginate(page: params[:page])
+  end
+
   def show
     @user = User.find(params[:id])
   end
@@ -24,10 +30,31 @@ class UsersController < ApplicationController
 
   def update
     @user = User.find(params[:id])
-    if @user.update_attributes(user_params_no_terms)
+    @auth = current_user.authenticate(user_params_new_password[:oldpassword])
+    if @auth && @user.update_attributes(user_params_no_terms)
       flash[:success] = "Dina inställningar har nu uppdaterats"
       redirect_to @user
+    elsif !@auth
+      flash[:danger] = "Fel lösenord"
+      render 'edit'
     else
+      render 'edit'
+    end
+  end
+
+  def destroy
+    @user = User.find(params[:id])
+    if (current_user.admin? && current_user.authenticate(req_user_password[:password]))
+      @user.destroy
+      flash[:success] = "Användare raderad"
+      redirect_to users_url
+    elsif (@user.authenticate(req_user_password[:password]))
+      @user.destroy
+      session[:user_id] = nil
+      flash[:success] = "Ditt konto har nu raderats"
+      redirect_to root_url
+    else
+      flash[:danger] = "Fel lösenord"
       render 'edit'
     end
   end
@@ -39,9 +66,18 @@ class UsersController < ApplicationController
        :password, :password_confirmation, :terms_of_service)
     end
 
+    def user_params_new_password
+      params.require(:user).permit(:name, :email, :telephone, :oldpassword,
+       :password, :password_confirmation)
+    end
+
     def user_params_no_terms
       params.require(:user).permit(:name, :email, :telephone,
        :password, :password_confirmation)
+    end
+
+    def req_user_password
+      params.require(:user).permit(:password)
     end
 
     def logged_in_user
@@ -52,8 +88,16 @@ class UsersController < ApplicationController
       end
     end
 
-    def correct_user
+    def authorize_user
         @user = User.find(params[:id])
-        redirect_to(root_url) unless current_user?(@user)
+        redirect_to(root_url) unless current_user?(@user)||current_user.admin
+    end
+
+    def authorize_admin
+      unless current_user.admin
+        redirect_to root_url
+      end
+
+      #redirects to previous page
     end
 end
