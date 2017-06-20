@@ -1,8 +1,13 @@
-<% provide(:title, "Profile") %>
-<div class="row">
-  <aside class="col-md-4">
-    <section class="user_info">
-      <span id="name"><%= @user.name %></span><%= link_to '[Edit]', edit_user_path(@user)%>
+<% provide(:title, "Profil") %>
+<div class="center_container">
+<div class="row center_content">
+  <aside class="col-md-4 center_container">
+    <section class="user_info center_content">
+      <% if current_user?(@user) %>
+        <span id="name"><%= @user.name %></span><%= link_to '[Inställningar]', edit_user_path(@user)%>
+      <% else %>
+        <span id="name"><%= @user.name %></span>
+      <% end %>
       <ul>
         <li><span class="attr">Email</span><span class="info"><%= @user.email %></span></li>
         <li><span class="attr">Telephone</span><span class="info"><%= @user.telephone %></span></li>
@@ -11,4 +16,5 @@
       </ul>
     </section>
   </aside>
+</div>
 </div>
