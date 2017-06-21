@@ -6,12 +6,17 @@ michael:
   email: michael@madsen.com
   telephone: 1234567890
   password_digest: <%= User.digest('password') %>
+  activated: true
+  activated_at: <%= Time.zone.now %>
+
 
 archer:
   name: Sterling Archer
   email: duchess@example.gov
   telephone: 123123234
   password_digest: <%= User.digest('password') %>
+  activated: true
+  activated_at: <%= Time.zone.now %>
 
 admin:
   name: admin Adminson
@@ -19,6 +24,8 @@ admin:
   telephone: 999999990
   password_digest: <%= User.digest('foobar') %>
   admin: true
+  activated: true
+  activated_at: <%= Time.zone.now %>
 
 <% 30.times do |n| %>
 user_<%= n %>:
@@ -26,4 +33,6 @@ user_<%= n %>:
   email: <%= "user-#{n}@example.com" %>
   telephone: <%= "0000000#{n}" %>
   password_digest: <%= User.digest('password') %>
+  activated: true
+  activated_at: <%= Time.zone.now %>
 <% end %>

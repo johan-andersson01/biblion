@@ -54,6 +54,10 @@ a:hover {
 
 .center_container {
   @include center_container;
+
+  #about {
+    max-width:700px;
+  }
 }
 
 .center_content {

@@ -71,24 +71,4 @@ test "should not allow the admin attribute to be edited via the web" do
   end
   assert_redirected_to root_url
 end
-
-test "should  destroy user if user wants to delete account" do
- log_in_as(@user)
- assert_difference 'User.count', -1 do
-   delete user_path(@user),  params: { user: { password: "password"} }
- end
- assert_redirected_to root_url
- assert_not is_logged_in?
-end
-
-test "should  destroy user if admin wants to delete account" do
- log_in_as_admin(@admin)
- assert_difference 'User.count', -1 do
-   delete user_path(@user),  params: { user: { password: "foobar"} }
- end
- assert_redirected_to users_url
- assert is_logged_in_as(@admin)
-end
-
-
 end
