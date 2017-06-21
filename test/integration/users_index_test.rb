@@ -9,7 +9,7 @@ def setup
 end
 
 test "admin can view index and it has pagination" do
-  log_in_as(@admin)
+  log_in_as_admin(@admin)
   assert is_logged_in?
   get users_path
   assert_template 'users/index'

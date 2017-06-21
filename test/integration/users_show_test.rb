@@ -20,7 +20,7 @@ test "other user should not be able to show other user's full profile" do
 end
 
 test "admin  should be able to show other user's full profile" do
-  log_in_as(@admin)
+  log_in_as_admin(@admin)
   assert is_logged_in?
   get user_path(@other_user)
   assert flash.empty?

@@ -18,7 +18,7 @@ class UsersEditTest < ActionDispatch::IntegrationTest
   end
 
   test "successful admin edit" do
-    log_in_as(@admin)
+    log_in_as_admin(@admin)
     assert is_logged_in?
     get edit_user_path(@user)
     tel = "123443211"
@@ -33,7 +33,7 @@ class UsersEditTest < ActionDispatch::IntegrationTest
   end
 
   test "valid admin edit but wrong password" do
-    log_in_as(@admin)
+    log_in_as_admin(@admin)
     assert is_logged_in?
     get edit_user_path(@user)
     tel = "123443211"

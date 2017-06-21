@@ -14,9 +14,9 @@ archer:
   password_digest: <%= User.digest('password') %>
 
 admin:
-  name: Johan Adminsson
-  email: johan@biblion.dk
-  telephone: 987654321
+  name: admin Adminson
+  email: admin@valid.com
+  telephone: 999999990
   password_digest: <%= User.digest('foobar') %>
   admin: true
 
