@@ -1,9 +1,9 @@
 <header>
 <nav  class="navbar navbar-default navbar-fixed-top">
   <ul class="nav navbar-nav">
-    <li><div class="navbar-brand"><%= link_to "Biblion", root_url %> | <%= yield(:title) %></div></li>
-    <li><form class="form-inline"><input class="form-control mr-sm-2" type="text" placeholder="Boktitel eller författare"></form> </li>
-    <li><form class="form-inline"><input class="form-control mr-sm-2" type="text" placeholder="Stad"></form> </li>
+    <li class="navbar-brand"><div><%= link_to "Biblion", root_url %> | <%= yield(:title) %></div></li>
+    <li class="list-form"><form class="form-inline"><input class="form-control mr-sm-2" type="text" placeholder="Boktitel eller författare"></form> </li>
+    <li class="list-form"><form class="form-inline"><input class="form-control mr-sm-2" type="text" placeholder="Stad"></form> </li>
     <li class="dropdown">
       <% if !logged_in? %>
       <%= link_to 'Logga in', login_path %>

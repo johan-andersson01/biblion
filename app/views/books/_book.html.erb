@@ -1,0 +1,15 @@
+<li id="book-<%= book.id %>" class="col-xs-12 col-sm-6 col-md-6 col-lg-4 ">
+  <div class="left col-md-4 col-sm-4 col-xs-4">
+    <%= image_tag(book.cover) unless book.cover.nil? %>
+  </div>
+  <div class="right col-md-8 col-sm-8 col-xs-8">
+    <h4 class="title"><%=link_to book.title, book%></h4>
+    <h5 class="author"><%= link_to book.author, author_url(author: book.author) %></h5>
+    <h6 class="year"><%= book.year %></h6>
+    <h6 class="year">Plats: <%= link_to book.location, location_url(location: book.location) %></h6>
+    <% if logged_in? %>
+    <h6 class="year">Ges bort av: <%= link_to book.user.name, book.user %></h6>
+    <!-- <p class="description"><%= book.description%></p> -->
+    <% end %>
+  </div>
+</li>

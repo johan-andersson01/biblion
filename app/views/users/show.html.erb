@@ -1,6 +1,7 @@
 <% provide(:title, "Profil") %>
-<div class="center_container">
-<ul class="users">
+<!-- <div class="center_container"> -->
+<aside class="col-lg-3 col-md-3 col-xs-12 col-xs-12">
+<ul class="users userinfo">
   <% if current_user?(@user)||current_user.admin %>
     <li><span>Namn </span><span><%= @user.name %></span></li>
     <li><span class="attr">Omdömen</span><span class="info"> PADDING </span></li>
@@ -17,4 +18,14 @@
     <li><span class="attr">Medlem sedan</span><span class="info"><%= @user.updated_at.to_formatted_s(:dmy) %></span></li>
   <% end %>
 </ul>
+</aside>
+<div class="col-lg-9 col-md-9 col-xs-12">
+  <% if @user.books.any? %>
+  <h3><%= @user.name %>s böcker  (<%= @user.books.count %>)</h3>
+    <ul class="books">
+      <%= render @books %>
+    </ul>
+    <%= will_paginate @books %>
+  <% end %>
 </div>
+<!-- </div> -->

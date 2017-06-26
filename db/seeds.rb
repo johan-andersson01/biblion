@@ -20,3 +20,19 @@ User.create!(name:  "Johan Andersson",
                activated: true,
                activated_at: Time.zone.now)
 end
+
+users = User.order(:created_at).take(20)
+30.times do
+  title = Faker::Zelda.character
+  author = Faker::Name.name
+  year = Faker::Date.between(100.years.ago, Date.today)
+  description = Faker::Lorem.sentence(15)
+  user_description = Faker::Friends.quote
+  swaps = Faker::Number.between(0, 10)
+  location = Faker::HarryPotter.location
+  available = [true, false].sample
+  cover = Faker::LoremPixel.image("150x224")
+  users.each { |user| user.books.create!(title: title, author: author, year: year,
+    description: description, user_description: user_description, swaps: swaps,
+    location: location, available: available, cover: cover) }
+end

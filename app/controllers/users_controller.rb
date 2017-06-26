@@ -9,6 +9,7 @@ class UsersController < ApplicationController
 
   def show
     @user = User.find(params[:id])
+    @books = @user.books.paginate(page: params[:page])
   end
   def new
     @user = User.new
@@ -31,21 +32,6 @@ class UsersController < ApplicationController
   def update
     @user = User.find(params[:id])
     @auth = current_user.authenticate(user_params_new_password[:oldpassword])
-  #   if (current_user.admin && @auth)
-  #     flash[:success] = "Användare #{@user.id}:s inställningar har nu uppdaterats"
-  #     redirect_to users_url
-  #   elsif (@auth && @user == current_user)
-  #     flash[:success] = "Dina inställningar har nu uppdaterats"
-  #     redirect_to @user
-  #   elsif !@auth
-  #     flash[:danger] = "Fel lösenord"
-  #     render 'edit'
-  #   else
-  #     render 'edit'
-  #   end
-  # end
-  #
-
     if @auth && @user.update_attributes(user_params_no_terms)
       if current_user.admin
         flash[:success] = "Användare #{@user.id}:s inställningar har nu uppdaterats"

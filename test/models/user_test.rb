@@ -105,8 +105,8 @@ class UserTest < ActiveSupport::TestCase
 
   test "associated books should be destroyed" do
   @user.save
-  @user.books.create!(title: "This is the title", description: "Lorem ipsum", created_at: Time.zone.now, updated_at: Time.zone.now)
-  assert_difference 'Books.count', -1 do
+  @user.books.create!(title: "This is the title", description: "Lorem ipsum")
+  assert_difference 'Book.count', -1 do
     @user.destroy
   end
 end
