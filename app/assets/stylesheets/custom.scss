@@ -92,40 +92,36 @@ nav{
   margin-bottom:20px;
 }
 
-@media screen and (min-width: 768px) {
+@media screen and (min-width: 778px) {
 header nav {
   width:100%;
-  > ul:not(.dropdown-menu) {
+  ul:not(.dropdown-menu) {
     width:100%;
-    > li {
-      margin-right:0px;
-      margin-left:0px;
-      width:25%;
-      text-align:center;
-
-      .form-inline .form-control {
-        width:100%;
-        margin:0px;
-        margin-top:10px;
-      }
     }
 
-    > li:nth-of-type(1) {
-      width:250px;
+  li {
+    margin-right:0px;
+    margin-left:0px;
+    width:24%;
+    text-align:center;
+
     }
 
-    > li:nth-of-type(2) {
-      // width:50%;
-      margin-right: 10px;
-    }
+  li:nth-of-type(2) {
+    margin-right: 4%;
+  }
 
-    > li:nth-of-type(3) {
-      width:200px;
+    .form-inline .form-control {
+      width:100%;
+      margin:0px;
+      margin-top:10px;
     }
+}
 
-    > li:nth-of-type(4) {
-      width:150px;
-    }
+.dropdown {
+  li {
+    width:100%;
+    text-align: right;
   }
 }
 }
