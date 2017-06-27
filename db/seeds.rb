@@ -21,8 +21,8 @@ User.create!(name:  "Johan Andersson",
                activated_at: Time.zone.now)
 end
 
-users = User.order(:created_at).take(20)
-30.times do
+users = User.order(:created_at).take(10)
+60.times do
   title = Faker::Zelda.character
   author = Faker::Name.name
   year = Faker::Date.between(100.years.ago, Date.today)

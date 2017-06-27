@@ -92,51 +92,21 @@ nav{
   margin-bottom:20px;
 }
 
-@media screen and (min-width: 778px) {
-header nav {
-  width:100%;
-  ul:not(.dropdown-menu) {
-    width:100%;
-    display:flex;
-    justify-content: space-betweenr;
-    }
-
-  li {
-    margin-right:0px;
-    margin-left:0px;
-    text-align:center;
-    }
-
-    .navbar-brand {
-      width:30%;
-    }
-
-    .list-form {
-      width:25%;
-    }
-
-    .dropdown-menu {
-      width:10%;
-      li {
-        text-align: left;
-      }
-    }
-
-    .form-inline .form-control {
-      width:100%;
-      margin:0px;
-      margin-top:10px;
-    }
+@media screen and (min-width: 768px) {
+.list-form {
+  margin-top:10px;
+  margin-right:20px;
 }
 
+.list-form:nth-of-type(1) {
+  width:220px;
+  input {
+    width:100%;
+  }
+}
 }
 
 /* body */
-
-.main-content { padding-top: 70px; }
-@media screen and (max-width: 768px) {
-    .main-content { padding-top: 238px; }
-}
 
 /* footer */
 
@@ -280,23 +250,14 @@ header nav {
     display:flex;
     border-bottom: 1px solid $gray-lighter;
     align-items: center;
-    height:200px;
+    height:300px
   }
 
   .left {
     margin:0 10px 0 0;
-    height:100%;
     display:flex;
     align-items: center;
-    img {
-      width:auto;
-      max-height: 90%;
-    }
   }
-  // @media screen and (max-width: 400px) {
-  //     img { display: none; }
-  // }
-
 }
 
 aside {

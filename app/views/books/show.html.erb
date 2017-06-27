@@ -1,9 +1,9 @@
 <% provide(:title, @book.title) %>
 <li id="book-<%= @book.id %>" class="col-md-10 ">
-  <div class="left col-md-4 col-sm-2 col-xs-2">
+  <div class="left col-md-4 col-sm-2">
     <%= image_tag(@book.cover, style: 'width:100%;height:100%') %>
   </div>
-  <div class="right col-md-8 col-sm-10 col-xs-10">
+  <div class="right col-md-8 col-sm-10">
     <h4 class="title">Titel: <%=link_to @book.title, @book%></h4>
     <h5 class="author">Författare: <%= link_to @book.author, author_url(author: @book.author) %></h5>
     <h6 class="year">Utgiven: <%= @book.year %></h6>

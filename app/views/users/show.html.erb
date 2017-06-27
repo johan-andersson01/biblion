@@ -1,6 +1,6 @@
 <% provide(:title, "Profil") %>
 <!-- <div class="center_container"> -->
-<aside class="col-lg-3 col-md-3 col-xs-12 col-xs-12">
+<aside class="col-lg-3 col-md-3">
 <ul class="users userinfo">
   <% if current_user?(@user)||current_user.admin %>
     <li><span>Namn </span><span><%= @user.name %></span></li>
@@ -19,13 +19,13 @@
   <% end %>
 </ul>
 </aside>
-<div class="col-lg-9 col-md-9 col-xs-12">
+<div class="col-lg-9 col-md-9">
   <% if @user.books.any? %>
   <h3><%= @user.name %>s böcker  (<%= @user.books.count %>)</h3>
     <ul class="books">
       <%= render @books %>
     </ul>
-    <%= will_paginate @books %>
+    <%= will_paginate @books, previous_label: t("föregående"), next_label: t("nästa")%>
   <% end %>
 </div>
 <!-- </div> -->
