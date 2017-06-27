@@ -1,16 +1,22 @@
 <% provide(:title, @book.title) %>
 <li id="book-<%= @book.id %>" class="col-md-10 ">
   <div class="left col-md-4 col-sm-2">
-    <%= image_tag(@book.cover, style: 'width:100%;height:100%') %>
+    <%= image_tag(@book.cover, style: 'width:100%;') unless @book.cover.nil? %>
+
   </div>
   <div class="right col-md-8 col-sm-10">
+
     <h4 class="title">Titel: <%=link_to @book.title, @book%></h4>
     <h5 class="author">Författare: <%= link_to @book.author, author_url(author: @book.author) %></h5>
-    <h6 class="year">Utgiven: <%= @book.year %></h6>
-    <h6 class="location">Plats: <%= link_to @book.location, location_url(location: @book.location)%></h6>
+    <h6 class="year">Utgiven: <%= @book.year.to_formatted_s(:y) %></h6>
+    <h6 class="location">Ort:
+      <%= link_to @book.user.location, location_url(location: @book.user.location)%>,
+      <%= link_to @book.user.landscape, landscape_url(landscape: @book.user.landscape)%>
+    </h6>
     <% if logged_in? %>
     <h6 class="givenby">Ges bort av: <%= link_to @book.user.name, @book.user %></h6>
     <h6 class="swaps">Har getts bort: <%= @book.swaps %> gånger</h6>
+
     <% end %>
     <h6 class="available">Tillänglig:
       <% if @book.available %>
@@ -20,6 +26,27 @@
       <% end %>
     </h6>
     <h4>Beskrivning:</h4> <p class="description"><%= @book.description%></p>
-    <h4>Användarens beskrivning:</h4> <p class="description"><%= @book.description%></p>
+    <h4>Användarens beskrivning:</h4> <p class="description"><%= @book.user_description%></p>
+
+  <% if logged_in? && (current_user.admin || current_user == @book.user) %>
+    <form action="<%= edit_book_path(@book) %>">
+      <input type="submit" class="btn btn-primary" value="Redigera bokinformation" style="width:200px; margin-bottom:10px;"></input>
+    </form>
+  <%= form_for @book, method: :delete do |f| %>
+    <%= f.submit "Radera den här boken", data: { confirm: "Är du säker?" }, class: "btn btn-primary btn-danger", style: "width:200px;" %>
+  <% end %>
+<% elsif logged_in?%>
+<button type="button" class="btn btn-primary" style="width:200px" data-toggle="collapse" data-target="#request">
+  SMS:a <%= @book.user.name.partition(" ").first %> om boken!
+  <span class="caret"></span></button>
+  <div class="collapse users userinfo" id="request">
+    <ul>
+      <li><span>Glöm inte att skriva i SMS:et att du gärna skulle vilja få boken <%= link_to @book.title, @book %>,
+         som <%= link_to  @book.user.name.partition(" ").first, @book.user %> har lagt upp på Biblion.</span></li>
+      <li><span>Namn </span><span><%= @book.user.name %></span></li>
+      <li><span>Telefon </span><span><%= @book.user.telephone %></span></li>
+    </ul>
   </div>
+<% end %>
+</div>
 </li>

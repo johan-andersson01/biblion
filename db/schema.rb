@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20170626200540) do
+ActiveRecord::Schema.define(version: 20170627133625) do
 
   create_table "books", force: :cascade do |t|
     t.string   "title"
@@ -20,7 +20,6 @@ ActiveRecord::Schema.define(version: 20170626200540) do
     t.text     "user_description"
     t.integer  "swaps"
     t.boolean  "available"
-    t.string   "location"
     t.integer  "user_id"
     t.datetime "created_at",       null: false
     t.datetime "updated_at",       null: false
@@ -41,6 +40,8 @@ ActiveRecord::Schema.define(version: 20170626200540) do
     t.string   "activation_digest"
     t.boolean  "activated"
     t.datetime "activated_at"
+    t.string   "location"
+    t.string   "landscape"
     t.index ["email"], name: "index_users_on_email", unique: true
   end
 

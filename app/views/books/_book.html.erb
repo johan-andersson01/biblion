@@ -1,12 +1,15 @@
 <li id="book-<%= book.id %>" class="col-sm-6 col-md-6 col-lg-4 container-fluid">
   <div class="left col-md-4 col-sm-6">
-    <%= image_tag(book.cover, style: 'width:100%;height:100%') unless book.cover.nil? %>
+    <%= image_tag(book.cover, style: 'width:100%;') unless book.cover.nil? %>
   </div>
   <div class="right col-md-8 col-sm-6">
     <h4 class="title"><%=link_to book.title, book%></h4>
     <h5 class="author"><%= link_to book.author, author_url(author: book.author) %></h5>
     <h6 class="year">Utgivningsår: <%= book.year.to_formatted_s(:y) %></h6>
-    <h6 class="year">Plats: <%= link_to book.location, location_url(location: book.location) %></h6>
+    <h6 class="location">Ort:
+      <%= link_to book.user.location, location_url(location: book.user.location)%>,
+      <%= link_to book.user.landscape, landscape_url(landscape: book.user.landscape)%>
+    </h6>
     <% if logged_in? %>
     <h6 class="created_at">Lades upp: <%= book.created_at.to_formatted_s(:dmy) %></h6>
     <% end %>

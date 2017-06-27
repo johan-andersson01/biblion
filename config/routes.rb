@@ -13,6 +13,7 @@ Rails.application.routes.draw do
   #books
   get 'author',     to: 'books#all_by_author'
   get 'location',   to: 'books#all_by_location'
+  get 'landscape',  to: 'books#all_by_landscape'
   get 'new_book',   to: 'books#new'
   post 'new_book',  to: 'books#create'
   #session

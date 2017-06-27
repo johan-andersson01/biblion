@@ -1,9 +1,9 @@
-<%= provide(:title, 'Lägg till en ny bok') %>
+<%= provide(:title, 'Redigera bokinformation') %>
 <h1><%= yield(:title) %></h1>
 <div class="row">
   <div class="col-md-6 col-md-offset-3">
     <div class="signup_form">
-      <%= form_for(@book, url: new_book_path) do |f| %>
+      <%= form_for(@book) do |f| %>
         <%= render 'shared/book_error_messages' %>
         <%= f.label :title, "Boktitel" %>
         <%= f.text_field :title %>
@@ -17,7 +17,7 @@
         <%= f.text_field :description %>
         <%= f.label :user_description, "Varför du vill ge bort boken?" %>
         <%= f.text_field :user_description %>
-        <%= f.submit "Lägg till boken!", class: "btn btn-primary" %>
+        <%= f.submit "Bekräfta ändringar", class: "btn btn-primary" %>
       <% end %>
   </div>
   </div>

@@ -1,3 +1,25 @@
 // Place all the styles related to the books controller here.
 // They will automatically be included in application.css.
 // You can use Sass (SCSS) here: http://sass-lang.com/
+
+.books {
+  list-style: none;
+  padding: 0;
+
+  li {
+    display:flex;
+    border-bottom: 1px solid $gray-lighter;
+    align-items: center;
+    height:300px
+  }
+
+  .left {
+    margin:0 10px 0 0;
+    display:flex;
+    align-items: center;
+    height:100%;
+    img {
+      max-height: 90%;
+    }
+  }
+}

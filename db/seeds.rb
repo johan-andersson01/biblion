@@ -5,7 +5,8 @@ User.create!(name:  "Johan Andersson",
              password_confirmation: "foobar",
              admin: true,
              activated: true,
-             activated_at: Time.zone.now)
+             activated_at: Time.zone.now,
+             location: Faker::HarryPotter.location)
 
 99.times do |n|
   name  = Faker::Name.name
@@ -18,7 +19,9 @@ User.create!(name:  "Johan Andersson",
                password:              password,
                password_confirmation: password,
                activated: true,
-               activated_at: Time.zone.now)
+               activated_at: Time.zone.now,
+               location: Faker::HarryPotter.location,
+               landscape: Faker::StarWars.planet)
 end
 
 users = User.order(:created_at).take(10)
@@ -27,12 +30,10 @@ users = User.order(:created_at).take(10)
   author = Faker::Name.name
   year = Faker::Date.between(100.years.ago, Date.today)
   description = Faker::Lorem.sentence(15)
-  user_description = Faker::Friends.quote
+  user_description = Faker::Lorem.sentence(10)
   swaps = Faker::Number.between(0, 10)
-  location = Faker::HarryPotter.location
   available = [true, false].sample
   cover = Faker::LoremPixel.image("150x224")
   users.each { |user| user.books.create!(title: title, author: author, year: year,
-    description: description, user_description: user_description, swaps: swaps,
-    location: location, available: available, cover: cover) }
+    description: description, user_description: user_description, swaps: swaps, available: available, cover: cover) }
 end

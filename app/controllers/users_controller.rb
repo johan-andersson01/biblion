@@ -13,6 +13,7 @@ class UsersController < ApplicationController
   end
   def new
     @user = User.new
+    @landscapes = CS.states(:se)
   end
   def create
     @user = User.new(user_params_terms)
@@ -31,6 +32,7 @@ class UsersController < ApplicationController
 
   def update
     @user = User.find(params[:id])
+    @prev_loc = @user.location
     @auth = current_user.authenticate(user_params_new_password[:oldpassword])
     if @auth && @user.update_attributes(user_params_no_terms)
       if current_user.admin
@@ -68,17 +70,17 @@ class UsersController < ApplicationController
   private
 
     def user_params_terms
-      params.require(:user).permit(:name, :email, :telephone,
+      params.require(:user).permit(:name, :location, :landscape, :email, :telephone,
        :password, :password_confirmation, :terms_of_service)
     end
 
     def user_params_new_password
-      params.require(:user).permit(:name, :email, :telephone, :oldpassword,
+      params.require(:user).permit(:name, :location, :landscape, :email, :telephone, :oldpassword,
        :password, :password_confirmation)
     end
 
     def user_params_no_terms
-      params.require(:user).permit(:name, :email, :telephone,
+      params.require(:user).permit(:name, :location, :landscape, :email, :telephone,
        :password, :password_confirmation)
     end
 

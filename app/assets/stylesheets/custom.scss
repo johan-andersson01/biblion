@@ -88,8 +88,8 @@ input {
 
 /* header */
 
-nav{
-  margin-bottom:20px;
+body{
+  margin-top:69px;
 }
 
 @media screen and (min-width: 768px) {
@@ -105,8 +105,6 @@ nav{
   }
 }
 }
-
-/* body */
 
 /* footer */
 
@@ -163,109 +161,11 @@ nav{
 }
 
 
-.confirm {
-
-  .collapse {
-    padding-top:10px;
-  }
-
-  input:nth-of-type(2) {
-    margin-bottom: 0px;
-  }
-
-  input span {
-    font-size: 90%;
-  }
-
-  .btn {
-    margin-top:10px;
-    width:100%;
-  }
-}
-
-.signup_form {
-  width:100%;
-  @include center_container;
-    form {
-      @include center_content;
-
-      .non-editable {
-        background: hsl(0,0%,95%);
-        color:hsl(0,0%, 50%);
-      }
-
-      .btn-danger {
-
-      }
 
 
-      .checkbox {
-        margin-top: 10px;
-        margin-bottom: 20px;
-        vertical-align: middle;
 
-        span {
-          margin-left: 20px;
-          text-align: right;
-          font-weight: normal;
-        }
 
-        #checkbox {
-          width:auto;
-          margin:0px;
-          // margin-top:2px;
-          outline:0;
 
-        }
-      }
-    }
-}
-
-.users {
-  list-style: none;
-  margin: 0;
-
-  li {
-    @include box-sizing;
-    display:flex;
-    justify-content: space-between;
-    align-items: center;
-    overflow: auto;
-    padding: 10px 0;
-    border-bottom: 1px solid $gray-lighter;
-
-    span {
-      margin:10px 20px 10px 5px;
-    }
-  }
-}
-
-/* books */
-
-.books {
-  list-style: none;
-  padding: 0;
-
-  li {
-    display:flex;
-    border-bottom: 1px solid $gray-lighter;
-    align-items: center;
-    height:300px
-  }
-
-  .left {
-    margin:0 10px 0 0;
-    display:flex;
-    align-items: center;
-  }
-}
-
-aside {
-  textarea {
-    height: 100px;
-    margin-bottom: 5px;
-  }
-}
 
 .pagination {
   margin:0px auto;

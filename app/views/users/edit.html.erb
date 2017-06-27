@@ -11,11 +11,14 @@
         <% else %>
           <%= f.text_field :name, :readonly => true, class: "non-editable" %>
         <% end %>
+        <%= f.label :location, "Ort" %>
+        <%= f.text_field :location %>
+        <%= f.label :landscape, "Landskap" %>
+        <%= f.text_field :landscape %>
         <%= f.label :telephone, "Mobilnummer" %>
         <%= f.text_field :telephone %>
         <%= f.label :email, "E-mail" %>
         <%= f.text_field :email %>
-
         <%= f.label :password, "Nytt lösenord" %>
         <%= f.password_field :password %>
         <%= f.label :password_confirmation, "Bekräfta ditt nya lösenord" %>
@@ -36,8 +39,10 @@
         <button type="button" class="btn btn-primary btn-danger" data-toggle="collapse" data-target="#delete">Radera konto
           <span class="caret"></span></button>
           <div class="collapse" id="delete">
+            <p>All information kopplat till ditt konto kommer att gå förlorad.</p>
             <%= f.label :password, "Ange lösenord" %>
             <%= f.password_field :password %>
+
             <%= f.submit "Bekräfta raderingen", class: "btn btn-primary btn-danger" %>
           </div>
       </div>
