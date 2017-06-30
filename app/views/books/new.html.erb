@@ -5,18 +5,31 @@
     <div class="signup_form">
       <%= form_for(@book, url: new_book_path) do |f| %>
         <%= render 'shared/book_error_messages' %>
+        <%= f.hidden_field :googlebooks, value: params[:googlebooks] %>
         <%= f.label :title, "Boktitel" %>
-        <%= f.text_field :title %>
+        <%= f.text_field :title, value: params[:title]%>
         <%= f.label :author, "Författare" %>
-        <%= f.text_field :author %>
+        <%= f.text_field :author, value: params[:author]%>
+        <%= f.label :language, "Språk" %>
+        <%= f.text_field :language, value: params[:language] %>
+        <%= f.label :quality, "Skick" %>
+        <%= f.select :quality, options_for_select(['Nyskick', 'Använd',
+          'Sliten', 'Mycket sliten']) %>
         <%= f.label :year, "Utgivningsår" %>
-        <%= f.date_select "year",start_year: Time.now.year, end_year: Time.now.year - 200, order: [:year]%>
+        <% if params[:year].nil? %>
+          <%= f.date_select "year", include_blank: true, start_year: Time.now.year,
+          end_year: Time.now.year - 200, order: [:year]%>
+        <% else %>
+          <%= f.date_select "year",
+          default: DateTime.strptime(params[:year], '%Y-%m-%d %H:%M:%S %Z'),
+          start_year: Time.now.year, end_year: Time.now.year - 200, order: [:year]%>
+        <% end %>
         <%= f.label :cover, "URL till bokens omslag eller till en bild av boken" %>
-        <%= f.text_field :cover %>
+        <%= f.text_field :cover, value: params[:cover]%>
         <%= f.label :description, "Beskrivning" %>
-        <%= f.text_field :description %>
+        <%= f.text_area :description, value: params[:description]%>
         <%= f.label :user_description, "Varför du vill ge bort boken?" %>
-        <%= f.text_field :user_description %>
+        <%= f.text_area :user_description %>
         <%= f.submit "Lägg till boken!", class: "btn btn-primary" %>
       <% end %>
   </div>

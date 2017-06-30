@@ -14,8 +14,10 @@ Rails.application.routes.draw do
   get 'author',     to: 'books#all_by_author'
   get 'location',   to: 'books#all_by_location'
   get 'landscape',  to: 'books#all_by_landscape'
-  get 'new_book',   to: 'books#new'
-  post 'new_book',  to: 'books#create'
+  get 'books/new',   to: 'books#new'
+  post 'books/new',  to: 'books#create'
+  get 'books/add',  to: 'books#add'
+  post 'books/add', to: 'books#googlebooks_search'
   #session
   get '/login',     to: 'sessions#new'
   post '/login',    to: 'sessions#create'

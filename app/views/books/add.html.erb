@@ -1,0 +1,40 @@
+<%= provide(:title, 'Lägg till en ny bok') %>
+<h1><%= yield(:title) %></h1>
+<div class="row">
+  <div class="signup_form">
+    <%= form_for(@book, url: {action: "googlebooks_search"}, method: :post) do |f| %>
+      <%= f.label(:query, "Sök efter titel eller författare:") %>
+      <%= f.text_field :query, value: @query, class: "google-search",
+      onkeyup: 'this.style.background=(this.value=="" ? "white url(https://developers.google.com/books/images/google_watermark.gif) no-repeat" : "white url(none) no-repeat");',
+      onsubmit: 'this.style.background=(this.value=="" ? "white url(https://developers.google.com/books/images/google_watermark.gif) no-repeat" : "white url(none) no-repeat");' %>
+      <%= f.submit("Sök") %>
+      <% if params[:action] == "googlebooks_search" %>
+        <p> Hittar du inte boken? <%= link_to "Lägg till den manuellt istället", new_book_path %>
+      <% end %>
+    <% end %>
+  </div>
+    <% unless @books.nil? %>
+    <ul class="books">
+    <% @books.each do |book| %>
+    <%= link_to new_book_path(title: book.title, author: book.author, year: book.year, cover: book.cover, description: book.description, googlebooks: book.googlebooks) do %>
+    <li class="col-sm-6 col-md-6 col-lg-4 container-fluid select">
+      <div class="left col-md-4 col-sm-6">
+        <div class="cover-image">
+          <%= image_tag(book.cover, style: 'width:100%;') unless book.cover.nil? %>
+        </div>
+      </div>
+      <div class="right col-md-8 col-sm-6">
+        <h4 class="title"><%= book.title %></h4>
+        <h5 class="author"><%= book.author %></h5>
+        <% if book.year.nil? %>
+        <h6 class="year">Utgivningsår: Ej angivet</h6>
+        <% else %>
+        <h6 class="year">Utgivningsår: <%= book.year.to_formatted_s(:y) %></h6>
+        <% end %>
+      </div>
+    </li>
+    <% end %>
+    <% end %>
+  </ul>
+    <% end %>
+</div>

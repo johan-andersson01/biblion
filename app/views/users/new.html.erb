@@ -12,12 +12,14 @@
         <%= f.label :name, "Förnamn" %>
         <%= f.text_field :name %>
         <%= f.label :landscape, "Län" %>
-        <%= f.select :landscape, @landscapes.values %>
+        <%= f.select :landscape, CS.states(:se).values %>
         <%= f.label :location, "Ort" %>
         <%= f.text_field :location %>
         <%= f.label :telephone, "Mobilnummer" %>
+        <p>Endast synligt för användare som förfrågar att få en bok av dig.</p>
         <%= f.text_field :telephone %>
         <%= f.label :email, "E-mail" %>
+        <p>Ej synligt för andra användare.</p>
         <%= f.text_field :email %>
         <%= f.label :password, "Lösenord" %>
         <%= f.password_field :password %>

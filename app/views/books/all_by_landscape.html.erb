@@ -1,6 +1,6 @@
 <% provide(:title, @landscape) %>
 <div class="col-md-12">
-    <h3>Alla böcker i <%= @landscape %></h3>
+    <h3>Alla böcker i <%= @landscape %> (<%= @books.count %>)</h3>
     <ul class="books">
       <%= render @books %>
     </ul>

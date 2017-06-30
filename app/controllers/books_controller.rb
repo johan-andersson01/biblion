@@ -1,6 +1,8 @@
 class BooksController < ApplicationController
   require 'will_paginate/array'
-  before_action :logged_in_user, only: [:new]
+  # require 'googlebooks'
+  before_action :logged_in_user, only: [:new, :add, :googlebooks_search]
+  before_action :authorize_user, only: [:edit, :update, :destroy]
 
   def show
     @book = Book.find(params[:id])
@@ -59,6 +61,42 @@ class BooksController < ApplicationController
     end
   end
 
+  def add
+    @book = Book.new
+  end
+
+  def googlebooks_search
+    @query = googlebooks_params[:query]
+    @book = Book.new
+    @books = []
+    books = GoogleBooks.search(@query, {:count => 12})
+    first = books.first
+    i = 0
+#DateTime.strptime(book.published_date, '%Y-%m-%d %H:%M:%S %Z')
+    books.each do |book|
+      @books[i] = Book.new(
+      author: book.authors,
+      title: book.title,
+      language: book.language,
+      year: book.published_date,
+      description: book.description,
+      cover: book.image_link(:zoom => 6),
+      user: current_user,
+      googlebooks: book.info_link)
+      i += 1
+    end
+
+    # while i < limit do
+    #   @books[index] = Book.new(author: books[index].authors, title: books[index].title, year: books[index].published_date,
+    #   description: books[index].description, cover: books[index].image_link(:zoom => 6), user: current_user)
+    # end
+
+    # @book = Book.new(author: first.authors, title: first.title, year: first.published_date,
+    # description: first.description, cover: first.image_link(:zoom => 6), user: current_user)
+    # puts @book.attributes
+    render 'add'
+  end
+
   def all_by_author
     @books = Book.where("author =  ?", params[:author]).paginate(page: params[:page])
     @author = params[:author]
@@ -99,7 +137,16 @@ class BooksController < ApplicationController
       end
     end
 
+    def authorize_user
+        @book = Book.find(params[:id])
+        redirect_to(root_url) unless logged_in? && (@book.user == current_user || current_user.admin)
+    end
+
     def book_params
-      params.require(:book).permit(:title, :author, :year, :description, :user_description, :cover)
+      params.require(:book).permit(:title, :author, :year, :description, :user_description, :cover, :language, :quality, :googlebooks)
+    end
+
+    def googlebooks_params
+      params.require(:book).permit(:query)
     end
 end

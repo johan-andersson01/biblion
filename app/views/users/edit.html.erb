@@ -13,8 +13,8 @@
         <% end %>
         <%= f.label :location, "Ort" %>
         <%= f.text_field :location %>
-        <%= f.label :landscape, "Landskap" %>
-        <%= f.text_field :landscape %>
+        <%= f.label :landscape, "Län" %>
+        <%= f.select :landscape, CS.states(:se).values %>
         <%= f.label :telephone, "Mobilnummer" %>
         <%= f.text_field :telephone %>
         <%= f.label :email, "E-mail" %>

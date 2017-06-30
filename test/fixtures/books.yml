@@ -8,7 +8,6 @@ one:
   user_description: MyText
   swaps: 1
   available: false
-  location: MyString
   user: one
 
 two:
@@ -19,5 +18,4 @@ two:
   user_description: MyText
   swaps: 1
   available: false
-  location: MyString
   user: two

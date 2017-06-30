@@ -8,7 +8,17 @@
 
     <h4 class="title">Titel: <%=link_to @book.title, @book%></h4>
     <h5 class="author">Författare: <%= link_to @book.author, author_url(author: @book.author) %></h5>
-    <h6 class="year">Utgiven: <%= @book.year.to_formatted_s(:y) %></h6>
+    <h6 class="author">Skick: <%=  @book.quality %></h6>
+    <% if @book.language.nil? || @book.language.empty?%>
+    <h6 class="year">Språk: Ej angivet</h6>
+    <% else %>
+    <h6 class="year">Språk: <%= @book.language %></h6>
+    <% end %>
+    <% if @book.year.nil? %>
+    <h6 class="year">Utgivningsår: Ej angivet</h6>
+    <% else %>
+    <h6 class="year">Utgivningsår: <%= @book.year.to_formatted_s(:y) %></h6>
+    <% end %>
     <h6 class="location">Ort:
       <%= link_to @book.user.location, location_url(location: @book.user.location)%>,
       <%= link_to @book.user.landscape, landscape_url(landscape: @book.user.landscape)%>
@@ -25,6 +35,11 @@
         Nej
       <% end %>
     </h6>
+    <h6 class="available">
+      <% unless @book.googlebooks.nil? || @book.googlebooks.empty? %>
+        Viss information om den här boken är hämtad från <%= link_to "Google", @book.googlebooks, :target => "_blank", :rel => "noopener" %>
+      <% end %>
+    </h6>
     <h4>Beskrivning:</h4> <p class="description"><%= @book.description%></p>
     <h4>Användarens beskrivning:</h4> <p class="description"><%= @book.user_description%></p>
 
@@ -35,18 +50,32 @@
   <%= form_for @book, method: :delete do |f| %>
     <%= f.submit "Radera den här boken", data: { confirm: "Är du säker?" }, class: "btn btn-primary btn-danger", style: "width:200px;" %>
   <% end %>
-<% elsif logged_in?%>
+<% elsif logged_in? && @book.available%>
+
 <button type="button" class="btn btn-primary" style="width:200px" data-toggle="collapse" data-target="#request">
-  SMS:a <%= @book.user.name.partition(" ").first %> om boken!
+  Ansök om att få boken
   <span class="caret"></span></button>
   <div class="collapse users userinfo" id="request">
     <ul>
+      <li><span>Genom att bekräfta din ansökan om att få boken,
+        kommer ditt namn och telefonnummer att synliggöras för bokens ägare.</span></li>
+       <li><span>Efter att du har bekräftat din ansökan, kommer ägarens telefonnummer att visas och du uppmanas därefter att
+       ta kontakt via SMS.</span></li>
       <li><span>Glöm inte att skriva i SMS:et att du gärna skulle vilja få boken <%= link_to @book.title, @book %>,
-         som <%= link_to  @book.user.name.partition(" ").first, @book.user %> har lagt upp på Biblion.</span></li>
-      <li><span>Namn </span><span><%= @book.user.name %></span></li>
+        som <%= link_to  @book.user.name.partition(" ").first, @book.user %> har lagt upp på Biblion.</span></li>
+     <li><span>Namn </span><span><%= @book.user.name %></span></li>
       <li><span>Telefon </span><span><%= @book.user.telephone %></span></li>
-    </ul>
+
+    <li><%= form_for @book, method: :request do |f| %>
+      <%= f.submit "Bekräfta din ansökan", class: "btn btn-primary", style: "width:200px;" %>
+    <% end %>
+  </li>
+  </ul>
   </div>
+  <% elsif logged_in? && !@book.available %>
+  <button type="button" class="btn btn-static" style="width:200px">
+    Boken är inte tillgänglig
+  </button>
 <% end %>
 </div>
 </li>

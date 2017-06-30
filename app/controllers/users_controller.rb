@@ -10,11 +10,13 @@ class UsersController < ApplicationController
   def show
     @user = User.find(params[:id])
     @books = @user.books.paginate(page: params[:page])
+    @available = @user.books.where("available =  ?", true)
   end
+
   def new
     @user = User.new
-    @landscapes = CS.states(:se)
   end
+
   def create
     @user = User.new(user_params_terms)
     if @user.save
@@ -28,6 +30,8 @@ class UsersController < ApplicationController
 
   def edit
     @user = User.find(params[:id])
+    rescue ActiveRecord::RecordNotFound
+      redirect_to root_url
   end
 
   def update
@@ -98,6 +102,7 @@ class UsersController < ApplicationController
 
     def authorize_user
         @user = User.find(params[:id])
+        rescue ActiveRecord::RecordNotFound
         redirect_to(root_url) unless current_user?(@user)||current_user.admin
     end
 

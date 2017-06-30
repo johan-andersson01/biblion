@@ -7,6 +7,7 @@
     <li><span>Telefon </span><span><%= @user.telephone %></span></li>
     <li><span>Email </span><span><%= @user.email %></span></li>
     <li><span>Ort </span><span><%= @user.location %>, <%= @user.landscape %></span></li>
+    <li><span class="attr">Antal tillgängliga böcker</span><span class="info"> <%= @available.count %> </span></li>
     <li><span class="attr">Antal bortgivna böcker</span><span class="info"> <%= rand(20) %>  </span></li>
     <li><span class="attr">Antal mottagna böcker</span><span class="info"> <%= rand(20) %>  </span></li>
     <li><span class="attr">Ratio</span><span class="info"> <%= (rand + rand).round(2) %> </span></li>
@@ -15,7 +16,7 @@
     <li><%= link_to 'Redigera kontoinformation', edit_user_path(@user) %>
   <% else %>
     <li><span>Namn </span><span><%= @user.name %></span></li>
-    <li><span class="attr"></span><span class="info"> PADDING </span></li>
+    <li><span class="attr">Antal tillgängliga böcker</span><span class="info"> <%= @available.count %> </span></li>
     <li><span class="attr">Antal bortgivna böcker</span><span class="info"> <%= rand(20) %>  </span></li>
     <li><span class="attr">Antal mottagna böcker</span><span class="info"> <%= rand(20) %>  </span></li>
     <li><span class="attr">Ratio</span><span class="info"> <%= (rand + rand).round(2) %> </span></li>

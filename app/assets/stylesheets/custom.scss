@@ -130,6 +130,7 @@ body{
   outline: 1px solid $error_color_dark !important;
 }
 
+
 .alert {
   @include box-sizing;
   margin-top:20px;
@@ -160,6 +161,16 @@ body{
   justify-content: center;
 }
 
+.btn-static {
+  background-color: hsl(0,50%,95%);
+  border: 1px solid hsl(0,50%,65%);
+  cursor: default;
+}
+.btn-static:active {
+  -moz-box-shadow:    inset 0 0 0px white;
+  -webkit-box-shadow: inset 0 0 0px white;
+  box-shadow:         inset 0 0 0px white;
+}
 
 
 

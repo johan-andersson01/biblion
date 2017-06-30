@@ -2,6 +2,10 @@
 // They will automatically be included in application.css.
 // You can use Sass (SCSS) here: http://sass-lang.com/
 
+$ok: rgb(66,139,202);
+$select: rgba(91,192,222,0.6);
+$list-height: 300px;
+
 .books {
   list-style: none;
   padding: 0;
@@ -10,16 +14,68 @@
     display:flex;
     border-bottom: 1px solid $gray-lighter;
     align-items: center;
-    height:300px
+    height:$list-height;
   }
 
   .left {
     margin:0 10px 0 0;
     display:flex;
     align-items: center;
-    height:100%;
+    height:$list-height;
+    .cover-image {
+      height: $list-height;
+      max-width:100%;
+      display:flex;
+      align-items: center;
+    }
+
+    .status-and-image {
+      max-height:300px;
+      max-width:100%;
+    }
+
     img {
-      max-height: 90%;
+      height:100%;
+      max-height: 300px;
+      max-width:100%;
     }
   }
+}
+
+.status {
+  position:absolute;
+  width:10%;
+
+  .circle {
+    margin:5px 0px 0px 5px;
+    background:hsla(0,100%,50%, 0.8);
+  }
+
+  .ok {
+    background:$ok;
+  }
+}
+
+.select {
+  color:#444;
+}
+
+.select:hover {
+  background:$select;
+
+  img {
+    background:$select;;
+  }
+}
+.circle {
+position: relative;
+border-radius: 50%;
+width: 100%;
+height: auto;
+padding-top: 100%;
+}
+
+.google-search {
+  background: white url(https://developers.google.com/books/images/google_watermark.gif);
+  background-repeat: no-repeat;
 }
