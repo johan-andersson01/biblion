@@ -2,7 +2,11 @@ class User < ApplicationRecord
   attr_accessor :remember_token, :activation_token
   before_create :create_activation_digest
   before_save { email.downcase!}
-  validates :name, presence: true, length: {minimum: 2, maximum: 50}
+  validates :name, presence: true, length: {
+    maximum: 1,
+    tokenizer: lambda { |str| str.split(/\s+/) },
+    too_long: "must be only %{count} word"
+  }
   validates :location, presence: true, length: {minimum: 2}
   # validates :landscape, presence: true
   VALID_EMAIL = /\A[\w+\-.]+@[a-z\d\-]+(\.[a-z\d\-]+)*\.[a-z]+\z/i

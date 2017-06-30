@@ -9,14 +9,17 @@
         </div>
       <%= form_for(@user, url: signup_path) do |f| %>
         <%= render 'shared/error_messages' %>
-        <%= f.label :name, "Förnamn" %>
+        <%= f.label :name, "Förnamn eller alias" %>
+        <p>Synligt för användare.</p>
         <%= f.text_field :name %>
         <%= f.label :landscape, "Län" %>
+        <p>Synligt för användare.</p>
         <%= f.select :landscape, CS.states(:se).values %>
         <%= f.label :location, "Ort" %>
+        <p>Synligt för användare.</p>
         <%= f.text_field :location %>
         <%= f.label :telephone, "Mobilnummer" %>
-        <p>Endast synligt för användare som förfrågar att få en bok av dig.</p>
+        <p>Endast synligt för användare som gör en förfrågan om att få en bok av dig.</p>
         <%= f.text_field :telephone %>
         <%= f.label :email, "E-mail" %>
         <p>Ej synligt för andra användare.</p>
