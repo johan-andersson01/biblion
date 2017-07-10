@@ -6,7 +6,9 @@
         <div class="<%= 'circle' unless book.cover.nil? %> <%= 'ok' if book.available %>">
         </div>
       </div>
+      <%= link_to book do %>
       <%= image_tag(book.cover) unless book.cover.nil? %>
+      <% end %>
     </div>
     </div>
   </div>
@@ -20,7 +22,9 @@
     <% else %>
     <h6 class="year">Språk: <%= book.language %></h6>
     <% end %>
-    <h6 class="created_at">Upplagd: <%= book.created_at.to_formatted_s(:dmy) %></h6>
+    <% unless book.pages.nil? %>
+    <h6 class="pages"><%= book.pages %> sidor</h6>
+    <% end %>
     <!-- <% if book.year.nil? %>
     <h6 class="year">Utgivningsår: Ej angivet</h6>
     <% else %>

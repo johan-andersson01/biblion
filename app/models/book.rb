@@ -7,6 +7,7 @@ class Book < ApplicationRecord
   validates :title, presence: true
   validates :cover, presence: true
   validates :quality, presence: true
+  validates :language, presence: true
   validates :user_description, length: { maximum: 140 }
 
 end

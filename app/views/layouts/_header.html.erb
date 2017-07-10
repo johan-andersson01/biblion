@@ -8,11 +8,31 @@
         <span class="icon-bar"></span>
       </button>
       <div class="navbar-brand"><%= link_to "Biblion", root_url %> |
-        <% if yield(:title).length > 16 %>
-        <%= yield(:title).partition(" ").first%>...</div>
-        <% else %>
-        <%= yield(:title)[0,16]%></div>
-        <% end %>
+        <span id="fulltitle", style="display:none;">
+          <% if yield(:title).length > 40 %>
+          <%= yield(:title)[0,35]%>...
+          <% else %>
+          <%= yield(:title) %>
+          <% end %>
+        </span>
+        <span id="shorttitle", style="display:none;">
+          <% if yield(:title).length > 16 %>
+          <%= yield(:title).partition(" ").first%>...
+          <% else %>
+          <%= yield(:title) %>
+          <% end %>
+        </span>
+        <script>
+        if ( $(window).width() < 768 && $(window).width() > 450 || $(window).width() > 1000) {
+          document.getElementById("shorttitle").style.display = "none";
+          document.getElementById("fulltitle").style.display = "";
+        }
+        else {
+          document.getElementById("fulltitle").style.display = "none";
+          document.getElementById("shorttitle").style.display = "";
+        }
+        </script>
+        </div>
     </div>
     <div class="collapse navbar-collapse" id="collapse_me">
       <ul class="nav navbar-nav">

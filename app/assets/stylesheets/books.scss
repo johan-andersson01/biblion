@@ -79,3 +79,36 @@ padding-top: 100%;
   background: white url(https://developers.google.com/books/images/google_watermark.gif);
   background-repeat: no-repeat;
 }
+
+.show-book {
+  margin:0px auto;
+  max-width:1000px;
+  img {
+    width:100%;
+    max-width:300px;
+  }
+
+  input, button {
+    width:100%;
+    margin-top:10px;
+  }
+  li {
+    display:flex;
+    justify-content: space-between;
+    align-items: center;
+    overflow: auto;
+    padding: 10px 0;
+    border-bottom: 1px solid $gray-lighter;
+  }
+
+  .attr {
+    width:150px;
+    padding-right: 20px;
+    font-weight: bold;
+  }
+
+  .info {
+    width:200px;
+    padding-left:20px;
+  }
+}

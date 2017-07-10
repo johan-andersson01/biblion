@@ -1,4 +1,4 @@
-User.create!(name:  "Johan Andersson",
+User.create!(name:  "Johan",
              email: "johan@biblion.se",
              telephone: "000000000",
              password:              "foobar",
@@ -9,21 +9,21 @@ User.create!(name:  "Johan Andersson",
              location: Faker::HarryPotter.location,
              landscape: Faker::StarWars.planet)
 
-# 99.times do |n|
-#   name  = Faker::Name.name
-#   email = "user-#{n+1}@biblion.se"
-#   telephone = "0000000#{n+1}"
-#   password = "password"
-#   User.create!(name:  name,
-#                email: email,
-#                telephone: telephone,
-#                password:              password,
-#                password_confirmation: password,
-#                activated: true,
-#                activated_at: Time.zone.now,
-#                location: Faker::HarryPotter.location,
-#                landscape: Faker::StarWars.planet)
-# end
+2.times do |n|
+  name  = Faker::Name.name.first
+  email = "user-#{n+1}@biblion.se"
+  telephone = "0000000#{n+1}"
+  password = "password"
+  User.create!(name:  name,
+               email: email,
+               telephone: telephone,
+               password:              password,
+               password_confirmation: password,
+               activated: true,
+               activated_at: Time.zone.now,
+               location: Faker::HarryPotter.location,
+               landscape: Faker::StarWars.planet)
+end
 #
 # users = User.order(:created_at).take(10)
 # 60.times do

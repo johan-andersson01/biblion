@@ -18,6 +18,7 @@ Rails.application.routes.draw do
   post 'books/new',  to: 'books#create'
   get 'books/add',  to: 'books#add'
   post 'books/add', to: 'books#googlebooks_search'
+  post 'books/show', to: 'books#request_book'
   #session
   get '/login',     to: 'sessions#new'
   post '/login',    to: 'sessions#create'

@@ -6,10 +6,11 @@ class BooksController < ApplicationController
 
   def show
     @book = Book.find(params[:id])
+    @user = current_user
   end
 
   def new
-    @book = Book.new
+      @book = Book.new
   end
 
   def edit
@@ -18,6 +19,9 @@ class BooksController < ApplicationController
 
   def update
     @book = Book.find(params[:id])
+    unless @book.language.nil?
+       @book.language.capitalize!
+     end
     @auth = (current_user == @book.user || current_user.admin?)
     if @auth && @book.update_attributes(book_params)
       if current_user.admin
@@ -36,6 +40,9 @@ class BooksController < ApplicationController
 
   def create
     @book = current_user.books.build(book_params)
+    unless @book.language.nil?
+       @book.language.capitalize!
+     end
     @book.available = true
     @book.swaps = 0
     if @book.save
@@ -78,22 +85,14 @@ class BooksController < ApplicationController
       author: book.authors,
       title: book.title,
       language: book.language,
-      year: book.published_date,
       description: book.description,
       cover: book.image_link(:zoom => 6),
+      language: book.language,
       user: current_user,
-      googlebooks: book.info_link)
+      googlebooks: book.info_link,
+      pages: book.page_count)
       i += 1
     end
-
-    # while i < limit do
-    #   @books[index] = Book.new(author: books[index].authors, title: books[index].title, year: books[index].published_date,
-    #   description: books[index].description, cover: books[index].image_link(:zoom => 6), user: current_user)
-    # end
-
-    # @book = Book.new(author: first.authors, title: first.title, year: first.published_date,
-    # description: first.description, cover: first.image_link(:zoom => 6), user: current_user)
-    # puts @book.attributes
     render 'add'
   end
 
@@ -127,6 +126,14 @@ class BooksController < ApplicationController
     @landscape = params[:landscape]
   end
 
+  def request_book
+    @book = Book.find(params[:id])
+    @book.requesters << " " + current_user.id.to_s
+    puts current_user.id
+    puts params[:id]
+    render 'show', id: params[:id]
+  end
+
   private
 
     def logged_in_user
@@ -143,7 +150,7 @@ class BooksController < ApplicationController
     end
 
     def book_params
-      params.require(:book).permit(:title, :author, :year, :description, :user_description, :cover, :language, :quality, :googlebooks)
+      params.require(:book).permit(:title, :author, :year, :description, :user_description, :cover, :language, :quality, :googlebooks, :pages)
     end
 
     def googlebooks_params
