@@ -5,7 +5,7 @@ class BooksController < ApplicationController
   before_action :authorize_user, only: [:edit, :update, :destroy]
 
   def show
-    @book = Book.find(params[:id])
+    @book = Book.find_by(id: params[:id])
     @user = current_user
   end
 
@@ -132,13 +132,10 @@ class BooksController < ApplicationController
   end
 
   def request_book
-    @book = Book.find(params[:id])
-    @book.requesters << current_user.id.to_s +  " "
-    puts current_user.id
-    puts params[:id]
-    puts "halla"
+    @book = Book.find_by(params[:id])
+    @book.requesters = "#{@book.requesters}#{current_user.id.to_s} "
     puts @book.requesters
-    render 'show', id: params[:id]
+    redirect_to action: :show, id: params[:id]
   end
 
   private
@@ -157,7 +154,7 @@ class BooksController < ApplicationController
     end
 
     def book_params
-      params.require(:book).permit(:title, :author, :year, :description, :user_description, :cover, :language, :quality, :genre, :googlebooks, :pages)
+      params.require(:book).permit(:title, :author, :year, :description, :user_description, :cover, :language, :quality, :genre, :googlebooks, :pages, :available)
     end
 
     def googlebooks_params

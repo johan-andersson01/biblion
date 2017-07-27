@@ -8,13 +8,14 @@
     <h2 class="title"><%=link_to @book.title, @book%></h2>
     <h4 class="author"><%= link_to @book.author, author_url(author: @book.author) %></h4>
     <ul>
+    <li>req: <%= @book.requesters %></li>
     <li class="quality"><span class="attr">Skick:</span> <span class="info"><%=  @book.quality %></span></li>
     <% if @book.language.nil? || @book.language.empty?%>
     <li class="year"><span class="attr">Språk:</span> <span class="info">Ej angivet</span></li>
     <% else %>
     <li class="year"><span class="attr">Språk:</span> <span class="info"><%= @book.language %></span></li>
     <% end %>
-    <li class="genre"><span class="attr">Genre:</span> <span class="info"><%=  @book.genre %></span></li>
+    <li class="genre"><span class="attr">Genre:</span> <span class="info"><%= link_to @book.genre, genre_url(genre: @book.genre)%></span></li>
 
     <% if @book.pages.nil?%>
     <li class="year"><span class="attr">Sidor:</span> <span class="info">Ej angivet</span></li>
@@ -40,15 +41,15 @@
 
     <% end %>
     <li class="available"><span class="attr">Tillänglig:</span>
-      <% if @book.available %>
       <span class="info">
+      <% if @book.available %>
         Ja
       <% else %>
         Nej
       <% end %>
       </span>
-
-    <li class="available">
+    </li>
+    <li class="googlebooks">
       <% unless @book.googlebooks.nil? || @book.googlebooks.empty? %>
         <span>Information om den här boken är hämtad från</span><span class="info"><%= link_to "Google", @book.googlebooks, :target => "_blank", :rel => "noopener" %></span>
       <% end %>
@@ -87,7 +88,7 @@
            <li><span>Namn </span><span><%= @book.user.name %></span></li>
            <li><span>Telefon </span><span><%= @book.user.telephone %></span></li>
            </ul>
-             <%= form_for(@book, url: {action: "request_book"}, method: :post) do |f| %>
+             <%= form_for(@book, url: {action: "request_book"}, method: :patch) do |f| %>
                 <%= hidden_field_tag "id", @book.id %>
                 <%= f.submit "Bekräfta din ansökan", class: "btn btn-primary"%>
               <% end %>
