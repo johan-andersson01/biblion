@@ -14,8 +14,11 @@
         <%= f.label :language, "* Språk" %>
         <%= f.text_field :language, value: params[:language] %>
         <%= f.label :quality, "* Skick" %>
-        <%= f.select :quality, options_for_select(['Nyskick', 'Använd',
+        <%= f.select :quality, options_for_select(['', 'Nyskick', 'Använd',
           'Sliten', 'Mycket sliten']) %>
+        <%= f.label :genre, "Genre" %>
+        <%= f.select :genre, options_for_select(['', 'Fiktion', 'Fakta',
+            'Facklitteratur', 'Barnbok']) %>
         <%= f.label :year, "Utgivningsår" %>
         <% if params[:year].nil? %>
           <%= f.date_select "year", include_blank: true, start_year: Time.now.year,

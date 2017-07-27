@@ -101,6 +101,11 @@ class BooksController < ApplicationController
     @author = params[:author]
   end
 
+  def all_by_genre
+    @books = Book.where("genre =  ?", params[:genre]).paginate(page: params[:page])
+    @genre = params[:genre]
+  end
+
   def all_by_location
     # @books = Book.where("location =  ?", params[:location]).paginate(page: params[:page]))
     @users = User.where("location =  ?", params[:location])
@@ -128,9 +133,11 @@ class BooksController < ApplicationController
 
   def request_book
     @book = Book.find(params[:id])
-    @book.requesters << " " + current_user.id.to_s
+    @book.requesters << current_user.id.to_s +  " "
     puts current_user.id
     puts params[:id]
+    puts "halla"
+    puts @book.requesters
     render 'show', id: params[:id]
   end
 
@@ -150,7 +157,7 @@ class BooksController < ApplicationController
     end
 
     def book_params
-      params.require(:book).permit(:title, :author, :year, :description, :user_description, :cover, :language, :quality, :googlebooks, :pages)
+      params.require(:book).permit(:title, :author, :year, :description, :user_description, :cover, :language, :quality, :genre, :googlebooks, :pages)
     end
 
     def googlebooks_params

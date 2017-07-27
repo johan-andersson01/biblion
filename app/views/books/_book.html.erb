@@ -22,6 +22,11 @@
     <% else %>
     <h6 class="year">Språk: <%= book.language %></h6>
     <% end %>
+    <% if book.genre.nil? || book.genre.empty? %>
+    <h6 class="year">Genre: Ej angivet</h6>
+    <% else %>
+    <h6 class="year">Genre: <%= link_to book.genre, genre_url(genre: book.genre)%></h6>
+    <% end %>
     <% unless book.pages.nil? %>
     <h6 class="pages"><%= book.pages %> sidor</h6>
     <% end %>

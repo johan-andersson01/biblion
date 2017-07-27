@@ -14,6 +14,7 @@
     <% else %>
     <li class="year"><span class="attr">Språk:</span> <span class="info"><%= @book.language %></span></li>
     <% end %>
+    <li class="genre"><span class="attr">Genre:</span> <span class="info"><%=  @book.genre %></span></li>
 
     <% if @book.pages.nil?%>
     <li class="year"><span class="attr">Sidor:</span> <span class="info">Ej angivet</span></li>
@@ -87,7 +88,7 @@
            <li><span>Telefon </span><span><%= @book.user.telephone %></span></li>
            </ul>
              <%= form_for(@book, url: {action: "request_book"}, method: :post) do |f| %>
-                <%= f.hidden_field :id, value: @book.id %>
+                <%= hidden_field_tag "id", @book.id %>
                 <%= f.submit "Bekräfta din ansökan", class: "btn btn-primary"%>
               <% end %>
 

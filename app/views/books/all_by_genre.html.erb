@@ -1,0 +1,8 @@
+<% provide(:title, @genre) %>
+<div class="col-md-12">
+    <h3>Alla böcker inom <%= @genre %> (<%= @books.count %>)</h3>
+    <ul class="books">
+      <%= render @books %>
+    </ul>
+    <%= will_paginate @books, previous_label: t("föregående"), next_label: t("nästa")%>
+</div>
