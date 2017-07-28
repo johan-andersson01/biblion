@@ -36,8 +36,18 @@
     </div>
     <div class="collapse navbar-collapse" id="collapse_me">
       <ul class="nav navbar-nav">
-        <li class="list-form"><form class="form-inline"><input class="form-control mr-sm-2" type="text" placeholder="Boktitel eller författare"></form> </li>
-        <li class="list-form"><form class="form-inline"><input class="form-control mr-sm-2" type="text" placeholder="Stad"></form> </li>
+        <li class="list-form">
+          <form class="form-inline">
+            <input class="form-control mr-sm-2" type="text" placeholder="Boktitel eller författare">
+          </form>
+        </li>
+        <li class="list-form">
+            <!-- <input class="form-control mr-sm-2" type="text" placeholder="Stad"> -->
+            <%= form_for(Book.new, url: {controller: "books", action: "all_by_author"}, method: :post) do |f| %>
+              <%= f.text_field :author, value: @author %>
+              <%= f.submit("Sök") %>
+            <% end %>
+        </li>
       </ul>
       <ul class="nav navbar-nav navbar-right">
         <li class="dropdown">

@@ -6,6 +6,7 @@ Rails.application.routes.draw do
   get '/about',     to: 'pages#about'
   get '/contact',   to: 'pages#contact'
   get '/terms',     to: 'pages#termsofservice'
+  post 'author',    to: 'books#all_by_author'
   #users
   get '/signup',    to: 'users#new'
   post '/signup',   to: 'users#create'
