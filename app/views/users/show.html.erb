@@ -8,9 +8,6 @@
     <li><span>Email </span><span><%= @user.email %></span></li>
     <li><span>Ort </span><span><%= @user.location %>, <%= @user.landscape %></span></li>
     <li><span class="attr">Antal tillgängliga böcker</span><span class="info"> <%= @available.count %> </span></li>
-    <li><span class="attr">Antal bortgivna böcker</span><span class="info"> <%= rand(20) %>  </span></li>
-    <li><span class="attr">Antal mottagna böcker</span><span class="info"> <%= rand(20) %>  </span></li>
-    <li><span class="attr">Ratio</span><span class="info"> <%= (rand + rand).round(2) %> </span></li>
     <li><span>Medlem sedan </span><span><%= @user.created_at.to_formatted_s(:dmy) %></span></li>
     <li><span>Information senast uppdaterad </span><span><%= @user.updated_at.to_formatted_s(:dmy) %></span></li>
     <li><%= link_to 'Redigera kontoinformation', edit_user_path(@user) %>
