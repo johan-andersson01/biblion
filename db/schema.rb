@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20170727170444) do
+ActiveRecord::Schema.define(version: 20170729215019) do
 
   create_table "books", force: :cascade do |t|
     t.string   "title"
@@ -27,7 +27,6 @@ ActiveRecord::Schema.define(version: 20170727170444) do
     t.string   "language"
     t.string   "quality"
     t.string   "googlebooks",      default: "f"
-    t.text     "requesters",       default: ""
     t.integer  "pages"
     t.string   "genre"
     t.index ["user_id", "created_at"], name: "index_books_on_user_id_and_created_at"
