@@ -103,13 +103,19 @@ class BooksController < ApplicationController
 
   def search_book
     @book = Book.new
+    author = search_params[:author]
+    title = search_params[:title]
+    location = search_params[:location]
+    author.nil? ? author = "" :
+    title.nil?  ? title = "" :
+    location.nil?  ? location = "" :
     @books = Book.joins(:user).where("lower(author) like  ?", "%#{search_params[:author].downcase}%").
     where("lower(title) like ?", "%#{search_params[:title].downcase}%").
     where("lower(location) like ?", "%#{search_params[:location].downcase}%").
     paginate(page: params[:page])
-    @author = search_params[:author].capitalize
-    @title = search_params[:title].capitalize
-    @location = search_params[:location].capitalize
+    @author = author
+    @title = title
+    @location = location
     render 'search'
   end
 
@@ -143,12 +149,15 @@ class BooksController < ApplicationController
     @landscape = params[:landscape]
   end
 
-  def request_book
-    @book = Book.find_by(params[:id])
-    @book.requesters = "#{@book.requesters}#{current_user.id.to_s} "
-    puts @book.requesters
-    redirect_to action: :show, id: params[:id]
-  end
+  # def request_book
+  #   @book = Book.find_by(params[:id])
+  #   @book.requesters["#{current_user.id}"] = true
+  #   puts "saving"
+  #   @book.save
+  #   puts "saved?"
+  #   puts @book.requesters
+  #   redirect_to action: :show, id: params[:id]
+  # end TODO
 
   private
 

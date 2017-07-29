@@ -9,5 +9,6 @@ class Book < ApplicationRecord
   validates :quality, presence: true
   validates :language, presence: true
   validates :user_description, length: { maximum: 140 }
+  #store :requesters TODO
 
 end

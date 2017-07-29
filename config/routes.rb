@@ -21,7 +21,7 @@ Rails.application.routes.draw do
   post 'books/new', to: 'books#create'
   get 'books/add',  to: 'books#add'
   post 'books/add', to: 'books#googlebooks_search'
-  patch 'books/show',to: 'books#request_book'
+  #patch 'books/show',to: 'books#request_book' TODO
   #session
   get '/login',     to: 'sessions#new'
   post '/login',    to: 'sessions#create'

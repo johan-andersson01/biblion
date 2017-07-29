@@ -1,8 +1,17 @@
 <% provide(:title, "Sökning") %>
 <div class="col-md-12">
-    <h3>Alla böcker som matchar sökningen (<%= @books.count %>)</h3>
+    <h3>Alla böcker som matchar sökningen (
+      <% unless @books.nil? %>
+        <%= @books.count %>
+      <% else %>
+        0
+      <% end %>
+      )</h3>
     <ul class="books">
-      <%= render @books %>
+      <%unless @books.nil? %>
+        <%= render @books %>
+
     </ul>
     <%= will_paginate @books, previous_label: t("föregående"), next_label: t("nästa")%>
+    <% end %>
 </div>

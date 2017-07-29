@@ -8,7 +8,6 @@
     <h2 class="title"><%=link_to @book.title, @book%></h2>
     <h4 class="author"><%= link_to @book.author, author_url(author: @book.author) %></h4>
     <ul>
-    <li>req: <%= @book.requesters %></li>
     <li class="quality"><span class="attr">Skick:</span> <span class="info"><%=  @book.quality %></span></li>
     <% if @book.language.nil? || @book.language.empty?%>
     <li class="year"><span class="attr">Språk:</span> <span class="info">Ej angivet</span></li>
@@ -41,7 +40,7 @@
     </li>
     <% if logged_in? %>
     <li class="givenby"><span class="attr">Ges bort av:</span> <span class="info"><%= link_to @book.user.name, @book.user %></span></li>
-    <li class="swaps"><span class="attr">Har getts bort:</span> <span class="info"><%= @book.swaps %> gånger</span></li>
+    <li class="givenby"><span class="attr">Telefon:</span> <span class="info"><%= @book.user.telephone %></span></li>
 
     <% end %>
     <li class="available"><span class="attr">Tillänglig:</span>
@@ -73,31 +72,10 @@
         <form action="<%= edit_book_path(@book) %>">
           <input type="submit" class="btn btn-primary" value="Redigera bokinformation"></input>
         </form>
-      <%= form_for @book, method: :delete do |f| %>
-        <%= f.submit "Radera den här boken", data: { confirm: "Är du säker?" }, class: "btn btn-primary btn-danger" %>
+        <%= form_for @book, method: :delete do |f| %>
+          <%= f.submit "Radera den här boken", data: { confirm: "Är du säker?" }, class: "btn btn-primary btn-danger" %>
+        <% end %>
       <% end %>
-      <% end %>
-
-    <button type="button" class="btn btn-primary" data-toggle="collapse" data-target="#request">
-      Ansök om att få boken
-      <span class="caret"></span></button>
-      <div class="collapse users userinfo" id="request">
-        <ul>
-          <li><span>Genom att bekräfta din ansökan om att få boken,
-            kommer ditt namn och telefonnummer att synliggöras för bokens ägare.</span></li>
-           <li><span>Efter att du har bekräftat din ansökan, kommer ägarens telefonnummer att visas och du uppmanas därefter att
-           ta kontakt via SMS.</span></li>
-           <li><span>Glöm inte att skriva i SMS:et att du gärna skulle vilja få boken <%= link_to @book.title, @book %>,
-            som <%= link_to  @book.user.name.partition(" ").first, @book.user %> har lagt upp på Biblion.</span></li>
-           <li><span>Namn </span><span><%= @book.user.name %></span></li>
-           <li><span>Telefon </span><span><%= @book.user.telephone %></span></li>
-           </ul>
-             <%= form_for(@book, url: {action: "request_book"}, method: :patch) do |f| %>
-                <%= hidden_field_tag "id", @book.id %>
-                <%= f.submit "Bekräfta din ansökan", class: "btn btn-primary"%>
-              <% end %>
-
-    </div>
     <% elsif logged_in? && !@book.available %>
       <button type="button" class="btn btn-static unavailable">
         Boken är inte tillgänglig
