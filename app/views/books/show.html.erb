@@ -38,7 +38,7 @@
       <%= link_to @book.user.landscape, landscape_url(landscape: @book.user.landscape)%>
       </span>
     </li>
-    <% if logged_in? %>
+    <% if logged_in? && @book.available%>
     <li class="givenby"><span class="attr">Ges bort av:</span> <span class="info"><%= link_to @book.user.name, @book.user %></span></li>
     <li class="givenby"><span class="attr">Telefon:</span> <span class="info"><%= @book.user.telephone %></span></li>
 
@@ -54,7 +54,7 @@
     </li>
     <li class="googlebooks">
       <% unless @book.googlebooks.nil? || @book.googlebooks.empty? %>
-        <span>Information om den här boken är hämtad från</span><span class="info"><%= link_to "Google", @book.googlebooks, :target => "_blank", :rel => "noopener" %></span>
+        <span class="attr">Information hämtad från:</span><span class="info"><%= link_to "Google", @book.googlebooks, :target => "_blank", :rel => "noopener" %></span>
       <% end %>
   </li>
   </ul>

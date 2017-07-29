@@ -7,25 +7,30 @@
     <li><span>Telefon </span><span><%= @user.telephone %></span></li>
     <li><span>Email </span><span><%= @user.email %></span></li>
     <li><span>Ort </span><span><%= @user.location %>, <%= @user.landscape %></span></li>
+    <li><span class="attr">Antal upplagda böcker</span><span class="info"> <%= @books.count %> </span></li>
     <li><span class="attr">Antal tillgängliga böcker</span><span class="info"> <%= @available.count %> </span></li>
     <li><span>Medlem sedan </span><span><%= @user.created_at.to_formatted_s(:dmy) %></span></li>
     <li><span>Information senast uppdaterad </span><span><%= @user.updated_at.to_formatted_s(:dmy) %></span></li>
     <li><%= link_to 'Redigera kontoinformation', edit_user_path(@user) %>
   <% else %>
     <li><span>Namn </span><span><%= @user.name %></span></li>
+    <li><span class="attr">Antal upplagda böcker</span><span class="info"> <%= @books.count %> </span></li>
     <li><span class="attr">Antal tillgängliga böcker</span><span class="info"> <%= @available.count %> </span></li>
-    <li><span class="attr">Antal bortgivna böcker</span><span class="info"> <%= rand(20) %>  </span></li>
-    <li><span class="attr">Antal mottagna böcker</span><span class="info"> <%= rand(20) %>  </span></li>
-    <li><span class="attr">Ratio</span><span class="info"> <%= (rand + rand).round(2) %> </span></li>
     <li><span class="attr">Medlem sedan</span><span class="info"><%= @user.updated_at.to_formatted_s(:dmy) %></span></li>
   <% end %>
 </ul>
 </aside>
 <div class="col-lg-9 col-md-9">
   <% if @user.books.any? %>
+  <% if current_user?(@user)||current_user.admin %>
   <h3><%= @user.name %>s böcker  (<%= @user.books.count %>)</h3>
     <ul class="books">
-      <%= render @books %>
+        <%= render @books %>
+      <% else %>
+      <h3><%= @user.name %>s tillgängliga böcker  (<%= @available.count %>)</h3>
+      <ul class="books">
+        <%= render @available %>
+      <% end %>
     </ul>
     <%= will_paginate @books, previous_label: t("föregående"), next_label: t("nästa")%>
   <% end %>
