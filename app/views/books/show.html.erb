@@ -15,7 +15,11 @@
     <% else %>
     <li class="year"><span class="attr">Språk:</span> <span class="info"><%= @book.language %></span></li>
     <% end %>
+    <% if @book.genre.nil? || @book.genre.empty? %>
+    <li class="genre"><span class="attr">Genre:</span> <span class="info">Ej angivet</span></li>
+    <% else %>
     <li class="genre"><span class="attr">Genre:</span> <span class="info"><%= link_to @book.genre, genre_url(genre: @book.genre)%></span></li>
+    <% end %>
 
     <% if @book.pages.nil?%>
     <li class="year"><span class="attr">Sidor:</span> <span class="info">Ej angivet</span></li>
@@ -95,7 +99,7 @@
 
     </div>
     <% elsif logged_in? && !@book.available %>
-      <button type="button" class="btn btn-static">
+      <button type="button" class="btn btn-static unavailable">
         Boken är inte tillgänglig
       </button>
   <% end %>

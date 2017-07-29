@@ -6,12 +6,13 @@ Rails.application.routes.draw do
   get '/about',     to: 'pages#about'
   get '/contact',   to: 'pages#contact'
   get '/terms',     to: 'pages#termsofservice'
-  post 'author',    to: 'books#all_by_author'
+  post 'search',    to: 'books#search_book'
   #users
   get '/signup',    to: 'users#new'
   post '/signup',   to: 'users#create'
   get '/users',     to: 'users#index'
   #books
+  get 'search',     to: 'books#search_book'
   get 'author',     to: 'books#all_by_author'
   get 'location',   to: 'books#all_by_location'
   get 'landscape',  to: 'books#all_by_landscape'

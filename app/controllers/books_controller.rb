@@ -95,13 +95,22 @@ class BooksController < ApplicationController
     end
     render 'add'
   end
-"%#{name}%"
+
   def all_by_author
+    @books = Book.where("author =  ?", params[:author]).paginate(page: params[:page])
+    @author = params[:author]
+  end
+
+  def search_book
     @book = Book.new
-    @books = Book.where("lower(author) like  ?", "%#{author_params[:author].downcase}%").paginate(page: params[:page])
-    @author = author_params[:author].capitalize
-    puts @author
-    render 'all_by_author'
+    @books = Book.joins(:user).where("lower(author) like  ?", "%#{search_params[:author].downcase}%").
+    where("lower(title) like ?", "%#{search_params[:title].downcase}%").
+    where("lower(location) like ?", "%#{search_params[:location].downcase}%").
+    paginate(page: params[:page])
+    @author = search_params[:author].capitalize
+    @title = search_params[:title].capitalize
+    @location = search_params[:location].capitalize
+    render 'search'
   end
 
   def all_by_genre
@@ -164,7 +173,7 @@ class BooksController < ApplicationController
       params.require(:book).permit(:query)
     end
 
-    def author_params
-      params.require(:book).permit(:author)
+    def search_params
+      params.require(:book).permit(:author, :title, :location)
     end
 end

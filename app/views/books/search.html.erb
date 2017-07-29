@@ -1,6 +1,6 @@
-<% provide(:title, "Hem") %>
+<% provide(:title, "Sökning") %>
 <div class="col-md-12">
-    <h3>Alla böcker (<%= @books.count %>)</h3>
+    <h3>Alla böcker som matchar sökningen (<%= @books.count %>)</h3>
     <ul class="books">
       <%= render @books %>
     </ul>
