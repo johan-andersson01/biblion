@@ -34,8 +34,6 @@
         <%= f.text_field :cover, value: params[:cover]%>
         <%= f.label :description, "Beskrivning" %>
         <%= f.text_area :description, value: params[:description]%>
-        <%= f.label :user_description, "Varför du vill ge bort boken?" %>
-        <%= f.text_area :user_description %>
         <%= f.submit "Lägg till boken!", class: "btn btn-primary" %>
       <% end %>
   </div>

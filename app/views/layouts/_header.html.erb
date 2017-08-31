@@ -9,29 +9,12 @@
       </button>
       <div class="navbar-brand"><span id="title"><%= link_to "Biblion", root_url %></span>
         <span id="fulltitle" class="secondary-title", style="display:none;">
-          <% if yield(:title).length > 40 %>
+          <% if yield(:title).length > 50 %>
           <%= yield(:title)[0,35]%>...
           <% else %>
           <%= yield(:title) %>
           <% end %>
         </span>
-        <span id="shorttitle" class="secondary-title", style="display:none;">
-          <% if yield(:title).length > 16 %>
-          <%= yield(:title).partition(" ").first%>...
-          <% else %>
-          <%= yield(:title) %>
-          <% end %>
-        </span>
-        <script>
-        if ( $(window).width() < 768 && $(window).width() > 450 || $(window).width() > 1000) {
-          document.getElementById("shorttitle").style.display = "none";
-          document.getElementById("fulltitle").style.display = "";
-        }
-        else {
-          document.getElementById("fulltitle").style.display = "none";
-          document.getElementById("shorttitle").style.display = "";
-        }
-        </script>
         </div>
     </div>
     <div class="collapse navbar-collapse" id="collapse_me">
@@ -39,13 +22,7 @@
         <ul class="list-form">
         <li>
             <%= form_for(Book.new, url: {controller: "books", action: "search_book"}, method: :post) do |f| %>
-            <%= f.text_field :title, value: @title, placeholder: "Titel" %>
-        </li>
-        <li>
-            <%= f.text_field :author, value: @author, placeholder: "Författare" %>
-        </li>
-        <li>
-            <%= f.text_field :location, value: @location, placeholder: "Stad" %>
+            <%= f.text_field :query, value: params[:query], placeholder: "Sök efter författare, titel, eller genre" %>
         </li>
         <li>
           <%= f.submit("") %>

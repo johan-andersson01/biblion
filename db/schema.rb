@@ -10,23 +10,22 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20170729215019) do
+ActiveRecord::Schema.define(version: 20170831200550) do
 
   create_table "books", force: :cascade do |t|
     t.string   "title"
     t.string   "author"
     t.datetime "year"
     t.text     "description"
-    t.text     "user_description"
     t.integer  "swaps"
     t.boolean  "available"
     t.integer  "user_id"
-    t.datetime "created_at",                     null: false
-    t.datetime "updated_at",                     null: false
+    t.datetime "created_at",                null: false
+    t.datetime "updated_at",                null: false
     t.string   "cover"
     t.string   "language"
     t.string   "quality"
-    t.string   "googlebooks",      default: "f"
+    t.string   "googlebooks", default: "f"
     t.integer  "pages"
     t.string   "genre"
     t.index ["user_id", "created_at"], name: "index_books_on_user_id_and_created_at"

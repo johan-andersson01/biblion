@@ -31,10 +31,9 @@ end
 #   author = Faker::Name.name
 #   year = Faker::Date.between(100.years.ago, Date.today)
 #   description = Faker::Lorem.sentence(15)
-#   user_description = Faker::Lorem.sentence(10)
 #   swaps = Faker::Number.between(0, 10)
 #   available = [true, false].sample
 #   cover = Faker::LoremPixel.image("150x224")
 #   users.each { |user| user.books.create!(title: title, author: author, year: year,
-#     description: description, user_description: user_description, swaps: swaps, available: available, cover: cover) }
+#     description: description, swaps: swaps, available: available, cover: cover) }
 # end

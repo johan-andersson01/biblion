@@ -102,21 +102,25 @@ class BooksController < ApplicationController
   end
 
   def search_book
-    @book = Book.new
-    author = search_params[:author]
-    title = search_params[:title]
-    location = search_params[:location]
-    author.nil? ? author = "" :
-    title.nil?  ? title = "" :
-    location.nil?  ? location = "" :
-    @books = Book.joins(:user).where("lower(author) like  ?", "%#{search_params[:author].downcase}%").
-    where("lower(title) like ?", "%#{search_params[:title].downcase}%").
-    where("lower(location) like ?", "%#{search_params[:location].downcase}%").
-    paginate(page: params[:page])
-    @author = author
-    @title = title
-    @location = location
-    render 'search'
+    @search = Book.search { fulltext search_params[:query] } 
+     @books = @search.results
+     render 'search'
+
+    # @book = Book.new
+    # author = search_params[:author]
+    # title = search_params[:title]
+    # location = search_params[:location]
+    # author.nil? ? author = "" :
+    # title.nil?  ? title = "" :
+    # location.nil?  ? location = "" :
+    # @books = Book.joins(:user).where("lower(author) like  ?", "%#{search_params[:author].downcase}%").
+    # where("lower(title) like ?", "%#{search_params[:title].downcase}%").
+    # where("lower(location) like ?", "%#{search_params[:location].downcase}%").
+    # paginate(page: params[:page])
+    # @author = author
+    # @title = title
+    # @location = location
+    # render 'search'
   end
 
   def all_by_genre
@@ -175,7 +179,7 @@ class BooksController < ApplicationController
     end
 
     def book_params
-      params.require(:book).permit(:title, :author, :year, :description, :user_description, :cover, :language, :quality, :genre, :googlebooks, :pages, :available)
+      params.require(:book).permit(:title, :author, :year, :description, :cover, :language, :quality, :genre, :googlebooks, :pages, :available)
     end
 
     def googlebooks_params
@@ -183,6 +187,6 @@ class BooksController < ApplicationController
     end
 
     def search_params
-      params.require(:book).permit(:author, :title, :location)
+      params.require(:book).permit(:query)
     end
 end
