@@ -26,21 +26,36 @@ $list-height: 300px;
     height:$list-height;
     .cover-image {
       height: $list-height;
-      max-width:100%;
+      width:100%;
       display:flex;
       align-items: center;
-    }
 
-    .status-and-image {
-      max-width:90%;
     }
 
     img {
       max-height:$list-height;
-      max-width:95%;
+      max-width:100%;
       max-height: 95%;
     }
   }
+}
+
+.status-and-image {
+  width:90%;
+  height:95%;
+}
+
+.no-cover-url {
+  height:$list-height*3/4;
+  background-color:$gray-lighter;
+
+  h4 {
+    font-size: 85%;
+    padding:10px;
+    text-align: center;
+    color:$ok;
+  }
+
 }
 
 .status {

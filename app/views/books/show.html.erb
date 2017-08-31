@@ -1,7 +1,11 @@
 <% provide(:title, @book.title) %>
 <div id="book-<%= @book.id %>" class="show-book">
   <div class="center_container col-lg-5 col-md-5 col-sm-4">
-    <%= image_tag(@book.cover) unless @book.cover.nil? %>
+    <% if @book.cover.nil? %>
+      <div class="no-cover-url"></div>
+    <% else %>
+    <%= image_tag(@book.cover)%>
+    <% end %>
   </div>
 
   <div class="col-lg-7 col-md-7 col-sm-8">

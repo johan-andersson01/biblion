@@ -11,9 +11,7 @@ class Book < ApplicationRecord
   validates :user_id, presence: true
   validates :author, presence: true
   validates :title, presence: true
-  validates :cover, presence: true
   validates :quality, presence: true
   validates :language, presence: true
-  #store :requesters TODO
 
 end

@@ -3,11 +3,18 @@
     <div class="cover-image">
       <div class="status-and-image">
       <div class="status">
-        <div class="<%= 'circle' unless book.cover.nil? %> <%= 'ok' if book.available %>">
-        </div>
+        <div class="<%= 'circle' unless book.cover.nil? %> <%= 'ok' if book.available %>"></div>
       </div>
       <%= link_to book do %>
-      <%= image_tag(book.cover) unless book.cover.nil? %>
+        <% if book.cover.nil? || book.cover.empty? %>
+          <div class="no-cover-url">
+            <h4 class="title"><%= book.title %></h4>
+            <br/>
+            <h4 class="author"><%= book.author %></h4>
+          </div>
+        <% else%>
+        <%= image_tag(book.cover) unless book.cover.empty?%>
+      <% end %>
       <% end %>
     </div>
     </div>
