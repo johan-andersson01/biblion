@@ -127,6 +127,13 @@ body{
   input {
     border-radius: 2%;
     padding:5px;
+    border:none;
+    background:none;
+    border-bottom:1px solid $ok;
+  }
+
+  input:focus {
+    outline:none;
   }
 }
 }
