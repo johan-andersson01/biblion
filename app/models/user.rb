@@ -19,6 +19,10 @@ class User < ApplicationRecord
   validates :terms_of_service, acceptance: true
   has_many :books, dependent: :destroy
 
+  def self.search(query)
+    where("LOWER(location) LIKE ?", "%#{query}%").or(where("LOWER(landscape) LIKE ?", "%#{query}%"))
+  end
+
   def User.digest(string)
     cost = ActiveModel::SecurePassword.min_cost ? BCrypt::Engine::MIN_COST :
                                                   BCrypt::Engine.cost

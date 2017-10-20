@@ -1,10 +1,4 @@
 class Book < ApplicationRecord
-  searchable do
-   text :title, :author, :genre
-   string  :sort_title do
-     title.downcase.gsub(/^(an?|the)/, '')
-   end
- end
   belongs_to :user
   default_scope -> { order(created_at: :desc) }
   attr_accessor :query
@@ -13,5 +7,10 @@ class Book < ApplicationRecord
   validates :title, presence: true
   validates :quality, presence: true
   validates :language, presence: true
+
+  
+  def self.search(query)
+    where("LOWER(author) LIKE ?", "%#{query}%").or(where("LOWER(title) LIKE ?", "%#{query}%")).or(where("LOWER(genre) LIKE ?", "%#{query}%"))
+  end
 
 end

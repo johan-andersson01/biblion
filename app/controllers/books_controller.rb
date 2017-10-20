@@ -102,25 +102,16 @@ class BooksController < ApplicationController
   end
 
   def search_book
-    @search = Book.search { fulltext search_params[:query] } 
-     @books = @search.results
-     render 'search'
-
-    # @book = Book.new
-    # author = search_params[:author]
-    # title = search_params[:title]
-    # location = search_params[:location]
-    # author.nil? ? author = "" :
-    # title.nil?  ? title = "" :
-    # location.nil?  ? location = "" :
-    # @books = Book.joins(:user).where("lower(author) like  ?", "%#{search_params[:author].downcase}%").
-    # where("lower(title) like ?", "%#{search_params[:title].downcase}%").
-    # where("lower(location) like ?", "%#{search_params[:location].downcase}%").
-    # paginate(page: params[:page])
-    # @author = author
-    # @title = title
-    # @location = location
-    # render 'search'
+    @books = []
+    @books = Set.new Book.search(search_params[:query].downcase).order("created_at DESC").to_a()
+    @users = User.search(search_params[:query].downcase).order("created_at DESC").to_a()
+    @users.each do |u|
+      u.books.each do |b|
+        @books.add(b)
+      end
+    end
+    @books = @books.to_a().paginate(page: params[:page])
+    render 'search'
   end
 
   def all_by_genre
@@ -134,7 +125,7 @@ class BooksController < ApplicationController
     @books = []
     @users.each do |u|
       u.books.each do |b|
-        @books.push(b)
+        @books |= [b]
       end
     end
     @books = @books.paginate(page: params[:page])
