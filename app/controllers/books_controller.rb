@@ -73,7 +73,7 @@ class BooksController < ApplicationController
   end
 
   def googlebooks_search
-    @query = googlebooks_params[:query]
+    @query = search_params[:query]
     @book = Book.new
     @books = []
     books = GoogleBooks.search(@query, {:count => 12})
@@ -102,16 +102,22 @@ class BooksController < ApplicationController
   end
 
   def search_book
-    @books = []
-    @books = Set.new Book.search(search_params[:query].downcase).order("created_at DESC").to_a()
-    @users = User.search(search_params[:query].downcase).order("created_at DESC").to_a()
-    @users.each do |u|
-      u.books.each do |b|
-        @books.add(b)
+    if request.get?
+      redirect_to root_url
+    else
+      @query = search_params[:query].downcase
+      params[:query] = search_params[:query]
+      @books = []
+      @books = Set.new Book.search(@query).order("created_at DESC").to_a()
+      @users = User.search(@query).order("created_at DESC").to_a()
+      @users.each do |u|
+        u.books.each do |b|
+          @books.add(b)
+        end
       end
+      @books = @books.to_a().paginate(page: params[:page])
+      render 'search'
     end
-    @books = @books.to_a().paginate(page: params[:page])
-    render 'search'
   end
 
   def all_by_genre
@@ -120,7 +126,6 @@ class BooksController < ApplicationController
   end
 
   def all_by_location
-    # @books = Book.where("location =  ?", params[:location]).paginate(page: params[:page]))
     @users = User.where("location =  ?", params[:location])
     @books = []
     @users.each do |u|
@@ -144,16 +149,6 @@ class BooksController < ApplicationController
     @landscape = params[:landscape]
   end
 
-  # def request_book
-  #   @book = Book.find_by(params[:id])
-  #   @book.requesters["#{current_user.id}"] = true
-  #   puts "saving"
-  #   @book.save
-  #   puts "saved?"
-  #   puts @book.requesters
-  #   redirect_to action: :show, id: params[:id]
-  # end TODO
-
   private
 
     def logged_in_user
@@ -171,10 +166,6 @@ class BooksController < ApplicationController
 
     def book_params
       params.require(:book).permit(:title, :author, :year, :description, :cover, :language, :quality, :genre, :googlebooks, :pages, :available)
-    end
-
-    def googlebooks_params
-      params.require(:book).permit(:query)
     end
 
     def search_params

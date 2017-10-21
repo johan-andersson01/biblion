@@ -29,8 +29,7 @@
           start_year: Time.now.year, end_year: Time.now.year - 200, order: [:year]%>
         <% end %>
         <%= f.label :cover, "* URL till bokens omslag eller till en bild av boken", value: params[:cover] %>
-        <p>Saknar du ett bildomslag?</p>
-        <p>Sök på "<%= params[:title]%> <%= params[:author] %>" på <%= link_to "Google Bilder", "https://www.google.se/imghp?hl=sv", :target => "_blank", :rel => "noopener" %> </p>
+        <p>Saknar du ett bildomslag? Sök efter boktiteln på <%= link_to "Google Bilder", "https://www.google.se/imghp?hl=sv", :target => "_blank", :rel => "noopener" %> </p>
         <%= f.text_field :cover, value: params[:cover]%>
         <%= f.label :description, "Beskrivning" %>
         <%= f.text_area :description, value: params[:description]%>
