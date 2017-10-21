@@ -14,8 +14,12 @@
         <%= f.label :quality, "Skick" %>
         <%= f.select :quality, options_for_select(['Nyskick', 'Använd', 'Sliten', 'Mycket sliten']) %>
         <%= f.label :genre, "Genre" %>
-        <%= f.select :genre, options_for_select(['', 'Fiktion', 'Fakta',
-            'Facklitteratur', 'Barnbok']) %>
+        <%= f.select :genre, options_for_select(['Barn & tonår', 'Biografi',
+            'Data & IT', 'Deckare', 'Djur & natur', 'Ekonomi & ledarskap', 'Familj & hälsa',
+            'Film, radio & TV', 'Filosofi & religion', 'Hem & trädgård', 'Historia & arkeologi',
+            'Juridik', 'Kultur', 'Läromedel', 'Mat & dryck', 'Medicin', 'Naturvetenskap & teknik', 'Psykologi & pedagogik',
+            'Resor', 'Samhälle & politik', 'Skönlitteratur', 'Sport, fritid & hobby', 'Språk & ordböcker', 'Tecknade serier & tidningar',
+            'Trend & livsstil', 'Uppslagsverk & referenser', 'Övrigt']) %>
         <%= f.label :year, "Utgivningsår" %>
         <%= f.date_select "year", include_blank: true, start_year: Time.now.year, end_year: Time.now.year - 200, order: [:year]%>
         <%= f.label :cover, "URL till bokens omslag eller till en bild av boken" %>
