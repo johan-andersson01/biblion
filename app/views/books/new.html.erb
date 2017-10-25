@@ -3,6 +3,14 @@
 <div class="row">
   <div class="col-md-6 col-md-offset-3">
     <div class="signup_form">
+      <% 
+      file = File.open("#{Rails.root.to_s}/app/views/shared/genres.txt") or die 
+      @genres = []
+      file.each_line{|line|
+        @genres.push(line)
+      }
+      
+      %>
       <%= form_for(@book, url: new_book_path) do |f| %>
         <%= render 'shared/book_error_messages' %>
         <%= f.hidden_field :googlebooks, value: params[:googlebooks] %>
@@ -17,12 +25,7 @@
         <%= f.select :quality, options_for_select(['', 'Nyskick', 'Använd',
           'Sliten', 'Mycket sliten']) %>
         <%= f.label :genre, "Genre" %>
-        <%= f.select :genre, options_for_select(['Barn & tonår', 'Biografi',
-        'Data & IT', 'Deckare', 'Djur & natur', 'Ekonomi & ledarskap', 'Familj & hälsa',
-        'Film, radio & TV', 'Filosofi & religion', 'Hem & trädgård', 'Historia & arkeologi',
-        'Juridik', 'Kultur', 'Läromedel', 'Mat & dryck', 'Medicin', 'Naturvetenskap & teknik', 'Psykologi & pedagogik',
-        'Resor', 'Samhälle & politik', 'Skönlitteratur', 'Sport, fritid & hobby', 'Språk & ordböcker', 'Tecknade serier & tidningar',
-        'Trend & livsstil', 'Uppslagsverk & referenser', 'Övrigt']) %>
+        <%= f.select :genre, options_for_select(@genres) %>
         <%= f.label :year, "Utgivningsår" %>
         <% if params[:year].nil? %>
           <%= f.date_select "year", include_blank: true, start_year: Time.now.year,
