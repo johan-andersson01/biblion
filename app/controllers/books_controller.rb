@@ -82,7 +82,7 @@ class BooksController < ApplicationController
 #DateTime.strptime(book.published_date, '%Y-%m-%d %H:%M:%S %Z')
     books.each do |book|
       tls_img = book.image_link(:zoom => 6)
-      if !tls_img ["http:"].nil?
+      if !tls_img.nil? and !tls_img ["http:"].nil?
         tls_img ["http:"] = "https:"
       end
       @books[i] = Book.new(
