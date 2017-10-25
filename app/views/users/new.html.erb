@@ -28,10 +28,11 @@
         <%= f.password_field :password %>
         <%= f.label :password_confirmation, "Bekräfta ditt lösenord" %>
         <%= f.password_field :password_confirmation %>
-        <%= f.label :terms_of_service, class: "checkbox inline" do %>
-          <%= f.check_box :terms_of_service, id: "checkbox" %>
-          <span>Genom att registrera mig, godkänner jag Biblions <%= link_to 'användaravtal', terms_path, :target => "_blank", :rel => "noopener"  %></span>
-          <% end %>
+        <div class="checkbox-field">
+        <%= f.label :terms_of_service, "Genom att registrera mig, godkänner jag Biblions användaravtal:", class: "checkbox-label" %>
+        <%= f.check_box :terms_of_service, class: "checkbox" %>
+        </div>
+        <%= f.label "1. krav nr 1:", class: "checkbox-label" %>
         <%= f.submit "Skapa konto!", class: "btn btn-primary" %>
       <% end %>
   </div>
