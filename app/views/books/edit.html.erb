@@ -24,8 +24,6 @@
         <%= f.select :genre, options_for_select(@genres) %>
         <%= f.label :year, "Utgivningsår" %>
         <%= f.date_select "year", include_blank: true, start_year: Time.now.year, end_year: Time.now.year - 200, order: [:year]%>
-        <%= f.label :cover, "URL till bokens omslag eller till en bild av boken" %>
-        <%= f.text_field :cover %>
         <%= f.label :available, class: "checkbox inline" do %>
           <%= f.check_box :available, id: "checkbox" %>
           <% end %>
