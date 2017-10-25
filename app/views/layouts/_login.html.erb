@@ -8,10 +8,10 @@
   <%= f.password_field :password, class: 'form-control' %>
 
   <%= f.submit "Logga in", class: "btn btn-primary" %>
-  <%= f.label :remember_me, class: "checkbox inline" do %>
-  <%= f.check_box :remember_me, id: "checkbox" %>
-    <span>Kom ihåg mig på den här enheten</span>
-  <% end %>
+  <div class="checkbox-field">
+    <%= f.label :remember_me, "Kom ihåg mig på den här enheten", class: "checkbox-inline"%>
+    <%= f.check_box :remember_me, class: "checkbox" %>
+  </div>
   <%= link_to 'Inte registrerad?', signup_path %>
 <% end %>
 <!-- <span id="noacc"><%= link_to "Inte registrerad?", signup_path %></span> -->
