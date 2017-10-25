@@ -24,9 +24,10 @@
         <%= f.select :genre, options_for_select(@genres) %>
         <%= f.label :year, "Utgivningsår" %>
         <%= f.date_select "year", include_blank: true, start_year: Time.now.year, end_year: Time.now.year - 200, order: [:year]%>
-        <%= f.label :available, class: "checkbox inline" do %>
-          <%= f.check_box :available, id: "checkbox" %>
-          <% end %>
+        <div class="checkbox-field">
+        <%= f.label :available, "Tillgänglig", class: "checkbox-label" %>
+        <%= f.check_box :available, class: "checkbox" %>
+        </div>
         <%= f.label :description, "Beskrivning" %>
         <%= f.text_field :description %>
         <%= f.submit "Bekräfta ändringar", class: "btn btn-primary" %>

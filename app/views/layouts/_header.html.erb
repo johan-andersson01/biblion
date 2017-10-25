@@ -22,7 +22,7 @@
         <ul class="list-form">
         <li>
             <%= form_for(Book.new, url: {controller: "books", action: "search_book"}, method: :post) do |f| %>
-            <%= f.text_field :query, value: params[:query], autofocus: "true", placeholder: "Sök efter författare, titel, genre, stad, eller län" %>
+            <%= f.text_field :query, value: params[:query], autofocus: "true", onFocus: "this.select()", placeholder: "Sök efter författare, titel, genre, stad, eller län" %>
         </li>
         <li>
           <%= f.submit("") %>

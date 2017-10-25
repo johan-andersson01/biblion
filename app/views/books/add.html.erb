@@ -9,7 +9,7 @@
       onsubmit: 'this.style.background=(this.value=="" ? "white url(https://developers.google.com/books/images/google_watermark.gif) no-repeat" : "white url(none) no-repeat");' %>
       <%= f.submit("Sök") %>
       <% if params[:action] == "googlebooks_search" %>
-        <p> Hittar du inte boken? <%= link_to "Lägg till den manuellt istället", new_book_path %>
+        <p> Hittar du inte boken? Pröva en annan sökning, eller <%= link_to "lägg till den manuellt istället", new_book_path %>
       <% end %>
     <% end %>
   </div>

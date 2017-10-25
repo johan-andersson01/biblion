@@ -3,7 +3,7 @@
 // You can use Sass (SCSS) here: http://sass-lang.com/
 
 $ok: rgb(66,139,202);
-$book-cover-default: #42CA96;
+$book-cover-default: #839FB6;
 $select: rgba(91,192,222,0.6);
 $list-height: 300px;
 
@@ -49,9 +49,18 @@ $list-height: 300px;
 .no-cover-url {
   box-sizing: border-box;
   background-color:$book-cover-default;
+  background-color: #fff; 
+  background-image:
+  linear-gradient($gray-lighter .1em, transparent .1em);
+  background-size: 100% 1.2em;
   text-align: center;
-  color:$gray-lighter;
+  color:#444;
   overflow: hidden;
+  outline:1px $gray-lighter solid;
+
+  span {
+    background:#E9DA6A;
+  }
   .title {
     font-size: 150%;
   }
@@ -67,9 +76,10 @@ $list-height: 300px;
 }
 
 .no-cover-url-small {
-  padding-bottom: 80%;
+  padding-top: 10%;
+  padding-bottom: 60%;
   max-height:75%;
-  width:100%;
+  max-width:95%;
 }
 
 .status {

@@ -23,25 +23,22 @@ $d-gray: hsl(0,0%,80%);
 
       }
 
+      .checkbox-field {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        width:100%;
+      }
+
+      .checkbox-label {
+        float: left;
+      }
 
       .checkbox {
-        margin-top: 10px;
-        margin-bottom: 20px;
+        width:10px;
+        margin: 10px 5px 10px 0px;
         vertical-align: middle;
-
-        span {
-          margin-left: 20px;
-          text-align: right;
-          font-weight: normal;
-        }
-
-        #checkbox {
-          width:auto;
-          margin:0px;
-          // margin-top:2px;
-          outline:0;
-
-        }
+        float:left;
       }
     }
 }
