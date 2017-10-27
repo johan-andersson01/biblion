@@ -19,9 +19,11 @@
         <%= f.label :language, "Språk" %>
         <%= f.text_field :language %>
         <%= f.label :quality, "Skick" %>
-        <%= f.select :quality, options_for_select(['Nyskick', 'Använd', 'Sliten', 'Mycket sliten']) %>
+        <%= f.select :quality, options_for_select(['Använd', 'Nyskick', 'Sliten', 'Mycket sliten']) %>
         <%= f.label :genre, "Genre" %>
         <%= f.select :genre, options_for_select(@genres) %>
+        <%= f.label :genre, "Sidor" %>
+        <%= f.text_field :pages %>
         <%= f.label :year, "Utgivningsår" %>
         <%= f.date_select "year", include_blank: true, start_year: Time.now.year, end_year: Time.now.year - 200, order: [:year]%>
         <div class="checkbox-field">

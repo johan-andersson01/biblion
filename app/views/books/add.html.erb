@@ -16,12 +16,20 @@
     <% unless @books.nil? %>
     <ul class="books">
     <% @books.each do |book| %>
-    <%= link_to new_book_path(title: book.title, author: book.author, cover: book.cover, description: book.description, googlebooks: book.googlebooks, language: book.language, pages: book.pages) do %>
-    <li class="col-sm-6 col-md-6 col-lg-4 container-fluid select">
+      <%= form_for(book, url: {action: "new"}, method: :post) do |f| %>
+        <%= f.hidden_field :author, value: book.author %>
+        <%= f.hidden_field :title, value: book.title %>
+        <%= f.hidden_field :language, value: book.language %>
+        <%= f.hidden_field :cover, value: book.cover %>
+        <%= f.hidden_field :description, value: book.description %>
+        <%= f.hidden_field :googlebooks, value: book.googlebooks %>
+        <%= f.hidden_field :pages, value: book.pages %>
+        <%= f.hidden_field :quality, value: "Använd" %>
+      <li class="col-sm-6 col-md-6 col-lg-4 container-fluid select">
       <div class="left col-md-4 col-sm-6">
-        <div class="cover-image">
-          <%= image_tag(book.cover, style: 'width:100%;') unless book.cover.nil? %>
-        </div>
+          <div class="cover-image">
+            <%= image_submit_tag book.cover unless book.cover.nil?%>
+          </div>
       </div>
       <div class="right col-md-8 col-sm-6">
         <h4 class="title"><%= book.title %></h4>

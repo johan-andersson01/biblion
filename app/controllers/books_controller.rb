@@ -52,7 +52,7 @@ class BooksController < ApplicationController
       flash[:success] = "Boken har lagts upp!"
       redirect_to @book
     else
-      render 'new'
+    render 'new'
     end
   end
 

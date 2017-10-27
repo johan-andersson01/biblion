@@ -6,6 +6,7 @@ class Book < ApplicationRecord
   validates :author, presence: true
   validates :title, presence: true
   validates :quality, presence: true
+  validates :genre, presence: true
   validates :language, presence: true
 
   

@@ -10,19 +10,19 @@
         @genres.push(line)
       }
       %>
-      <%= form_for(@book, url: new_book_path) do |f| %>
+      <%= form_for(@book, url: {action: "new"}, method: :post) do |f| %>
         <%= render 'shared/book_error_messages' %>
-        <%= f.hidden_field :googlebooks, value: params[:googlebooks] %>
-        <%= f.hidden_field :cover, value: params[:cover] %>
-        <%= f.hidden_field :pages, value: params[:pages] %>
+        <%= f.hidden_field :googlebooks %>
+        <%= f.hidden_field :cover %>
+        <%= f.hidden_field :pages %>
         <%= f.label :title, "* Boktitel" %>
-        <%= f.text_field :title, value: params[:title]%>
+        <%= f.text_field :title%>
         <%= f.label :author, "* Författare" %>
-        <%= f.text_field :author, value: params[:author]%>
+        <%= f.text_field :author%>
         <%= f.label :language, "* Språk" %>
-        <%= f.text_field :language, value: params[:language] %>
+        <%= f.text_field :language %>
         <%= f.label :quality, "* Skick" %>
-        <%= f.select :quality, options_for_select(['', 'Nyskick', 'Använd',
+        <%= f.select :quality, options_for_select(['Använd', 'Nyskick',
           'Sliten', 'Mycket sliten']) %>
         <%= f.label :genre, "Genre" %>
         <%= f.select :genre, options_for_select(@genres) %>
@@ -37,7 +37,7 @@
         <% end %>
         
         <%= f.label :description, "Beskrivning" %>
-        <%= f.text_area :description, value: params[:description]%>
+        <%= f.text_area :description%>
         <%= f.submit "Lägg till boken!", class: "btn btn-primary" %>
       <% end %>
   </div>
