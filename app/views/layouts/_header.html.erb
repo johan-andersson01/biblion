@@ -8,12 +8,6 @@
         <span class="icon-bar"></span>
       </button>
       <div class="navbar-brand"><span id="title"><%= link_to "Biblion", root_url %></span>
-        <span id="fulltitle" class="secondary-title", style="display:none;">
-          <% if yield(:title).length > 50 %>
-          <%= yield(:title)[0,35]%>...
-          <% else %>
-          <%= yield(:title) %>
-          <% end %>
         </span>
         </div>
     </div>

@@ -116,13 +116,6 @@ body{
   li:nth-child(2) {
     width:40px;
     background:hsla(0,0%,0%,0);
-    input {
-      border: none;
-      background:hsla(0,0%,0%,0);
-      background-image:asset-url("searchblue.png");
-      background-size: contain;
-      background-repeat: no-repeat;
-    }
   }
   input {
     border-radius: 2%;
@@ -136,6 +129,33 @@ body{
     outline:none;
   }
 }
+}
+
+@media screen and (max-width: 768px) {
+  .list-form {
+    li {
+      margin: 10px 0 0 0px;
+      float:left;
+      list-style: none;
+    }
+    li:nth-child(1) {
+      width:90%;
+    }
+    li:nth-child(2) {
+      margin-left:10px;
+      width:20px;
+    }
+  }
+}
+
+.list-form li:nth-child(2) {
+  input {
+    border: none;
+    background:hsla(0,0%,0%,0);
+    background-image:asset-url("searchblue.png");
+    background-size: contain;
+    background-repeat: no-repeat;
+  }
 }
 
 
