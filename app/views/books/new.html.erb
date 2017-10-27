@@ -24,7 +24,7 @@
         <%= f.label :quality, "* Skick" %>
         <%= f.select :quality, options_for_select(['Använd', 'Nyskick',
           'Sliten', 'Mycket sliten']) %>
-        <%= f.label :genre, "Genre" %>
+        <%= f.label :genre, "* Genre" %>
         <%= f.select :genre, options_for_select(@genres) %>
         <%= f.label :year, "Utgivningsår" %>
         <% if params[:year].nil? %>

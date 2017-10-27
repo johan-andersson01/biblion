@@ -44,7 +44,6 @@
     </li>
     <% if logged_in? && @book.available%>
     <li class="givenby"><span class="attr">Ges bort av:</span> <span class="info"><%= link_to @book.user.name, @book.user %></span></li>
-    <li class="givenby"><span class="attr">Telefon:</span> <span class="info"><%= @book.user.telephone %></span></li>
 
     <% end %>
     <li class="available"><span class="attr">Tillänglig:</span>

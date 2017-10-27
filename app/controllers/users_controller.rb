@@ -77,17 +77,17 @@ class UsersController < ApplicationController
   private
 
     def user_params_terms
-      params.require(:user).permit(:name, :location, :landscape, :email, :telephone,
+      params.require(:user).permit(:name, :location, :landscape, :email,
        :password, :password_confirmation, :terms_of_service)
     end
 
     def user_params_new_password
-      params.require(:user).permit(:name, :location, :landscape, :email, :telephone, :oldpassword,
+      params.require(:user).permit(:name, :location, :landscape, :email, :oldpassword,
        :password, :password_confirmation)
     end
 
     def user_params_no_terms
-      params.require(:user).permit(:name, :location, :landscape, :email, :telephone,
+      params.require(:user).permit(:name, :location, :landscape, :email,
        :password, :password_confirmation)
     end
 

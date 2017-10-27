@@ -88,7 +88,7 @@ class BooksController < ApplicationController
       if !tls_img.nil? and !tls_img ["http:"].nil?
         tls_img ["http:"] = "https:"
       end
-      @books[i] = Book.new(
+      @books.push(Book.new(
       author: book.authors,
       title: book.title,
       language: book.language,
@@ -97,8 +97,7 @@ class BooksController < ApplicationController
       language: book.language,
       user: current_user,
       googlebooks: book.info_link,
-      pages: book.page_count)
-      i += 1
+      pages: book.page_count))
     end
     render 'add'
   end
@@ -122,7 +121,7 @@ class BooksController < ApplicationController
           @books.add(b)
         end
       end
-      @books = @books.to_a().paginate(page: params[:page])
+      @books = @books.to_a()
       render 'search'
     end
   end
