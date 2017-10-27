@@ -2,7 +2,7 @@
 <div id="book-<%= @book.id %>" class="show-book">
   <div class="center_container col-lg-5 col-md-5 col-sm-4">
     <% if @book.cover.nil? or @book.cover.empty? %>
-    <%= image_tag("/assets/bookcover.png")%>
+    <%= image_tag("bookcover.png")%>
     <% else %>
     <%= image_tag(@book.cover)%>
     <% end %>
