@@ -23,9 +23,7 @@
         <li>
             <%= form_for(Book.new, url: {controller: "books", action: "search_book"}, method: :post) do |f| %>
               <% require 'set' %>
-              <% require 'browser' %>
-              <% browser = Browser.new("Some User Agent", accept_language: "en-us") %>
-              <% if !(Set.new([action_name]).subset? Set.new(["edit", "add", "new", "googlebooks_search"])) and !browser.device.mobile?%>
+              <% if !(Set.new([action_name]).subset? Set.new(["edit", "add", "new", "googlebooks_search"])) and !mobile?%>
                 <%= f.text_field :query, value: params[:query], autofocus: "true", onFocus: "this.select()", placeholder: "Sök efter författare, titel, genre, stad, eller län" %>
               <% else %>
                 <%= f.text_field :query, value: params[:query], onFocus: "this.select()", placeholder: "Sök efter författare, titel, genre, stad, eller län" %>
