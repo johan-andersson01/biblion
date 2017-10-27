@@ -61,29 +61,38 @@
       <% end %>
   </li>
   </ul>
-    <% if logged_in? && current_user == @book.user %>
-      <form action="<%= edit_book_path(@book) %>">
-        <input type="submit" class="btn btn-primary" value="Redigera bokinformation"></input>
-      </form>
-      <%= form_for @book, method: :delete do |f| %>
-        <%= f.submit "Radera den här boken", data: { confirm: "Är du säker?" }, class: "btn btn-primary btn-danger" %>
-      <% end %>
-
-
-    <% elsif logged_in? && @book.available%>
-      <% if current_user.admin %>
+    <% if logged_in? %>
+      <% if current_user == @book.user || current_user.admin %>
         <form action="<%= edit_book_path(@book) %>">
           <input type="submit" class="btn btn-primary" value="Redigera bokinformation"></input>
         </form>
         <%= form_for @book, method: :delete do |f| %>
           <%= f.submit "Radera den här boken", data: { confirm: "Är du säker?" }, class: "btn btn-primary btn-danger" %>
-        <% end %>
+          <% end %>
+
+      <% if !@book.available %>
+        <button type="button" class="btn btn-static unavailable">
+          Boken är inte tillgänglig
+        </button>
+      <% else %>
+        <button type="button" class="btn btn-primary" data-toggle="collapse" data-target="#request">
+        Kontakta ägaren
+        <span class="caret"></span></button>
+        <div class="collapse users userinfo" id="request">
+          <ul>
+            <li><span>För att få boken måste du skicka ett mail till bokens ägare.</span></li>
+            <li><span>Glöm inte att skriva i mailet att du gärna skulle vilja få boken <%= link_to @book.title, @book %>,
+              som <%= link_to  @book.user.name.partition(" ").first, @book.user %> har lagt upp på Biblion.</span></li>
+            <li><span>Namn </span><span><%= @book.user.name %></span></li>
+            <li><span>Email </span><span><%= @book.user.email %></span></li>
+            
+          </ul>
+        </div>
       <% end %>
-    <% elsif logged_in? && !@book.available %>
-      <button type="button" class="btn btn-static unavailable">
-        Boken är inte tillgänglig
-      </button>
-  <% end %>
+      <% end %>
+      <% end %>
+
+  
   </div>
 
   <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
