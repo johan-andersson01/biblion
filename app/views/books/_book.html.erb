@@ -7,11 +7,7 @@
       </div>
       <%= link_to book do %>
         <% if book.cover.nil? || book.cover.empty? %>
-          <div class="no-cover-url no-cover-url-small">
-            <span class="title"><%= book.title %></span>
-            <br/>
-            <span class="author"><%= book.author %></span>
-          </div>
+            <%= image_tag("/assets/bookcover.png") %>
         <% else%>
         <%= image_tag(book.cover) unless book.cover.empty?%>
       <% end %>

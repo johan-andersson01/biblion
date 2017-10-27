@@ -18,6 +18,8 @@ class UsersController < ApplicationController
   end
 
   def create
+    user_params_terms[:location].capitalize!
+    user_params_terms[:name].capitalize!
     @user = User.new(user_params_terms)
     if @user.save
       log_in @user
@@ -36,8 +38,9 @@ class UsersController < ApplicationController
 
   def update
     @user = User.find(params[:id])
-    @prev_loc = @user.location
     @auth = current_user.authenticate(user_params_new_password[:oldpassword])
+    user_params_no_terms[:name].capitalize!
+    user_params_no_terms[:location].capitalize!
     if @auth && @user.update_attributes(user_params_no_terms)
       if current_user.admin
         flash[:success] = "Användare #{@user.id}:s inställningar har nu uppdaterats"

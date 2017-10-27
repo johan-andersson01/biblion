@@ -7,6 +7,9 @@ class BooksController < ApplicationController
   def show
     @book = Book.find_by(id: params[:id])
     @user = current_user
+    if @book.nil?
+      redirect_to root_url
+    end
   end
 
   def new

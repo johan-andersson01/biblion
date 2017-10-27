@@ -48,20 +48,13 @@ $list-height: 300px;
 
 .no-cover-url {
   box-sizing: border-box;
-  background-color:$book-cover-default;
-  background-color: #fff; 
-  background-image:
-  linear-gradient($gray-lighter .1em, transparent .1em);
-  background-size: 100% 1.2em;
   text-align: center;
   color:#444;
   overflow: hidden;
   outline:1px $gray-lighter solid;
-
-  span {
-    background:#E9DA6A;
-  }
-  .title {
+  
+ 
+   .title {
     font-size: 150%;
   }
 
@@ -70,16 +63,10 @@ $list-height: 300px;
   }
 }
 
-.no-cover-url-big {
-  width:300px;
-  height:360px;
-}
-
-.no-cover-url-small {
-  padding-top: 10%;
-  padding-bottom: 60%;
-  max-height:75%;
+.no-cover-url img {
   max-width:95%;
+  height:auto;
+  max-height: 80%;
 }
 
 .status {

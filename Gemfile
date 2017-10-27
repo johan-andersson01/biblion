@@ -44,6 +44,7 @@ gem 'bootstrap-will_paginate', '1.0.0'
 gem 'city-state'
 gem 'carmen-rails'
 gem 'googlebooks'
+gem "browser", require: "browser/browser"
 group :development, :test do
   # Call 'byebug' anywhere in the code to stop execution and get a debugger console
   gem 'byebug', platform: :mri

@@ -4,7 +4,7 @@
   <div class="signup_form">
     <%= form_for(@book, url: {action: "googlebooks_search"}, method: :post) do |f| %>
       <%= f.label(:query, "Sök efter titel eller författare:") %>
-      <%= f.text_field :query, value: @query, class: "google-search",
+      <%= f.text_field :query, autofocus: "true", onFocus: "this.select()", value: @query, class: "google-search",
       onkeyup: 'this.style.background=(this.value=="" ? "white url(https://developers.google.com/books/images/google_watermark.gif) no-repeat" : "white url(none) no-repeat");',
       onsubmit: 'this.style.background=(this.value=="" ? "white url(https://developers.google.com/books/images/google_watermark.gif) no-repeat" : "white url(none) no-repeat");' %>
       <%= f.submit("Sök") %>

@@ -48,6 +48,7 @@ GEM
       sass (>= 3.3.4)
     bootstrap-will_paginate (1.0.0)
       will_paginate
+    browser (2.5.2)
     builder (3.2.3)
     byebug (9.1.0)
     carmen (1.0.2)
@@ -206,6 +207,7 @@ DEPENDENCIES
   bcrypt (= 3.1.11)
   bootstrap-sass (~> 3.3.6)
   bootstrap-will_paginate (= 1.0.0)
+  browser
   byebug
   carmen-rails
   city-state
