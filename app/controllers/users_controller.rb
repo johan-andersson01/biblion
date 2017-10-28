@@ -18,6 +18,7 @@ class UsersController < ApplicationController
 
   def create
     user_params_terms[:location].capitalize!
+    user_params_terms[:landscape].capitalize!
     user_params_terms[:name].capitalize!
     @user = User.new(user_params_terms)
     if @user.save

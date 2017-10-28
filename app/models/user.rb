@@ -6,9 +6,9 @@ class User < ApplicationRecord
     maximum: 1,
     tokenizer: lambda { |str| str.split(/\s+/) },
     too_long: "must be only %{count} word"
-  }
-  validates :location, presence: true, length: {minimum: 2}
-  validates :landscape, presence: true
+  }, length: {minimum 2, maximum: 20}
+  validates :location, presence: true, length: {minimum: 2, maximum: 40}
+  validates :landscape, presence: true, length: {minimum: 2, maximum 20}
   VALID_EMAIL = /\A[\w+\-.]+@[a-z\d\-]+(\.[a-z\d\-]+)*\.[a-z]+\z/i
   validates :email, presence: true, length: {minimum: 5, maximum: 255},
   format: {with: VALID_EMAIL}, uniqueness: {case_sensitive: false}
