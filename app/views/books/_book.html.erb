@@ -2,9 +2,6 @@
   <div class="left col-md-4 col-sm-6 col-xs-4">
     <div class="cover-image">
       <div class="status-and-image">
-      <div class="status">
-        <div class="<%= 'circle' unless book.cover.nil? %> <%= 'ok' if book.available %>"></div>
-      </div>
       <%= link_to book do %>
         <% if book.cover.nil? || book.cover.empty? %>
             <%= image_tag("bookcover.png") %>

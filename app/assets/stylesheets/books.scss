@@ -30,6 +30,11 @@ $list-height: 300px;
       width:100%;
       display:flex;
       align-items: center;
+      input {
+        margin:0px;
+        padding:0px;
+        max-height: 95%;
+      }
 
     }
 
@@ -103,9 +108,7 @@ padding-top: 100%;
 }
 
 .google-search {
-  min-height:10px;
-  background: white url(https://developers.google.com/books/images/google_watermark.gif);
-  background-repeat: no-repeat;
+  background: white url(https://developers.google.com/books/images/google_watermark.gif) no-repeat;
 }
 
 .show-book {
@@ -143,7 +146,3 @@ padding-top: 100%;
   }
 }
 
-.unavailable {
-  background:hsl(0,70%,65%);
-  color:#fff;
-}

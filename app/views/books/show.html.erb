@@ -42,19 +42,12 @@
       <%= link_to @book.user.landscape, landscape_url(landscape: @book.user.landscape)%>
       </span>
     </li>
-    <% if logged_in? && @book.available%>
-    <li class="givenby"><span class="attr">Ges bort av:</span> <span class="info"><%= link_to @book.user.name, @book.user %></span></li>
-
+    <% if logged_in? %>
+      <li class="givenby">
+        <span class="attr">Ges bort av:</span>
+        <span class="info"><%= link_to @book.user.name, @book.user %></span>
+      </li>
     <% end %>
-    <li class="available"><span class="attr">Tillänglig:</span>
-      <span class="info">
-      <% if @book.available %>
-        Ja
-      <% else %>
-        Nej
-      <% end %>
-      </span>
-    </li>
     <li class="googlebooks">
       <% unless @book.googlebooks.nil? || @book.googlebooks.empty? %>
         <span class="attr">Information hämtad från:</span><span class="info"><%= link_to "Google", @book.googlebooks, :target => "_blank", :rel => "noopener" %></span>
@@ -68,31 +61,30 @@
         </form>
         <%= form_for @book, method: :delete do |f| %>
           <%= f.submit "Radera den här boken", data: { confirm: "Är du säker?" }, class: "btn btn-primary btn-danger" %>
-          <% end %>
-
-      <% if !@book.available %>
-        <button type="button" class="btn btn-static unavailable">
-          Boken är inte tillgänglig
-        </button>
-      <% else %>
-        <button type="button" class="btn btn-primary" data-toggle="collapse" data-target="#request">
-        Kontakta ägaren
-        <span class="caret"></span></button>
-        <div class="collapse users userinfo" id="request">
-          <ul>
-            <li><span>För att få boken måste du skicka ett mail till bokens ägare.</span></li>
-            <li><span>Glöm inte att skriva i mailet att du gärna skulle vilja få boken <%= link_to @book.title, @book %>,
-              som <%= link_to  @book.user.name.partition(" ").first, @book.user %> har lagt upp på Biblion.</span></li>
-            <li><span>Namn </span><span><%= @book.user.name %></span></li>
-            <li><span>Email </span><span><%= @book.user.email %></span></li>
-            
-          </ul>
-        </div>
+        <% end %>
       <% end %>
+      <% if current_user != @book.user %>
+        <% if current_user.disabled %>
+          <button type="button" class="btn btn-primary btn-danger">
+            Ditt konto är avstängt
+          </button>
+        <% else %>
+          <button type="button" class="btn btn-primary" data-toggle="collapse" data-target="#request">
+            Kontakta ägaren<span class="caret"></span>
+          </button>
+          <div class="collapse users userinfo" id="request">
+            <ul>
+              <li><span>För att få boken måste du skicka ett mail till bokens ägare.</span></li>
+              <li><span>Glöm inte att skriva i mailet att du gärna skulle vilja få boken <%= link_to @book.title, @book %>,
+                som <%= link_to  @book.user.name.partition(" ").first, @book.user %> har lagt upp på Biblion.</span></li>
+              <li><span>Namn </span><span><%= @book.user.name %></span></li>
+              <li><span>Email </span><span><%= @book.user.email %></span></li>
+              
+            </ul>
+          </div>
+        <% end %>
       <% end %>
-      <% end %>
-
-  
+    <% end %>
   </div>
 
   <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">

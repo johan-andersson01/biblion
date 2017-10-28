@@ -10,7 +10,6 @@ class UsersController < ApplicationController
   def show
     @user = User.find(params[:id])
     @books = @user.books.paginate(page: params[:page])
-    @available = @user.books.where("available =  ?", true)
   end
 
   def new
@@ -88,7 +87,7 @@ class UsersController < ApplicationController
 
     def user_params_no_terms
       params.require(:user).permit(:name, :location, :landscape, :email,
-       :password, :password_confirmation)
+       :password, :password_confirmation, :disabled)
     end
 
     def req_user_password

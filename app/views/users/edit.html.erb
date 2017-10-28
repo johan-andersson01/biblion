@@ -21,6 +21,12 @@
         <%= f.password_field :password %>
         <%= f.label :password_confirmation, "Bekräfta ditt nya lösenord" %>
         <%= f.password_field :password_confirmation %>
+        <% if current_user.admin %>
+          <div class="checkbox-field">
+          <%= f.label :disabled, "Avstängd:", class: "checkbox-label" %>
+          <%= f.check_box :disabled, class: "checkbox" %>
+          </div>
+        <% end %>
         <div class="confirm">
         <button type="button" class="btn btn-primary" data-toggle="collapse" data-target="#save">Spara ändringarna
           <span class="caret"></span></button>

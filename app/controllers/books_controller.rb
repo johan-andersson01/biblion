@@ -46,13 +46,16 @@ class BooksController < ApplicationController
     unless @book.language.nil?
        @book.language.capitalize!
      end
-    @book.available = true
-    @book.swaps = 0
-    if @book.save
-      flash[:success] = "Boken har lagts upp!"
-      redirect_to @book
+     if !current_user.disabled
+      if @book.save
+        flash[:success] = "Boken har lagts upp!"
+        redirect_to @book
+      else
+      render 'new'
+      end
     else
-    render 'new'
+      flash[:fail] = "Du kan inte lägga upp böcker, eftersom ditt konto är avstängt"
+      redirect_to root_url
     end
   end
 
@@ -171,7 +174,7 @@ class BooksController < ApplicationController
     end
 
     def book_params
-      params.require(:book).permit(:title, :author, :year, :description, :cover, :language, :quality, :genre, :googlebooks, :pages, :available)
+      params.require(:book).permit(:title, :author, :year, :description, :cover, :language, :quality, :genre, :googlebooks, :pages)
     end
 
     def search_params

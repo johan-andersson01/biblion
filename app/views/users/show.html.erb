@@ -7,14 +7,12 @@
     <li><span>Email </span><span><%= @user.email %></span></li>
     <li><span>Ort </span><span><%= @user.location %>, <%= @user.landscape %></span></li>
     <li><span class="attr">Antal upplagda böcker</span><span class="info"> <%= @books.count %> </span></li>
-    <li><span class="attr">Antal tillgängliga böcker</span><span class="info"> <%= @available.count %> </span></li>
     <li><span>Medlem sedan </span><span><%= @user.created_at.to_formatted_s(:dmy) %></span></li>
     <li><span>Information senast uppdaterad </span><span><%= @user.updated_at.to_formatted_s(:dmy) %></span></li>
     <li><%= link_to 'Redigera kontoinformation', edit_user_path(@user) %>
   <% else %>
     <li><span>Namn </span><span><%= @user.name %></span></li>
     <li><span class="attr">Antal upplagda böcker</span><span class="info"> <%= @books.count %> </span></li>
-    <li><span class="attr">Antal tillgängliga böcker</span><span class="info"> <%= @available.count %> </span></li>
     <li><span class="attr">Medlem sedan</span><span class="info"><%= @user.updated_at.to_formatted_s(:dmy) %></span></li>
   <% end %>
 </ul>
@@ -26,9 +24,9 @@
     <ul class="books">
         <%= render @books %>
       <% else %>
-      <h3><%= @user.name %>s tillgängliga böcker  (<%= @available.count %>)</h3>
+      <h3><%= @user.name %>s tillgängliga böcker  (<%= @books.count %>)</h3>
       <ul class="books">
-        <%= render @available %>
+        <%= render @books %>
       <% end %>
     </ul>
     <%= will_paginate @books, previous_label: t("föregående"), next_label: t("nästa")%>

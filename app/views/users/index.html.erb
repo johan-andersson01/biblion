@@ -12,6 +12,9 @@
 
       </span>
       <span>
+        <% if user.disabled %>
+          Avstängd
+        <% end %>
         <%= user.email %>
         <%= user.created_at.to_formatted_s(:dmy) %>
         <%= user.updated_at.to_formatted_s(:dmy) %>

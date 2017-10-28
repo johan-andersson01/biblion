@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20171027113905) do
+ActiveRecord::Schema.define(version: 20171028123112) do
 
   create_table "books", force: :cascade do |t|
     t.string   "title"
@@ -18,7 +18,6 @@ ActiveRecord::Schema.define(version: 20171027113905) do
     t.datetime "year"
     t.text     "description"
     t.integer  "swaps"
-    t.boolean  "available"
     t.integer  "user_id"
     t.datetime "created_at",                null: false
     t.datetime "updated_at",                null: false
@@ -45,6 +44,7 @@ ActiveRecord::Schema.define(version: 20171027113905) do
     t.datetime "activated_at"
     t.string   "location"
     t.string   "landscape"
+    t.boolean  "disabled"
     t.index ["email"], name: "index_users_on_email", unique: true
   end
 

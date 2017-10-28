@@ -207,6 +207,13 @@ body{
   text-align: center;
 }
 
+.alert-fail {
+  outline:1px solid $error_color_light;
+  background: $error_color_dark;
+  color: #fff;
+  text-align: center;
+}
+
 #error {
   width:100%;
   display:flex;
