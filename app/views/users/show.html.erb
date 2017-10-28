@@ -9,6 +9,15 @@
     <li><span class="attr">Antal upplagda böcker</span><span class="info"> <%= @books.count %> </span></li>
     <li><span>Medlem sedan </span><span><%= @user.created_at.to_formatted_s(:dmy) %></span></li>
     <li><span>Information senast uppdaterad </span><span><%= @user.updated_at.to_formatted_s(:dmy) %></span></li>
+    <li><span>Verifierad email </span>
+      <span>
+        <% if @user.activated %>
+          Ja
+        <% else %>
+          Nej
+        <% end %>
+        </span>
+    </li>
     <li><%= link_to 'Redigera kontoinformation', edit_user_path(@user) %>
   <% else %>
     <li><span>Namn </span><span><%= @user.name %></span></li>

@@ -83,10 +83,7 @@ class BooksController < ApplicationController
     @query = search_params[:query]
     @book = Book.new
     @books = []
-    books = GoogleBooks.search(@query, {:count => 12})
-    first = books.first
-    i = 0
-#DateTime.strptime(book.published_date, '%Y-%m-%d %H:%M:%S %Z')
+    books = GoogleBooks.search(@query, {:count => 30})
     books.each do |book|
       tls_img = book.image_link(:zoom => 6)
       if !tls_img.nil? and !tls_img ["http:"].nil?
