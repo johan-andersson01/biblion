@@ -7,7 +7,6 @@
       <div class="field">
 
         </div>
-      <%= #include Recaptcha::ClientHelper %>
       <%= form_for(@user, url: signup_path) do |f| %>
         <%= render 'shared/error_messages' %>
         <%= f.label :name, "* Förnamn eller alias" %>
@@ -26,7 +25,6 @@
         <%= f.password_field :password %>
         <%= f.label :password_confirmation, "* Bekräfta ditt lösenord" %>
         <%= f.password_field :password_confirmation %>
-        <%= recaptcha_tags %>
         <%= f.label "Användaravtal:" %>
         <p> Genom att registrera dig på Biblion, lovar du: </p>
         <p>&#9829; Att inte missbruka Biblions underliggande system. </p>

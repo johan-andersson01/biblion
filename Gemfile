@@ -61,13 +61,10 @@ group :development do
   gem 'spring'
   gem 'spring-watcher-listen', '~> 2.0.0'
   gem 'faker'
-  gem 'dotenv-rails', groups: [:development, :test]
-  gem "recaptcha", require: "recaptcha/rails"
 end
 
 group :production do
   gem 'pg'
-  gem "recaptcha", require: "recaptcha/rails"
   gem 'rails_12factor'
   gem 'faker'
 end

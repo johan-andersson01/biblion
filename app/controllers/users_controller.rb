@@ -17,11 +17,10 @@ class UsersController < ApplicationController
   end
 
   def create
-    include Recaptcha::Verify
     user_params_terms[:location].capitalize!
     user_params_terms[:name].capitalize!
     @user = User.new(user_params_terms)
-    if verify_recaptcha(model: @user) && @user.save
+    if @user.save
       @user.send_activation_email
       flash[:success] = "Välkommen till Biblion, #{@user.name}! Kolla din mail för att aktivera ditt konto!"
       log_in @user
