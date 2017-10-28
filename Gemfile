@@ -65,6 +65,7 @@ end
 
 group :production do
   gem 'pg'
+  gem "recaptcha", require: "recaptcha/rails"
   gem 'rails_12factor'
   gem 'faker'
 end
