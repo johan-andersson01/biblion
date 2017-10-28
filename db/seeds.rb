@@ -1,6 +1,5 @@
 User.create!(name:  "Johan",
              email: "johan@biblion.se",
-             telephone: "000000000",
              password:              "foobar",
              password_confirmation: "foobar",
              admin: true,
