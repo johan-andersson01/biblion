@@ -17,10 +17,10 @@
         <%= f.select :landscape, CS.states(:se).values.sort() %>
         <%= f.label :email, "E-mail" %>
         <%= f.text_field :email %>
-        <%= f.label :password, "Nytt lösenord" %>
-        <%= f.password_field :password %>
+        <%= f.label :password, "Nytt lösenord"  %>
+        <%= f.password_field :password, html: {autocomplete: "off"} %>
         <%= f.label :password_confirmation, "Bekräfta ditt nya lösenord" %>
-        <%= f.password_field :password_confirmation %>
+        <%= f.password_field :password_confirmation, html: {autocomplete: "off"} %>
         <% if current_user.admin %>
           <div class="checkbox-field">
           <%= f.label :disabled, "Avstängd:", class: "checkbox-label" %>
