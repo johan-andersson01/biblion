@@ -7,7 +7,7 @@
       <div class="field">
 
         </div>
-      <%= include Recaptcha::ClientHelper %>
+      <%= #include Recaptcha::ClientHelper %>
       <%= form_for(@user, url: signup_path) do |f| %>
         <%= render 'shared/error_messages' %>
         <%= f.label :name, "* Förnamn eller alias" %>
