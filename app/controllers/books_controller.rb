@@ -17,11 +17,11 @@ class BooksController < ApplicationController
   end
 
   def edit
-    @book = Book.find(params[:id])
+    @book = Book.find_by("id = ?", params[:id])
   end
 
   def update
-    @book = Book.find(params[:id])
+    @book = Book.find_by("id = ?", params[:id])
     unless @book.language.nil?
        @book.language.capitalize!
      end
@@ -61,7 +61,7 @@ class BooksController < ApplicationController
   end
 
   def destroy
-    @book = Book.find(params[:id])
+    @book = Book.find_by("id = ?", params[:id])
     if (current_user.admin?)
       @book.destroy
       flash[:success] = "Boken har raderats"
@@ -170,7 +170,7 @@ class BooksController < ApplicationController
     end
 
     def authorize_user
-        @book = Book.find(params[:id])
+        @book = Book.find_by("id = ?", params[:id])
         redirect_to(root_url) unless logged_in? && (@book.user == current_user || current_user.admin)
     end
 

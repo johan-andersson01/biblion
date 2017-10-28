@@ -8,7 +8,7 @@ class UsersController < ApplicationController
   end
 
   def show
-    @user = User.find(params[:id])
+    @user = User.find_by("id = ?", params[:id])
     @books = @user.books.paginate(page: params[:page])
   end
 
@@ -31,13 +31,13 @@ class UsersController < ApplicationController
   end
 
   def edit
-    @user = User.find(params[:id])
+    @user = User.find_by("id = ?", params[:id])
     rescue ActiveRecord::RecordNotFound
       redirect_to root_url
   end
 
   def update
-    @user = User.find(params[:id])
+    @user = User.find_by("id = ?", params[:id])
     @auth = current_user.authenticate(user_params_new_password[:oldpassword])
     user_params_no_terms[:name].capitalize!
     user_params_no_terms[:location].capitalize!
@@ -58,7 +58,7 @@ class UsersController < ApplicationController
   end
 
   def destroy
-    @user = User.find(params[:id])
+    @user = User.find_by("id = ?", params[:id])
     if (current_user.admin? && current_user.authenticate(req_user_password[:password]))
       @user.destroy
       flash[:success] = "Användare raderad"
@@ -104,7 +104,7 @@ class UsersController < ApplicationController
     end
 
     def authorize_user
-        @user = User.find(params[:id])
+        @user = User.find_by("id = ?", params[:id])
         rescue ActiveRecord::RecordNotFound
         redirect_to(root_url) unless current_user?(@user)||current_user.admin
     end

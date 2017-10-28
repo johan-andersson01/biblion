@@ -25,11 +25,16 @@
         <%= f.password_field :password %>
         <%= f.label :password_confirmation, "* Bekräfta ditt lösenord" %>
         <%= f.password_field :password_confirmation %>
-        <div class="checkbox-field">
-        <%= f.label :terms_of_service, "Genom att registrera mig, godkänner jag Biblions användaravtal:", class: "checkbox-label" %>
+        <%= f.label "Användaravtal:" %>
+        <p> Genom att registrera dig på Biblion, lovar du: </p>
+        <p>&#9829; Att inte missbruka Biblions underliggande system. </p>
+        <p>&#9829;&#9829; Att enbart lägga upp böcker du vill och kan ge bort. </p>
+        <p>&#9829;&#9829;&#9829; Att sprida kultur och kunskap.</p>
+
+        <div class="checkbox-field" >
+        <%= f.label :terms_of_service, "Genom att registrera mig, godkänner jag att följa avtalet ovan:", class: "checkbox-label" %>
         <%= f.check_box :terms_of_service, class: "checkbox" %>
         </div>
-        <%= f.label "1. krav nr 1:", class: "checkbox-label" %>
         <%= f.submit "Skapa konto!", class: "btn btn-primary" %>
       <% end %>
   </div>
