@@ -1,7 +1,7 @@
 <li id="book-<%= book.id %>" class="col-sm-6 col-md-6 col-lg-4 container-fluid">
   <div class="left col-md-4 col-sm-6 col-xs-4">
     <div class="cover-image">
-      <div class="status-and-image">
+      <div class="image-container">
       <%= link_to book do %>
         <% if book.cover.nil? || book.cover.empty? %>
             <%= image_tag("bookcover.png") %>

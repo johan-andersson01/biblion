@@ -26,8 +26,8 @@ $list-height: 300px;
     align-items: center;
     height:$list-height;
     .cover-image {
-      height: $list-height;
-      width:100%;
+      height: 95%;
+      width:95%;
       display:flex;
       align-items: center;
       input {
@@ -46,7 +46,7 @@ $list-height: 300px;
   }
 }
 
-.status-and-image {
+.image-container {
   width:90%;
   height:95%;
 }
