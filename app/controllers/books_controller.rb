@@ -45,17 +45,23 @@ class BooksController < ApplicationController
     @book = current_user.books.build(book_params)
     unless @book.language.nil?
        @book.language.capitalize!
-     end
-     if !current_user.disabled
-      if @book.save
-        flash[:success] = "Boken har lagts upp!"
-        redirect_to @book
-      else
-      render 'new'
-      end
-    else
+    end
+    if current_user.disabled
       flash[:fail] = "Du kan inte lägga upp böcker, eftersom ditt konto är avstängt"
       redirect_to root_url
+    end
+    if !current_user.activated
+      flash[:fail] = "Du kan inte lägga upp böcker, eftersom du inte har aktiverat ditt konto"
+      redirect_to root_url
+    end
+    if @book.save
+      flash[:success] = "Boken har lagts upp!"
+      redirect_to @book
+    else
+    render 'new'
+    end
+    else
+      
     end
   end
 

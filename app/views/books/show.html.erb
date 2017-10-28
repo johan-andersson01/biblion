@@ -68,6 +68,10 @@
           <button type="button" class="btn btn-primary btn-danger">
             Ditt konto är avstängt
           </button>
+        <% elsif !current_user.activated %> 
+          <button type="button" class="btn btn-primary btn-danger">
+            Du har inte aktiverat ditt konto
+          </button>
         <% else %>
           <button type="button" class="btn btn-primary" data-toggle="collapse" data-target="#request">
             Kontakta ägaren<span class="caret"></span>

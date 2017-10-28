@@ -22,8 +22,7 @@ class UsersController < ApplicationController
     @user = User.new(user_params_terms)
     if @user.save
       @user.send_activation_email
-      flash[:info] = "Kolla din mail för att aktivera ditt konto!"
-      flash[:success] = "Välkommen till Biblion, #{@user.name}!"
+      flash[:success] = "Välkommen till Biblion, #{@user.name}! Kolla din mail för att aktivera ditt konto!"
       log_in @user
       redirect_to root_url
     else
