@@ -12,12 +12,10 @@ User.create!(name:  "Johan",
 2.times do |n|
   name  = Faker::Name.name.first
   email = "user-#{n+1}@biblion.se"
-  telephone = "0000000#{n+1}"
   password = "password"
   User.create!(name:  name,
                email: email,
-               telephone: telephone,
-               password:              password,
+               password: password,
                password_confirmation: password,
                activated: true,
                activated_at: Time.zone.now,
