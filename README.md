@@ -29,9 +29,12 @@ Things you may want to cover:
 * Rails >= 5.0
 
 # Local setup
+
+` cd /your_path/`
+
 ` git clone https://github.com/johan-andersson01/biblion.git`
 
-` cd /your_path/biblion`
+` cd biblion`
 
 ` bundle install `
 
@@ -48,6 +51,8 @@ You will have created one admin user with the `db:seed` command, with the follow
 > email: admin@foo.bar
 
 > password: foobar
+
+These can be changed later when logging in in the browser.
 
 # Porting to another language
 
