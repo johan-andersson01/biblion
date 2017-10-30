@@ -4,7 +4,7 @@ class UsersController < ApplicationController
   before_action :authorize_admin, only: [:index]
 
   def index
-    @users = User.paginate(page: params[:page])
+    @users = User.order("id ASC").paginate(page: params[:page])
   end
 
   def show
