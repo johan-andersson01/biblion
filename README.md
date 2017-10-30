@@ -25,7 +25,7 @@ You will have created one admin user with the `db:seed` command, with the follow
 
 > email: admin@foo.bar
 
-> password: foobar
+> password: foobar9000
 
 These can be changed later when logging in in the browser.
 

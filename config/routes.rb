@@ -4,8 +4,6 @@ Rails.application.routes.draw do
   root 'pages#home'
   #pages
   get '/about',     to: 'pages#about'
-  get '/contact',   to: 'pages#contact'
-  get '/terms',     to: 'pages#termsofservice'
   post 'search',    to: 'books#search_book'
   #users
   get '/signup',    to: 'users#new'
