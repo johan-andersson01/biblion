@@ -4,7 +4,8 @@
   <%= f.label :email %>
   <%= f.email_field :email, class: 'form-control' %>
 
-  <%= f.label :password %>
+  <%= f.label :password, "Lösenord" %>
+  <%= link_to "(glömt lösenordet?)", new_password_reset_path %>
   <%= f.password_field :password, class: 'form-control' %>
 
   <%= f.submit "Logga in", class: "btn btn-primary" %>
