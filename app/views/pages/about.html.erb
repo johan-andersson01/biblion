@@ -24,7 +24,7 @@
 <h3>Kontakt</h3>
 
 <% if logged_in? %>
-  <p>dat14jan@student.lu.se</p>
+  <p><%= User.first.email %></p>
 <% else %>
   <p>Logga in för att se kontaktinformation</p>
   <% end %>

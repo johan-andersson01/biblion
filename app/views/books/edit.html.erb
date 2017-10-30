@@ -26,9 +26,14 @@
         <%= f.text_field :pages %>
         <%= f.label :year, "Utgivningsår" %>
         <%= f.date_select "year", include_blank: true, start_year: Time.now.year, end_year: Time.now.year - 200, order: [:year]%>
-        <%= f.label :description, "Beskrivning" %>
-        <%= f.text_field :description %>
+        <% if current_user.admin %>
+          <%= f.label :description, "Beskrivning" %>
+          <%= f.text_field :description %>
+        <% end %>
+        <%= f.label :comment, "Beskrivning" %>
+        <%= f.text_field :comment %>
         <%= f.submit "Bekräfta ändringar", class: "btn btn-primary" %>
+
       <% end %>
   </div>
   </div>

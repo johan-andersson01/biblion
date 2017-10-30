@@ -172,7 +172,7 @@ class BooksController < ApplicationController
     end
 
     def book_params
-      params.require(:book).permit(:title, :author, :year, :description, :cover, :language, :quality, :genre, :googlebooks, :pages)
+      params.require(:book).permit(:title, :author, :year, :description, :comment, :cover, :language, :quality, :genre, :googlebooks, :pages)
     end
 
     def search_params

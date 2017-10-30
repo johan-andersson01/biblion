@@ -5,7 +5,7 @@ class Book < ApplicationRecord
   validates :user_id, presence: true
   validates :author, presence: true, length: {minimum: 4, maximum: 100}
   validates :title, presence: true, length: {minimum: 2, maximum: 150}
-  validates :quality, presence: true, length: {maximum: 10}
+  validates :quality, presence: true, length: {maximum: 15}
   validates :genre, presence: true, length: {maximum: 30}
   validates :language, presence: true, length: {maximum: 30}
 

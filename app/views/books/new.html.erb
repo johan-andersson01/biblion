@@ -13,6 +13,7 @@
       <%= form_for(@book, url: {action: "new"}, method: :post) do |f| %>
         <%= render 'shared/book_error_messages' %>
         <%= f.hidden_field :googlebooks %>
+        <%= f.hidden_field :description %>
         <%= f.hidden_field :cover %>
         <%= f.hidden_field :pages %>
         <%= f.label :title, "* Boktitel" %>
@@ -36,8 +37,8 @@
           start_year: Time.now.year, end_year: Time.now.year - 200, order: [:year]%>
         <% end %>
         
-        <%= f.label :description, "Beskrivning" %>
-        <%= f.text_area :description%>
+        <%= f.label :comment, "Din kommentar om boken" %>
+        <%= f.text_area :comment%>
         <%= f.submit "Lägg till boken!", class: "btn btn-primary" %>
       <% end %>
   </div>
