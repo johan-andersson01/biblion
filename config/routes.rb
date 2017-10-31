@@ -1,4 +1,8 @@
 Rails.application.routes.draw do
+  get 'password_resets/new'
+
+  get 'password_resets/edit'
+
   get 'sessions/new'
 
   root 'pages#home'
@@ -19,7 +23,6 @@ Rails.application.routes.draw do
   post 'books/new', to: 'books#create'
   get 'books/add',  to: 'books#add'
   post 'books/add', to: 'books#googlebooks_search'
-  #patch 'books/show',to: 'books#request_book' TODO
   #session
   get '/login',     to: 'sessions#new'
   post '/login',    to: 'sessions#create'
@@ -28,6 +31,5 @@ Rails.application.routes.draw do
   resources :users
   resources :books
   resources :account_activations, only: [:edit]
-  
-  # For details on the DSL available within this file, see http://guides.rubyonrails.org/routing.html
+  resources :password_resets, only: [:new, :create, :update]
 end
