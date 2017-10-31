@@ -1,28 +1,14 @@
-# README
+# Biblion.se
 
-This README would normally document whatever steps are necessary to get the
-application up and running.
+## Getting started
 
-Things you may want to cover:
+## Prerequisites
 
-* System dependencies
+To run this locally, you need [Ruby](https://www.ruby-lang.org/en/https://www.ruby-lang.org/en/) and [Rails](http://rubyonrails.org/) installed. Biblion has been developed with Ruby 2.4 and Rails 5.0.6. Compatibility with other versions is not guaranteed.
 
-* Configuration
+## Installing
 
-* How to run the test suite
-
-* Services (job queues, cache servers, search engines, etc.)
-
-* Deployment instructions
-
-* ...
-
-# Developed with
-
-* Ruby 2.4
-* Rails 5.0.6
-
-# Local setup
+Clone this repository into your preferred folder.
 
 ` cd /your_path/`
 
@@ -30,11 +16,19 @@ Things you may want to cover:
 
 ` cd biblion`
 
-` bundle install `
+Install gems.
+
+` bundle install`
+
+Create the database.
+
+` rails db:create`
 
 ` rails db:migrate`
 
 ` rails db:seed`
+
+Run the server.
 
 ` rails s `
 
@@ -46,11 +40,23 @@ You will have created one admin user with the `db:seed` command, with the follow
 
 > password: foobar9000
 
-These can be changed later when logging in in the browser.
+These can be changed later on site, after you've logged in.
 
-# Porting to another language
+## Deployment
+
+This can be easily deployed on Heroku for free. If you're interested in this, see [Michael Hartl's Rails Tutorial](https://www.railstutorial.org/book/beginning)
+
+## Porting to another language
 
 Since this project has been built for Swedish users in mind, much of the interface is written in Swedish. Here are some tips if you want to port this project to another language & location:
 
 * Go through all files under `/app/views/` and look for Swedish words and sentences.
 * Replace all instances of `CS.states(:se)` with your country of choice.
+
+## License
+
+This project is licensed under the MIT License - see the LICENSE.md file for details.
+
+## Acknowledgements
+
+This project would not have been possible without the writings of Michael Hartl: [Ruby on Rails Tutorial](https://www.railstutorial.org).
