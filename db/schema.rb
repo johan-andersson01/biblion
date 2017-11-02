@@ -40,7 +40,7 @@ ActiveRecord::Schema.define(version: 20171030215153) do
     t.string   "remember_digest"
     t.boolean  "admin"
     t.string   "activation_digest"
-    t.boolean  "activated",         default: false
+    t.boolean  "activated"
     t.datetime "activated_at"
     t.string   "location"
     t.string   "landscape"
