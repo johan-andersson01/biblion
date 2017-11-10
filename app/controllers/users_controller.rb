@@ -17,9 +17,9 @@ class UsersController < ApplicationController
   end
 
   def create
-    user_params_terms[:location].capitalize!
-    user_params_terms[:landscape].capitalize!
-    user_params_terms[:name].capitalize!
+    user_params_terms[:location].capitalize! unless user_params_terms[:location].nil?
+    user_params_terms[:landscape].capitalize! unless user_params_terms[:landscape].nil?
+    user_params_terms[:name].capitalize! unless user_params_terms[:name].nil?
     @user = User.new(user_params_terms)
     if @user.save
       @user.send_activation_email

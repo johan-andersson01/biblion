@@ -7,6 +7,8 @@ class UsersSignupTest < ActionDispatch::IntegrationTest
     assert_no_difference 'User.count' do
       post users_path, params: { user: { name:  "",
                                          email: "user@invalid",
+                                         landscape: "Mars",
+                                         location: "Venus",
                                          password:              "foo",
                                          password_confirmation: "bar",  terms_of_service: "1"  } }
     end
@@ -19,9 +21,12 @@ class UsersSignupTest < ActionDispatch::IntegrationTest
     get signup_path
     assert_difference 'User.count', 1 do
       post users_path, params: { user: { name:  "Example User",
+                                         landscape: "Mars",
+                                         location: "Venus",
                                          email: "user@example.com",
                                          password: "password",
-                              password_confirmation: "password", terms_of_service: "1" } }
+                                         password_confirmation: "password",
+                                         terms_of_service: "1" } }
     end
     follow_redirect!
     assert_template 'users/show'
