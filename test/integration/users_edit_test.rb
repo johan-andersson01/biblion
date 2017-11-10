@@ -52,9 +52,8 @@ class UsersEditTest < ActionDispatch::IntegrationTest
     log_in_as_admin(@admin)
     assert is_logged_in?
     get edit_user_path(@user)
-    tel = "123443211"
     email = "edited@valid.com"
-    patch user_path(@user), params: { user: {name: @user.name, telephone: tel, email: email, oldpassword: "asdsdf"}}
+    patch user_path(@user), params: { user: {name: @user.name, email: email, oldpassword: "asdsdf"}}
     assert_not flash.empty?
     assert_template 'users/edit'
     assert_select ".alert-danger"
@@ -63,9 +62,8 @@ class UsersEditTest < ActionDispatch::IntegrationTest
   test "valid edit but wrong current password" do
     log_in_as(@user)
     get edit_user_path(@user)
-    tel = "123443211"
     email = "foo@valid.com"
-    patch user_path(@user), params: { user: {name: @user.name, telephone: tel, email: email, oldpassword: "foobar"}}
+    patch user_path(@user), params: { user: {name: @user.name, email: email, oldpassword: "foobar"}}
     assert_template 'users/edit'
     assert_select ".alert-danger"
   end
@@ -73,9 +71,8 @@ class UsersEditTest < ActionDispatch::IntegrationTest
   test "successful user edit" do
     log_in_as(@user)
     get edit_user_path(@user)
-    tel = "123443211"
     email = "foo@valid.com"
-    patch user_path(@user), params: { user: {name: @user.name, telephone: tel, email: email, oldpassword: "password"}}
+    patch user_path(@user), params: { user: {name: @user.name, email: email, oldpassword: "password"}}
     assert_not flash.empty?
     assert_redirected_to @user
     @user.reload

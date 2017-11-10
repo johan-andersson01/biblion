@@ -32,7 +32,10 @@ class UsersController < ApplicationController
   end
 
   def edit
-    @user = User.find_by("id = ?", params[:id])
+    @user_profile = User.find_by("id = ?", params[:id])
+    if @user_profile.id != current_user.id && !current_user.admin
+      redirect_to edit_user_path(current_user)
+    end
     rescue ActiveRecord::RecordNotFound
       redirect_to root_url
   end

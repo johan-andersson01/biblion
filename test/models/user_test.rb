@@ -4,7 +4,7 @@ class UserTest < ActiveSupport::TestCase
 
   def setup
     @user = User.new(name: "example user",
-    email: "user@example.com", telephone: "123456789",
+    email: "user@example.com", location: "Venus", landscape: "Mars",
     password: "foobar", password_confirmation: "foobar")
   end
 
@@ -19,11 +19,6 @@ class UserTest < ActiveSupport::TestCase
 
   test "email should be present" do
     @user.email = "   "
-    assert_not @user.valid?
-  end
-
-  test "telephone should be present" do
-    @user.telephone = "   "
     assert_not @user.valid?
   end
 
@@ -44,16 +39,6 @@ class UserTest < ActiveSupport::TestCase
 
   test "email should not be too short" do
     @user.email = "a@by"
-    assert_not @user.valid?
-  end
-
-  test "telephone should not be too long" do
-    @user.telephone = "0" * 12
-    assert_not @user.valid?
-  end
-
-  test "telephone should not be too short" do
-    @user.telephone = "0" * 7
     assert_not @user.valid?
   end
 

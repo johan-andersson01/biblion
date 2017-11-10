@@ -5,8 +5,6 @@ one:
   author: MyString
   year: 2017-06-26
   description: MyText
-  swaps: 1
-  available: false
   user: one
 
 two:
@@ -14,6 +12,4 @@ two:
   author: MyString
   year: 2017-06-26
   description: MyText
-  swaps: 1
-  available: false
   user: two

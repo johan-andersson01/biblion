@@ -4,7 +4,8 @@
 michael:
   name: Michael Madsen
   email: michael@madsen.com
-  telephone: 1234567890
+  location: Venus
+  landscape: Mars
   password_digest: <%= User.digest('password') %>
   activated: true
   activated_at: <%= Time.zone.now %>
@@ -13,7 +14,8 @@ michael:
 archer:
   name: Sterling Archer
   email: duchess@example.gov
-  telephone: 123123234
+  location: Venus
+  landscape: Mars
   password_digest: <%= User.digest('password') %>
   activated: true
   activated_at: <%= Time.zone.now %>
@@ -21,7 +23,8 @@ archer:
 admin:
   name: admin Adminson
   email: admin@valid.com
-  telephone: 999999990
+  location: Venus
+  landscape: Mars
   password_digest: <%= User.digest('foobar') %>
   admin: true
   activated: true
@@ -31,7 +34,8 @@ admin:
 user_<%= n %>:
   name:  <%= "User #{n}" %>
   email: <%= "user-#{n}@example.com" %>
-  telephone: <%= "0000000#{n}" %>
+  location: Venus
+  landscape: Mars
   password_digest: <%= User.digest('password') %>
   activated: true
   activated_at: <%= Time.zone.now %>
