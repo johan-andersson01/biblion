@@ -2,11 +2,11 @@
 
 ## Getting started
 
-## Prerequisites
+### Prerequisites
 
 To run this locally, you need [Ruby](https://www.ruby-lang.org/en/https://www.ruby-lang.org/en/) and [Rails](http://rubyonrails.org/) installed. Biblion has been developed with Ruby 2.4 and Rails 5.0.6. Compatibility with other versions is not guaranteed.
 
-## Installing
+### Installing
 
 Clone this repository into your preferred folder.
 
