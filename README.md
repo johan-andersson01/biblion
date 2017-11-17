@@ -44,7 +44,7 @@ These can be changed later on site, after you've logged in.
 
 ## Deployment
 
-This can be easily deployed on Heroku for free. If you're interested in this, see [Michael Hartl's Rails Tutorial](https://www.railstutorial.org/book/beginning)
+This can be easily deployed on Heroku for free. If you're interested in this, see [Michael Hartl's Rails Tutorial](https://www.railstutorial.org/book/beginning).
 
 ## Porting to another language
 
@@ -55,7 +55,7 @@ Since this project has been built for Swedish users in mind, much of the interfa
 
 ## License
 
-This project is licensed under the MIT License - see the LICENSE.md file for details.
+This project is licensed under the MIT License - see the LICENSE file for details.
 
 ## Acknowledgements
 
