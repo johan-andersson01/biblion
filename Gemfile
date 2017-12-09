@@ -42,7 +42,6 @@ gem 'jbuilder', '~> 2.5'
 gem 'will_paginate'
 gem 'bootstrap-will_paginate', '1.0.0'
 gem 'city-state'
-gem 'carmen-rails'
 gem 'googlebooks'
 
 group :development, :test do

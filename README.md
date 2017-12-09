@@ -55,7 +55,7 @@ Since this project has been built for Swedish users in mind, much of the interfa
 
 ## License
 
-This project is licensed under the MIT License - see the LICENSE file for details.
+You may use this software for whatever you wish as long as you comply with the licenses of the third party libraries in use.
 
 ## Acknowledgements
 
