@@ -49,7 +49,7 @@
       </li>
     <% end %>
     <li class="googlebooks">
-      <% unless @book.googlebooks.nil? || @book.googlebooks.empty? %>
+      <% unless @book.googlebooks.nil? || @book.googlebooks.empty? || !@book.googlebooks %>
         <span class="attr">Information hämtad från:</span><span class="info"><%= link_to "Google", @book.googlebooks, :target => "_blank", :rel => "noopener" %></span>
       <% end %>
   </li>
