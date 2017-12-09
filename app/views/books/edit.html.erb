@@ -7,7 +7,7 @@
         file = File.open("#{Rails.root.to_s}/app/views/shared/genres.txt") or die 
         @genres = []
         file.each_line{|line|
-          @genres.push(line)
+          @genres.push(line.strip)
         }
       %>
       <%= form_for(@book) do |f| %>
@@ -19,9 +19,9 @@
         <%= f.label :language, "Språk" %>
         <%= f.text_field :language %>
         <%= f.label :quality, "Skick" %>
-        <%= f.select :quality, options_for_select(['Använd', 'Nyskick', 'Sliten', 'Mycket sliten']) %>
+        <%= f.select :quality, options_for_select(['Använd', 'Nyskick', 'Sliten', 'Mycket sliten'], @book.quality) %>
         <%= f.label :genre, "Genre" %>
-        <%= f.select :genre, options_for_select(@genres) %>
+        <%= f.select :genre, options_for_select(@genres,  @book.genre) %>
         <%= f.label :genre, "Sidor" %>
         <%= f.text_field :pages %>
         <%= f.label :year, "Utgivningsår" %>
