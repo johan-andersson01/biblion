@@ -100,7 +100,9 @@
   </div>
 
   <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
-  <h4>Ägarens kommentar:</h4> <p class="description"><%= @book.comment unless @book.comment.nil? %></p>
+  <% unless @book.comment.nil? || @book.comment.empty? %>
+    <h4>Ägarens kommentar:</h4> <p class="description"><%= @book.comment unless @book.comment.nil? %></p>
+  <% end %>
   <h4>Beskrivning:</h4> <p class="description"><%= @book.description%></p>
   </div>
 </div>
