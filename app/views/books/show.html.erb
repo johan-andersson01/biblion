@@ -80,9 +80,17 @@
             <ul>
               <li><span>För att få boken måste du skicka ett mail till bokens ägare.</span></li>
               <li><span>Glöm inte att skriva i mailet att du gärna skulle vilja få boken <%= link_to @book.title, @book %>,
-                som <%= link_to  @book.user.name.partition(" ").first, @book.user %> har lagt upp på Biblion.</span></li>
+                som <%= link_to  @book.user.name.partition(" ").first, @book.user %> har lagt upp på Biblion. </span></li>
+              <li><span>  
+                Här är en textmall du kan använda:
+              </span></li>
+              <li><span>
+                Hej <%= @book.user.name %>, jag såg din bok <%= @book.title %> på Biblion och skulle gärna vilja läsa den!
+                Jag bor också i <%= @book.user.location %>. Kan du träffas en dag för att ge bort boken? <br/>
+                Mvh <%= current_user.name %>.
+              </span></li>
               <li><span>Namn </span><span><%= @book.user.name %></span></li>
-              <li><span>Email </span><span><%= @book.user.email %></span></li>
+              <li><span>Email </span><span><%= mail_to @book.user.email %></span></li>
               
             </ul>
           </div>
