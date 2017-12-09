@@ -85,7 +85,7 @@
                 Här är en textmall du kan använda:
               </span></li>
               <li><span>
-                Hej <%= @book.user.name %>, jag såg din bok <%= @book.title %> på Biblion och skulle gärna vilja läsa den!
+                Hej <%= @book.user.name %>, jag såg din bok <a href="<%=  request.original_url %>"><%= @book.title %> på Biblion</a> och skulle gärna vilja läsa den!
                 Jag bor också i <%= @book.user.location %>. Kan du träffas en dag för att ge bort boken? <br/>
                 Mvh <%= current_user.name %>.
               </span></li>

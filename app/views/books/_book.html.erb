@@ -30,11 +30,6 @@
     <% unless book.pages.nil? %>
     <h6 class="pages"><%= book.pages %> sidor</h6>
     <% end %>
-    <!-- <% if book.year.nil? %>
-    <h6 class="year">Utgivningsår: Ej angivet</h6>
-    <% else %>
-    <h6 class="year">Utgivningsår: <%= book.year.to_formatted_s(:y) %></h6>
-    <% end %> -->
     <h6 class="location">Ort:
       <%= link_to book.user.location, location_url(location: book.user.location)%>,
       <%= link_to book.user.landscape, landscape_url(landscape: book.user.landscape)%>
