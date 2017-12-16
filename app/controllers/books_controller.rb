@@ -132,6 +132,11 @@ class BooksController < ApplicationController
     @genre = params[:genre]
   end
 
+  def all_by_tag
+    @books = Book.where("LOWER(tags) LIKE ?", "%#{params[:tags]}%").paginate(page: params[:page])
+    @tag = params[:tags]
+  end
+
   def all_by_location
     @users = User.where("location =  ?", params[:location])
     @books = []
@@ -172,7 +177,7 @@ class BooksController < ApplicationController
     end
 
     def book_params
-      params.require(:book).permit(:title, :author, :year, :description, :comment, :cover, :language, :quality, :genre, :googlebooks, :pages)
+      params.require(:book).permit(:title, :author, :year, :description, :comment, :cover, :language, :quality, :genre, :googlebooks, :pages, :tags)
     end
 
     def search_params

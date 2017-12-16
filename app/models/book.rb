@@ -11,7 +11,11 @@ class Book < ApplicationRecord
 
   
   def self.search(query)
-    where("LOWER(author) LIKE ?", "%#{query}%").or(where("LOWER(title) LIKE ?", "%#{query}%")).or(where("LOWER(genre) LIKE ?", "%#{query}%"))
+    query.strip!
+    where("LOWER(author) LIKE ?", "%#{query}%")
+      .or(where("LOWER(title) LIKE ?", "%#{query}%"))
+      .or(where("LOWER(genre) LIKE ?", "%#{query}%"))
+      .or(where("LOWER(tags) LIKE ?", "%#{query}%"))
   end
 
 end

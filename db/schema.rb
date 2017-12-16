@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20171030215153) do
+ActiveRecord::Schema.define(version: 20171216202726) do
 
   create_table "books", force: :cascade do |t|
     t.string   "title"
@@ -27,6 +27,7 @@ ActiveRecord::Schema.define(version: 20171030215153) do
     t.integer  "pages"
     t.string   "genre"
     t.text     "comment"
+    t.text     "tags"
     t.index ["user_id", "created_at"], name: "index_books_on_user_id_and_created_at"
     t.index ["user_id"], name: "index_books_on_user_id"
   end
@@ -40,7 +41,7 @@ ActiveRecord::Schema.define(version: 20171030215153) do
     t.string   "remember_digest"
     t.boolean  "admin"
     t.string   "activation_digest"
-    t.boolean  "activated"
+    t.boolean  "activated",         default: false
     t.datetime "activated_at"
     t.string   "location"
     t.string   "landscape"

@@ -19,6 +19,7 @@ Rails.application.routes.draw do
   get 'location',   to: 'books#all_by_location'
   get 'landscape',  to: 'books#all_by_landscape'
   get 'genre',      to: 'books#all_by_genre'
+  get 'tag',        to: 'books#all_by_tag'
   get 'books/new',  to: 'books#new'
   post 'books/new', to: 'books#create'
   get 'books/add',  to: 'books#add'

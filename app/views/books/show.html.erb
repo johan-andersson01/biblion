@@ -13,15 +13,28 @@
     <h4 class="author"><%= link_to @book.author, author_url(author: @book.author) %></h4>
     <ul>
     <li class="quality"><span class="attr">Skick:</span> <span class="info"><%=  @book.quality %></span></li>
+
     <% if @book.language.nil? || @book.language.empty?%>
     <li class="year"><span class="attr">Språk:</span> <span class="info">Ej angivet</span></li>
     <% else %>
     <li class="year"><span class="attr">Språk:</span> <span class="info"><%= @book.language %></span></li>
     <% end %>
+
     <% if @book.genre.nil? || @book.genre.empty? %>
     <li class="genre"><span class="attr">Genre:</span> <span class="info">Ej angivet</span></li>
     <% else %>
     <li class="genre"><span class="attr">Genre:</span> <span class="info"><%= link_to @book.genre, genre_url(genre: @book.genre)%></span></li>
+    <% end %>
+
+    <% unless @book.tags.nil? || @book.tags.empty? %>
+      <li class="tags"><span class="attr">Taggar:</span>
+        <span class="info">
+          <% tags = @book.tags.split(/,/) %>
+          <% tags.each do |tag| %>
+            <%= link_to '#' + tag.strip, tag_url(tags: tag.strip)%>
+          <% end %>
+        </span>
+      </li>
     <% end %>
 
     <% if @book.pages.nil?%>

@@ -39,6 +39,8 @@
         
         <%= f.label :comment, "Din kommentar om boken" %>
         <%= f.text_area :comment %>
+        <%= f.label :tags, "Taggar (separera med kommatecken)" %>
+        <%= f.text_area :tags, placeholder: "Ex. kurskoder eller subgenrer" %>
         <%= f.submit "Lägg till boken!", class: "btn btn-primary" %>
       <% end %>
   </div>
