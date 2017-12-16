@@ -104,7 +104,9 @@ class BooksController < ApplicationController
   end
 
   def all_by_author
-    @books = Book.where("author =  ?", params[:author]).paginate(page: params[:page])
+    @books = Book.where("author =  ?", params[:author])
+    @count = @books.count
+    @books = @books.paginate(page: params[:page])
     @author = params[:author]
   end
 
@@ -128,12 +130,16 @@ class BooksController < ApplicationController
   end
 
   def all_by_genre
-    @books = Book.where("genre =  ?", params[:genre]).paginate(page: params[:page])
+    @books = Book.where("genre =  ?", params[:genre])
+    @count = @books.count
+    @books = @books.paginate(page: params[:page])
     @genre = params[:genre]
   end
 
   def all_by_tag
-    @books = Book.where("LOWER(tags) LIKE ?", "%#{params[:tags]}%").paginate(page: params[:page])
+    @books = Book.where("LOWER(tags) LIKE ?", "%#{params[:tags]}%")
+    @count = @books.count
+    @books = @books.paginate(page: params[:page])
     @tag = params[:tags]
   end
 
@@ -145,6 +151,7 @@ class BooksController < ApplicationController
         @books |= [b]
       end
     end
+    @count = @books.count
     @books = @books.paginate(page: params[:page])
     @location = params[:location]
   end
@@ -157,6 +164,7 @@ class BooksController < ApplicationController
         @books.push(b)
       end
     end
+    @count = @books.count
     @books = @books.paginate(page: params[:page])
     @landscape = params[:landscape]
   end
