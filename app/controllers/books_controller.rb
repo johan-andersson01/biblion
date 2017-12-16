@@ -44,7 +44,13 @@ class BooksController < ApplicationController
   def create
     @book = current_user.books.build(book_params)
     unless @book.language.nil?
+       if @book.language == "sv"
+          @book.language = "svenska"
+       elsif @book.language == "en"
+          @book.language = "engelska"
+       end
        @book.language.capitalize!
+       
     end
     if current_user.disabled
       flash[:fail] = "Du kan inte lägga upp böcker, eftersom ditt konto är avstängt"
