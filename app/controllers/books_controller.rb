@@ -85,10 +85,11 @@ class BooksController < ApplicationController
     @books = []
     books = GoogleBooks.search(@query, {:count => 30})
     books.each do |book|
-      tls_img = book.image_link(:zoom => 6)
+      tls_img = book.image_link(:zoom => 2)
       if !tls_img.nil? and !tls_img ["http:"].nil?
         tls_img ["http:"] = "https:"
       end
+
       @books.push(Book.new(
       author: book.authors,
       title: book.title,
