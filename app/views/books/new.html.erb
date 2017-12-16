@@ -36,7 +36,8 @@
           default: DateTime.strptime(params[:year], '%Y-%m-%d %H:%M:%S %Z'),
           start_year: Time.now.year, end_year: Time.now.year - 200, order: [:year]%>
         <% end %>
-        
+        <%= f.label :pages, "Antal sidor" %>
+        <%= f.text_field :pages %>
         <%= f.label :comment, "Din kommentar om boken" %>
         <%= f.text_area :comment %>
         <%= f.label :tags, "Taggar (separera med kommatecken)" %>
