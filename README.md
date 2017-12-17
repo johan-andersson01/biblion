@@ -34,9 +34,17 @@ Run the server.
 
 After executing these commands, the server will be up and running at localhost:3000.
 
-You will have created one admin user with the `db:seed` command, with the following credentials:
+You will have created one admin user and one regular user with the `db:seed` command, with the following credentials:
+
+Admin:
 
 > email: admin@foo.bar
+
+> password: foobar9000
+
+Regular user:
+
+> email: tester@foo.bar
 
 > password: foobar9000
 
