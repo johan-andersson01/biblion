@@ -13,11 +13,12 @@
       </span>
       <span>
         <% if user.disabled %>
-          Avstängd
+          Avstängd,
         <% end %>
-        <%= user.email %>
-        <%= user.created_at.to_formatted_s(:dmy) %>
-        <%= user.updated_at.to_formatted_s(:dmy) %>
+        #Böcker: <%= user.books.count %>,
+        <%= user.email %>,
+        <%= user.created_at.to_formatted_s(:dmy) %>,
+        <%= user.updated_at.to_formatted_s(:dmy) %>,
         <%= link_to 'Redigera', edit_user_path(user) %>
     </span>
     </li>
