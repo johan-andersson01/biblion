@@ -8,12 +8,9 @@ class PasswordResetsController < ApplicationController
     if @user
       @user.create_reset_digest
       @user.send_password_reset_email
-      flash[:info] = "Ett email har skickats till din mail med instruktioner för att återställa ditt lösenord."
-      redirect_to root_url
-    else
-      flash.now[:danger] = "Email-adressen hittades inte."
-      render 'new'
     end
+    flash[:success] = "Om din mail är registrerad på Biblion så kommer ett mail att skickas till din mail med instruktioner för att återställa ditt lösenord."
+    redirect_to login_url
   end
 
   def update
