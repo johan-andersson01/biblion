@@ -116,6 +116,8 @@
   <% unless @book.comment.nil? || @book.comment.empty? %>
     <h4>Ägarens kommentar:</h4> <p class="description"><%= @book.comment unless @book.comment.nil? %></p>
   <% end %>
-  <h4>Beskrivning:</h4> <p class="description"><%= @book.description%></p>
+  <% unless @book.description.nil? || @book.description.empty? %>
+    <h4>Beskrivning:</h4> <p class="description"><%= @book.description%></p>
+  <% end %>
   </div>
 </div>
