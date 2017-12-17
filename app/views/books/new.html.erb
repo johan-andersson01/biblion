@@ -7,7 +7,7 @@
       file = File.open("#{Rails.root.to_s}/app/views/shared/genres.txt") or die 
       @genres = []
       file.each_line{|line|
-        @genres.push(line)
+        @genres.push(line.strip)
       }
       %>
       <%= form_for(@book, url: {action: "new"}, method: :post) do |f| %>
