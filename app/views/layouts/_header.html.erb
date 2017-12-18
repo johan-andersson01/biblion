@@ -30,15 +30,16 @@
       </ul>
       </ul>
       <ul class="nav navbar-nav navbar-right">
+        <% if logged_in? %>
+          <li><%= link_to 'Lägg till en bok', books_add_path %></li>
+        <% end %>
         <li class="dropdown">
           <% if !logged_in? %>
           <%= link_to 'Logga in', login_path %>
-
           <% elsif current_user.admin? %>
           <a class="dropdown-toggle" data-toggle="dropdown" href="#">Admin
             <span class="caret"></span></a>
             <ul class="dropdown-menu">
-              <li><%= link_to 'Lägg till en bok', books_add_path %></li>
               <li><%= link_to 'Profil', current_user %></li>
               <li><%= link_to 'Inställningar', edit_user_path(current_user) %></li>
               <li><%= link_to 'Användare', users_path %></li>
