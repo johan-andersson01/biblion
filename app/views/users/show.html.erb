@@ -5,7 +5,12 @@
   <% if current_user?(@user)||current_user.admin %>
     <li><span>Namn </span><span><%= @user.name %></span></li>
     <li><span>Email </span><span><%= @user.email %></span></li>
-    <li><span>Ort </span><span><%= @user.location %>, <%= @user.landscape %></span></li>
+    <li><span>Ort </span>
+      <span>
+        <%= link_to @user.location, location_url(location: @user.location)%>,
+        <%= link_to @user.landscape, landscape_url(landscape: @user.landscape)%>
+      </span>
+    </li>
     <li><span class="attr">Antal upplagda böcker</span><span class="info"> <%= @books.count %> </span></li>
     <li><span>Medlem sedan </span><span><%= @user.created_at.to_formatted_s(:dmy) %></span></li>
     <li><span>Information senast uppdaterad </span><span><%= @user.updated_at.to_formatted_s(:dmy) %></span></li>
