@@ -103,7 +103,13 @@
                 Mvh <%= current_user.name %>.
               </span></li>
               <li><span>Namn </span><span><%= @book.user.name %></span></li>
-              <li><span>Email </span><span><%= mail_to @book.user.email %></span></li>
+              <li><span>Email </span>
+                <span>
+                  <%= mail_to @book.user.email, nil,  
+                      {subject: "Biblion: förfrågan om din bok #{@book.title}",
+                      body: "Hej #{@book.user.name}, jag såg din bok #{@book.title} som du lagt upp på Biblion och skulle gärna vilja läsa den! Jag bor också i #{@book.user.location}. \nKan du träffas en dag för att ge bort boken? \nMvh #{current_user.name}"} %>
+                </span>
+              </li>
               
             </ul>
           </div>
