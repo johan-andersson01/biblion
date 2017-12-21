@@ -4,9 +4,10 @@
       <div class="image-container">
       <%= link_to book do %>
         <% if book.cover.nil? || book.cover.empty? %>
-            <%= image_tag("bookcover.png") %>
+          <% r = rand(4)+1 %>
+          <%= image_tag("bookcover#{r}.png") %>
         <% else%>
-        <%= image_tag(book.cover) unless book.cover.empty?%>
+          <%= image_tag(book.cover) unless book.cover.empty?%>
       <% end %>
       <% end %>
     </div>

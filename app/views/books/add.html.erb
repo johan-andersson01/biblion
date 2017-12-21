@@ -29,7 +29,8 @@
         <% end %>
         <div class="left col-md-4 col-sm-6">
             <div class="cover-image">
-              <%= image_tag "bookcover.png" if book.cover.nil? %>
+              <% r = rand(4)+1 %>
+              <%= image_tag "bookcover#{r}.png" if book.cover.nil? %>
               <%= image_tag book.cover unless book.cover.nil?%>
             </div>
         </div>

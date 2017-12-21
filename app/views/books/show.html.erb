@@ -2,7 +2,8 @@
 <div id="book-<%= @book.id %>" class="show-book">
   <div class="center_container col-lg-5 col-md-5 col-sm-4">
     <% if @book.cover.nil? or @book.cover.empty? %>
-    <%= image_tag("bookcover.png")%>
+    <% r = rand(4)+1 %>
+    <%= image_tag("bookcover#{r}.png") %>
     <% else %>
     <%= image_tag(@book.cover)%>
     <% end %>
