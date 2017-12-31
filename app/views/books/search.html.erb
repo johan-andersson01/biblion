@@ -16,7 +16,9 @@
 </div>
 
 <script>
-
+/* 
+Source: https://j11y.io/snippets/highlighting-text-with-javascript/
+*/
 function highlight(container,what,spanClass) {
     var content = container.innerHTML,
         pattern = new RegExp('(>[^<.]*)(' + what + ')([^<.]*)','gi'),
