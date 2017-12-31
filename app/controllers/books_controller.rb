@@ -123,6 +123,7 @@ class BooksController < ApplicationController
     else
       @query = search_params[:query].downcase
       params[:query] = search_params[:query]
+      @query = params[:query]
       @books = []
       @books = Set.new Book.search(@query).order("created_at DESC").to_a()
       @users = User.search(@query).order("created_at DESC").to_a()

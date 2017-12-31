@@ -1,6 +1,6 @@
 <% provide(:title, "Sökning") %>
 <div class="col-md-12">
-    <h3>Alla böcker som matchar sökningen (
+    <h3>Alla böcker som matchar sökningen <%= params[:query] %> (
       <% unless @books.nil? %>
         <%= @books.count %>
       <% else %>
@@ -14,3 +14,21 @@
     </ul>
     <% end %>
 </div>
+
+<script>
+
+function highlight(container,what,spanClass) {
+    var content = container.innerHTML,
+        pattern = new RegExp('(>[^<.]*)(' + what + ')([^<.]*)','gi'),
+        replaceWith = '$1<span ' + ( spanClass ? 'class="' + spanClass + '"' : '' ) + '">$2</span>$3',
+        highlighted = content.replace(pattern,replaceWith);
+    return (container.innerHTML = highlighted) !== content;
+}
+
+var books = document.getElementsByClassName("book");
+console.log(books.length)
+for (var i = 0, len = books.length; i < len; i++) {
+  console.log("Highlighting" + i);
+  highlight(books[i], "<%= @query %>", 'highlight');
+}
+</script>
