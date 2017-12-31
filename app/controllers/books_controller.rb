@@ -53,10 +53,10 @@ class BooksController < ApplicationController
        
     end
     if current_user.disabled
-      flash[:fail] = "Du kan inte lägga upp böcker, eftersom ditt konto är avstängt"
+      flash[:danger] = "Du kan inte lägga upp böcker, eftersom ditt konto är avstängt"
       redirect_to root_url
     elsif !current_user.activated
-      flash[:fail] = "Du kan inte lägga upp böcker, eftersom du inte har aktiverat ditt konto"
+      flash[:danger] = "Du kan inte lägga upp böcker, eftersom du inte har aktiverat ditt konto"
       redirect_to root_url
     elsif @book.save
       flash[:success] = "Boken har lagts upp!"
