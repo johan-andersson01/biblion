@@ -24,7 +24,7 @@
         <%= f.text_field :language %>
         <%= f.label :quality, "* Skick" %>
         <%= f.select :quality, options_for_select(['Använd', 'Nyskick',
-          'Sliten', 'Mycket sliten']) %>
+          'Sliten', 'Mycket sliten']), { :include_blank => '-- Ange skick --' } %>
         <%= f.label :genre, "* Genre" %>
         <%= f.select :genre, options_for_select(@genres), { :include_blank => '-- Välj en genre --' } %>
         <%= f.label :year, "Utgivningsår" %>
