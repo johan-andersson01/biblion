@@ -2,8 +2,8 @@
 @import "bootstrap";
 @import url('https://fonts.googleapis.com/css?family=Open+Sans|Rochester');
 
-$error_color_light: hsla(0,90%,90%,50%);
-$error_color_dark:  hsla(0,90%,70%,50%);
+$error_color_light: rgba(255, 118, 38, 0.883);
+$error_color_dark:   rgb(190, 58, 1);
 $ok: rgb(66,139,202);
 $success_color_light: rgb(66,139,202);
 $success_color_dark: rgb(46,119,182);
@@ -195,8 +195,6 @@ body{
   margin-top:20px;
   margin-bottom: 50px;
   width:100%;
-  outline:1px solid $error_color_dark;
-  background: $error_color_light;
 
     ul li {
       list-style: none;
@@ -214,11 +212,16 @@ body{
   text-align: center;
 }
 
-.alert-danger {
-  outline:1px solid $error_color_light;
-  background: $error_color_dark;
-  color: #fff;
-  text-align: center;
+.alert_danger, .alert-danger {
+  background: $error_color_light;
+  color:#444;
+  outline: 1px solid $error_color_dark;
+  text-align:center;
+  color: #fff; 
+
+  li {
+    text-align: left;
+  }
 }
 
 #error {

@@ -14,7 +14,7 @@
         <%= f.text_field :name %>
         <%= f.label :landscape, "* Län" %>
         <p>Synligt för användare.</p>
-        <%= f.select :landscape, CS.states(:se).values.sort() %>
+        <%= f.select :landscape, CS.states(:se).values.sort(), { :include_blank => '-- Välj ett län --' } %>
         <%= f.label :location, "* Ort" %>
         <p>Synligt för användare.</p>
         <%= f.text_field :location %>

@@ -26,7 +26,7 @@
         <%= f.select :quality, options_for_select(['Använd', 'Nyskick',
           'Sliten', 'Mycket sliten']) %>
         <%= f.label :genre, "* Genre" %>
-        <%= f.select :genre, options_for_select(@genres) %>
+        <%= f.select :genre, options_for_select(@genres), { :include_blank => '-- Välj en genre --' } %>
         <%= f.label :year, "Utgivningsår" %>
         <% if params[:year].nil? %>
           <%= f.date_select "year", include_blank: true, start_year: Time.now.year,

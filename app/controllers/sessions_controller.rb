@@ -12,7 +12,7 @@ class SessionsController < ApplicationController
       params[:session][:remember_me] == '1' ? remember(user) : forget(user)
       redirect_to root_url
     else
-      flash.now[:danger] = 'Felaktigt lösenord/email'
+      flash.now[:danger] = 'Lösenordet eller email-adressen var felaktig'
       render 'new'
     end
   end

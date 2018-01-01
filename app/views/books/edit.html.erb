@@ -21,7 +21,7 @@
         <%= f.label :quality, "Skick" %>
         <%= f.select :quality, options_for_select(['Använd', 'Nyskick', 'Sliten', 'Mycket sliten'], @book.quality) %>
         <%= f.label :genre, "Genre" %>
-        <%= f.select :genre, options_for_select(@genres,  @book.genre) %>
+        <%= f.select :genre, options_for_select(@genres,  @book.genre), { :include_blank => '-- Välj en genre --' } %>
         <%= f.label :genre, "Sidor" %>
         <%= f.text_field :pages %>
         <%= f.label :year, "Utgivningsår" %>
