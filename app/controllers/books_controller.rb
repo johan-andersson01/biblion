@@ -121,7 +121,7 @@ class BooksController < ApplicationController
     if request.get?
       redirect_to root_url
     else
-      @query = search_params[:query].downcase
+      @query = search_params[:query].downcase!
       params[:query] = search_params[:query]
       @query = params[:query]
       @books = []
