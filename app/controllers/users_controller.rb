@@ -13,6 +13,9 @@ class UsersController < ApplicationController
   end
 
   def new
+    if logged_in?
+      redirect_to root_url
+    end
     @user = User.new
   end
 
@@ -34,8 +37,7 @@ class UsersController < ApplicationController
   def edit
     @user = User.find_by("id = ?", params[:id])
     if @user.id != current_user.id && !current_user.admin
-      @user = current_user
-      redirect_to edit_user_path(current_user)
+      redirect_to root_url
     end
     rescue ActiveRecord::RecordNotFound
       redirect_to root_url
