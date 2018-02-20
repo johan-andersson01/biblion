@@ -24,12 +24,12 @@ class UsersSignupTest < ActionDispatch::IntegrationTest
                                          landscape: "Mars",
                                          location: "Venus",
                                          email: "user@example.com",
-                                         password: "password",
-                                         password_confirmation: "password",
+                                         password: "password123",
+                                         password_confirmation: "password123",
                                          terms_of_service: "1" } }
     end
     follow_redirect!
-    assert_template 'users/show'
+    assert_template '/'
     assert is_logged_in?
     assert_not flash.empty?
   end
@@ -41,8 +41,8 @@ class UsersSignupTest < ActionDispatch::IntegrationTest
                                          landscape: "Mars",
                                          location: "Venus",
                                          email: "user@example.com",
-                                         password: "password",
-                              password_confirmation: "password", terms_of_service: "0" } }
+                                         password: "password9000",
+                              password_confirmation: "password9000", terms_of_service: "0" } }
     end
     assert_template 'users/new'
     assert_select 'div.alert_danger'

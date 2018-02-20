@@ -46,15 +46,23 @@ class UsersController < ApplicationController
   def update
     @user = User.find_by("id = ?", params[:id])
     @auth = current_user.authenticate(user_params_new_password[:oldpassword])
-    user_params_no_terms[:name].capitalize!
-    user_params_no_terms[:location].capitalize!
-    if @auth && @user.update_attributes(user_params_no_terms)
+    
+    unless user_params_no_terms[:name].nil?
+      user_params_no_terms[:name].capitalize!
+    end
+    unless user_params_no_terms[:location].nil?
+      user_params_no_terms[:location].capitalize!
+    end
+    if @user != current_user && !current_user.admin?
+      flash[:danger] = "Du har inte rätt behörighet"
+      redirect_to root_url
+    elsif @auth && @user.update_attributes(user_params_no_terms)
       if current_user.admin
         flash[:success] = "Användare #{@user.id}:s inställningar har nu uppdaterats"
         redirect_to users_url
       else
-      flash[:success] = "Dina inställningar har nu uppdaterats"
-      redirect_to @user
+        flash[:success] = "Dina inställningar har nu uppdaterats"
+        redirect_to @user
       end
     elsif !@auth
       flash[:danger] = "Fel lösenord"
@@ -66,10 +74,18 @@ class UsersController < ApplicationController
 
   def destroy
     @user = User.find_by("id = ?", params[:id])
-    if (current_user.admin? && current_user.authenticate(req_user_password[:password]))
-      @user.destroy
-      flash[:success] = "Användare raderad"
-      redirect_to users_url
+    if current_user.admin?
+      if current_user.authenticate(req_user_password[:password])
+        @user.destroy
+        flash[:success] = "Användare raderad"
+        redirect_to users_url
+      else
+        flash[:danger] = "Fel lösenord"
+        render 'edit'
+      end
+    elsif current_user != @user
+      flash[:danger] = "Du har inte rätt behörighet"
+      redirect_to root_url
     elsif (@user.authenticate(req_user_password[:password]))
       @user.destroy
       session[:user_id] = nil
