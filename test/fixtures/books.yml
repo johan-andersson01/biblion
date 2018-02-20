@@ -5,11 +5,11 @@ one:
   author: MyString
   year: 2017-06-26
   description: MyText
-  user: one
+  user_id: 157312430
 
 two:
   title: MyString
   author: MyString
   year: 2017-06-26
   description: MyText
-  user: two
+  user_id: 14035331

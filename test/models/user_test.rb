@@ -5,7 +5,7 @@ class UserTest < ActiveSupport::TestCase
   def setup
     @user = User.new(name: "example user",
     email: "user@example.com", location: "Venus", landscape: "Mars",
-    password: "foobar", password_confirmation: "foobar")
+    password: "foobar9000", password_confirmation: "foobar9000", terms_of_service: true)
     @user.save
   end
 
@@ -91,7 +91,8 @@ class UserTest < ActiveSupport::TestCase
 
   test "associated books should be destroyed" do
   @user.save
-  @user.books.create!(title: "This is the title", description: "Lorem ipsum")
+  @user.books.create!(title: "This is the title", author: "Example author", quality: "Använd",
+  genre: "Skönlitteratur", language: "svenska", description: "Lorem ipsum")
   assert_difference 'Book.count', -1 do
     @user.destroy
   end

@@ -26,7 +26,7 @@ test "admin  should be able to show other user's full profile" do
   assert flash.empty?
   assert_equal request.path, user_path(@other_user)
   assert_select ".users" do |e|
-    assert_select e, "li", 7
+    assert_select e, "li", 8
   end
 end
 end

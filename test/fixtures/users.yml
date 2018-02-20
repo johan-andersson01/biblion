@@ -1,12 +1,11 @@
 # Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
-# empty for now
 
 michael:
   name: Michael Madsen
   email: michael@madsen.com
   location: Venus
   landscape: Mars
-  password_digest: <%= User.digest('password') %>
+  password_digest: <%= User.digest('password9000') %>
   activated: true
   activated_at: <%= Time.zone.now %>
 
@@ -16,7 +15,7 @@ archer:
   email: duchess@example.gov
   location: Venus
   landscape: Mars
-  password_digest: <%= User.digest('password') %>
+  password_digest: <%= User.digest('password9000') %>
   activated: true
   activated_at: <%= Time.zone.now %>
 
@@ -25,7 +24,7 @@ admin:
   email: admin@valid.com
   location: Venus
   landscape: Mars
-  password_digest: <%= User.digest('foobar') %>
+  password_digest: <%= User.digest('foobar9000') %>
   admin: true
   activated: true
   activated_at: <%= Time.zone.now %>
@@ -36,7 +35,7 @@ user_<%= n %>:
   email: <%= "user-#{n}@example.com" %>
   location: Venus
   landscape: Mars
-  password_digest: <%= User.digest('password') %>
+  password_digest: <%= User.digest('password9000') %>
   activated: true
   activated_at: <%= Time.zone.now %>
 <% end %>

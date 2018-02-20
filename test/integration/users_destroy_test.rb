@@ -9,7 +9,7 @@ class UsersDestroyTest < ActionDispatch::IntegrationTest
   test "should fail to destroy user if admin wants to delete account, but enters wrong pw" do
    log_in_as_admin(@admin)
    assert_difference 'User.count', 0 do
-     delete user_path(@user),  params: { user: { password: "foofar"} }
+     delete user_path(@user),  params: { user: { password: "foofar9000"} }
    end
    assert_not flash.empty?
    assert_template 'users/edit'
@@ -19,7 +19,7 @@ class UsersDestroyTest < ActionDispatch::IntegrationTest
   test "should  destroy user if admin wants to delete account" do
    log_in_as_admin(@admin)
    assert_difference 'User.count', -1 do
-     delete user_path(@user),  params: { user: { password: "foobar"} }
+     delete user_path(@user),  params: { user: { password: "foobar9000"} }
    end
    assert_redirected_to users_url
    assert is_logged_in_as(@admin)
@@ -38,7 +38,7 @@ class UsersDestroyTest < ActionDispatch::IntegrationTest
   test "should  destroy user if user wants to delete account" do
    log_in_as(@user)
    assert_difference 'User.count', -1 do
-     delete user_path(@user),  params: { user: { password: "password"} }
+     delete user_path(@user),  params: { user: { password: "password9000"} }
    end
    assert_redirected_to root_url
    assert_not is_logged_in?
