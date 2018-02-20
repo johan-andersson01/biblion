@@ -1,7 +1,6 @@
 class BooksController < ApplicationController
   require 'will_paginate/array'
-  # require 'googlebooks'
-  before_action :logged_in_user, only: [:new, :add, :googlebooks_search]
+  before_action :logged_in_user, only: [:create, :new, :edit, :add, :googlebooks_search]
   before_action :authorize_user, only: [:edit, :update, :destroy]
 
   def show
@@ -18,13 +17,18 @@ class BooksController < ApplicationController
 
   def edit
     @book = Book.find_by("id = ?", params[:id])
+    if @book.nil?
+      redirect_to root_url
+    elsif @book.user.id != current_user.id &&  !current_user.admin?
+      redirect_to root_url
+    end
   end
 
   def update
     @book = Book.find_by("id = ?", params[:id])
     unless @book.language.nil?
        @book.language.capitalize!
-     end
+    end
     @auth = (current_user == @book.user || current_user.admin?)
     if @auth && @book.update_attributes(book_params)
       if current_user.admin
@@ -42,6 +46,7 @@ class BooksController < ApplicationController
   end
 
   def create
+
     @book = current_user.books.build(book_params)
     unless @book.language.nil?
        if @book.language == "sv"
@@ -52,10 +57,10 @@ class BooksController < ApplicationController
        @book.language.capitalize!
        
     end
-    if current_user.disabled
+    if current_user.disabled?
       flash[:danger] = "Du kan inte lägga upp böcker, eftersom ditt konto är avstängt"
       redirect_to root_url
-    elsif !current_user.activated
+    elsif !current_user.activated?
       flash[:danger] = "Du kan inte lägga upp böcker, eftersom du inte har aktiverat ditt konto"
       redirect_to root_url
     elsif @book.save
@@ -99,7 +104,6 @@ class BooksController < ApplicationController
       @books.push(Book.new(
       author: book.authors,
       title: book.title,
-      language: book.language,
       description: book.description,
       cover: tls_img,
       language: book.language,
@@ -189,7 +193,11 @@ class BooksController < ApplicationController
 
     def authorize_user
         @book = Book.find_by("id = ?", params[:id])
-        redirect_to(root_url) unless logged_in? && (@book.user == current_user || current_user.admin)
+        if @book.nil?
+          redirect_to root_url
+        else
+          redirect_to(root_url) unless logged_in? && (@book.user == current_user || current_user.admin?)
+        end
     end
 
     def book_params

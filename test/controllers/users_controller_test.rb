@@ -50,6 +50,16 @@ test "should redirect update when logged in as wrong user" do
   assert_redirected_to root_url
 end
 
+test "should allow admin to update user profiles" do
+  log_in_as_admin(@admin)
+  prev_name = @user.name
+  patch user_path(@user), params: { user: { name: "Admin name",
+                                            oldpassword: "foobar9000" } }
+  assert_equal("Admin name", @user.reload.name)
+  assert_not flash.empty?
+  assert_redirected_to users_url
+end
+
 test "should not allow the admin attribute to be edited via the web" do
    log_in_as(@other_user)
    assert_not @other_user.admin?
