@@ -58,7 +58,7 @@ class BooksController < ApplicationController
        elsif @book.language == "no"
           @book.language = "norska"
        elsif @book.language == "fi"
-          @book.language = "finnish"
+          @book.language = "finska"
        end
        @book.language.capitalize!
        
