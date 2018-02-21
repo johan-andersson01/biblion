@@ -32,7 +32,7 @@
         <span class="info">
           <% tags = @book.tags.split(/,/) %>
           <% tags.each do |tag| %>
-            <%= link_to '#' + tag.strip, tag_url(tags: tag.strip)%>
+            <%= link_to '#' + tag.strip.downcase, tag_url(tags: tag.strip.downcase)%>
           <% end %>
         </span>
       </li>
