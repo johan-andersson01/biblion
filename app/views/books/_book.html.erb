@@ -5,9 +5,9 @@
       <%= link_to book do %>
         <% if book.cover.nil? || book.cover.empty? %>
           <% r = rand(4)+1 %>
-          <%= image_tag("bookcover#{r}.png") %>
+          <%= image_tag("bookcover#{r}.png", alt: "Bokomslag för #{book.title}") %>
         <% else%>
-          <%= image_tag(book.cover) unless book.cover.empty?%>
+          <%= image_tag(book.cover, alt: "Bokomslag för #{book.title}") unless book.cover.empty?%>
       <% end %>
       <% end %>
     </div>

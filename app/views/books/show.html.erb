@@ -3,9 +3,9 @@
   <div class="center_container col-lg-5 col-md-5 col-sm-4">
     <% if @book.cover.nil? or @book.cover.empty? %>
     <% r = rand(4)+1 %>
-    <%= image_tag("bookcover#{r}.png") %>
+    <%= image_tag("bookcover#{r}.png", alt: "Bokomslag för #{@book.title}") %>
     <% else %>
-    <%= image_tag(@book.cover)%>
+    <%= image_tag(@book.cover, alt: "Bokomslag för #{@book.title}")%>
     <% end %>
   </div>
 
@@ -100,7 +100,7 @@
               </span></li>
               <li><span>
                 Hej <%= @book.user.name %>, jag såg din bok <a href="<%=  request.original_url %>"><%= @book.title %> på Biblion</a> och skulle gärna vilja läsa den!
-                Jag bor också i <%= @book.user.location %>. Kan du träffas en dag för att ge bort boken? <br/>
+                Kan du träffas en dag i <%= @book.user.location %> för att ge bort boken? <br/>
                 Mvh <%= current_user.name %>.
               </span></li>
               <li><span>Namn </span><span><%= @book.user.name %></span></li>
@@ -108,7 +108,7 @@
                 <span>
                   <%= mail_to @book.user.email, nil,  
                       {subject: "Biblion: förfrågan om din bok #{@book.title}",
-                      body: "Hej #{@book.user.name}, jag såg din bok #{@book.title} som du lagt upp på Biblion och skulle gärna vilja läsa den! Jag bor också i #{@book.user.location}. \nKan du träffas en dag för att ge bort boken? \nMvh #{current_user.name}"} %>
+                      body: "Hej #{@book.user.name}, jag såg din bok #{@book.title} som du lagt upp på Biblion och skulle gärna vilja läsa den! \nKan du träffas en dag i #{@book.user.location} för att ge bort boken? \nMvh #{current_user.name}"} %>
                 </span>
               </li>
               
