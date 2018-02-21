@@ -175,12 +175,12 @@ class BooksControllerTest < ActionDispatch::IntegrationTest
   end
 
   test "get landscape page" do
-    get landscape_url({landscape: "mars"})
+    get landscape_url({landscape: "venus"})
     assert_response :success
   end
 
   test "get location page" do
-    get location_url({location: "venus"})
+    get location_url({location: "mars"})
     assert_response :success
   end
 

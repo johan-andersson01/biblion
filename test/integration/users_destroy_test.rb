@@ -3,6 +3,7 @@ require 'test_helper'
 class UsersDestroyTest < ActionDispatch::IntegrationTest
   def setup
     @user = users(:michael)
+    @other_user = users(:archer)
     @admin = users(:admin)
   end
 
@@ -43,4 +44,12 @@ class UsersDestroyTest < ActionDispatch::IntegrationTest
    assert_redirected_to root_url
    assert_not is_logged_in?
   end
+
+  test "should fail to destroy user if wrong user wants to delete account" do
+    log_in_as(@other_user)
+    assert_no_difference 'User.count' do
+      delete user_path(@user),  params: { user: { password: "password9000"} }
+    end
+    assert_redirected_to root_url
+   end
   end
