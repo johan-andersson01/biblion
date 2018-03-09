@@ -1,38 +1,41 @@
 <% provide(:title, "Profil") %>
-<!-- <div class="center_container"> -->
-<aside class="col-lg-3 col-md-3">
-<ul class="users userinfo">
-  <% if current_user?(@user)||current_user.admin %>
-    <li><span>Namn </span><span><%= @user.name %></span></li>
-    <li><span>Email </span><span><%= @user.email %></span></li>
-    <li><span>Ort </span>
-      <span>
-        <%= link_to @user.location, location_url(location: @user.location)%>,
-        <%= link_to @user.landscape, landscape_url(landscape: @user.landscape)%>
-      </span>
-    </li>
-    <li><span class="attr">Antal upplagda böcker</span><span class="info"> <%= @books.count %> </span></li>
-    <li><span>Medlem sedan </span><span><%= @user.created_at.to_formatted_s(:dmy) %></span></li>
-    <li><span>Information senast uppdaterad </span><span><%= @user.updated_at.to_formatted_s(:dmy) %></span></li>
-    <li><span>Verifierad email </span>
-      <span>
-        <% if @user.activated %>
-          Ja
-        <% else %>
-          Nej
-        <% end %>
+<aside class="col-lg-3 col-md-3 user_info">
+  <ul class="users">
+    <% if current_user?(@user)||current_user.admin %>
+      <li><span>Namn </span><span><%= @user.name %></span></li>
+      <li><span>Email </span><span><%= @user.email %></span></li>
+      <li><span>Ort </span>
+        <span>
+          <%= link_to @user.location, location_url(location: @user.location)%>,
+          <%= link_to @user.landscape, landscape_url(landscape: @user.landscape)%>
         </span>
-    </li>
-    <li><%= link_to 'Redigera kontoinformation', edit_user_path(@user) %>
-  <% else %>
-    <li><span>Namn </span><span><%= @user.name %></span></li>
-    <li><span class="attr">Antal upplagda böcker</span><span class="info"> <%= @books.count %> </span></li>
-    <li><span class="attr">Medlem sedan</span><span class="info"><%= @user.updated_at.to_formatted_s(:dmy) %></span></li>
-  <% end %>
-</ul>
+      </li>
+      <li><span class="attr">Antal tillgängliga böcker</span><span class="info"> <%= @available %> </span></li>
+      <li><span class="attr">Antal donerade böcker</span><span class="info"> <%= @donated %> </span></li>
+      <li><span>Medlem sedan </span><span><%= @user.created_at.to_formatted_s(:dmy) %></span></li>
+      <li><span>Information senast uppdaterad </span><span><%= @user.updated_at.to_formatted_s(:dmy) %></span></li>
+      <li><span>Verifierad email </span>
+        <span>
+          <% if @user.activated %>
+            Ja
+          <% else %>
+            Nej
+          <% end %>
+          </span>
+      </li>
+      <li><%= link_to 'Redigera kontoinformation', edit_user_path(@user) %>
+    <% else %>
+      <li><span>Namn </span><span><%= @user.name %></span></li>
+      <li><span class="attr">Antal tillgängliga böcker</span><span class="info"> <%= @available %> </span></li>
+      <li><span class="attr">Antal donerade böcker</span><span class="info"> <%= @donated %> </span></li>
+      <li><span class="attr">Medlem sedan</span><span class="info"><%= @user.updated_at.to_formatted_s(:dmy) %></span></li>
+    <% end %>
+  </ul>
+  <br>
 </aside>
+
 <div class="col-lg-9 col-md-9">
-  <% if @user.books.any? %>
+<% if @user.books.any? %>
     <% if @user.name[-1] == 's' %>
       <h3><%= @user.name %> böcker  (<%= @books.count %>)</h3>
     <% else %>
@@ -41,7 +44,8 @@
     <ul class="books">
       <%= render @books %>
     </ul>
-  <% end %>
+<% end %>
+<div class="pagination">
     <%= will_paginate @books, previous_label: t("föregående"), next_label: t("nästa")%>
 </div>
-<!-- </div> -->
+  </div>

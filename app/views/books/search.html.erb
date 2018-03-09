@@ -1,6 +1,6 @@
 <% provide(:title, "Sökning") %>
 <div class="col-md-12">
-    <h3>Alla böcker som matchar sökningen <%= params[:query] %> (
+    <h3>Alla tillgängliga böcker som matchar sökningen <%= params[:query] %> (
       <% unless @books.nil? %>
         <%= @books.count %>
       <% else %>
@@ -10,7 +10,6 @@
     <ul class="books">
       <%unless @books.nil? %>
         <%= render @books %>
-
     </ul>
     <% end %>
 </div>

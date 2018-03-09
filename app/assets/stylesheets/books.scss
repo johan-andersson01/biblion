@@ -10,6 +10,7 @@ $list-height: 300px;
 .books {
   list-style: none;
   padding: 0;
+  width: 100%;
 
   li {
     display:flex;
@@ -17,6 +18,10 @@ $list-height: 300px;
     align-items: center;
     height:$list-height;
     padding:0px 15px 0px 0px;
+
+    .donated {
+      color: rgb(56, 150, 56);
+    }
   }
 
   .left {
@@ -46,6 +51,10 @@ $list-height: 300px;
   }
 }
 
+.books:last-child {
+  float:right;
+}
+
 .image-container {
   width:90%;
   height:95%;
@@ -59,7 +68,7 @@ $list-height: 300px;
   outline:1px $gray-lighter solid;
   
  
-   .title {
+  .title {
     font-size: 150%;
   }
 
@@ -74,20 +83,6 @@ $list-height: 300px;
   max-height: 80%;
 }
 
-.status {
-  position:absolute;
-  width:10%;
-
-  .circle {
-    margin:5px 0px 0px 5px;
-    background:hsla(0,100%,50%, 0.8);
-  }
-
-  .ok {
-    background:$ok;
-  }
-}
-
 .select {
   color:#444;
 }
@@ -98,13 +93,6 @@ $list-height: 300px;
   img {
     background:$select;;
   }
-}
-.circle {
-position: relative;
-border-radius: 50%;
-width: 100%;
-height: auto;
-padding-top: 100%;
 }
 
 .google-search {

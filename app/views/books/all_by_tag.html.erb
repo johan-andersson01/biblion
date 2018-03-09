@@ -1,8 +1,10 @@
 <% provide(:title, @tag) %>
 <div class="col-md-12">
-    <h3>Alla böcker som matchar taggen <%= link_to '#' + @tag.strip, tag_url(tags: @tag.strip)%> (<%= @count %>)</h3>
-    <ul class="books">
-      <%= render @books %>
-    </ul>
+  <h3>Alla tillgängliga böcker som matchar taggen <%= link_to '#' + @tag.strip, tag_url(tags: @tag.strip)%> (<%= @count %>)</h3>
+  <ul class="books">
+    <%= render @books %>
+  </ul>
+  <div class="pagination">
     <%= will_paginate @books, previous_label: t("föregående"), next_label: t("nästa")%>
+  </div>
 </div>

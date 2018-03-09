@@ -121,7 +121,7 @@ class BooksController < ApplicationController
   end
 
   def all_by_author
-    @books = Book.where("author =  ?", params[:author])
+    @books = Book.where("author =  ? and donated = ?", params[:author], false)
     @count = @books.count
     @books = @books.paginate(page: params[:page])
     @author = params[:author]
@@ -134,12 +134,13 @@ class BooksController < ApplicationController
       @query = search_params[:query].downcase!
       params[:query] = search_params[:query]
       @query = params[:query]
-      @books = []
-      @books = Set.new Book.search(@query).order("created_at DESC").to_a()
+      @books = Set.new Book.search(@query).order("created_at DESC").to_a().select { |b| !b.donated }
       @users = User.search(@query).order("created_at DESC").to_a()
       @users.each do |u|
         u.books.each do |b|
-          @books.add(b)
+          if !b.donated
+            @books.add(b)
+          end
         end
       end
       @books = @books.to_a()
@@ -148,14 +149,14 @@ class BooksController < ApplicationController
   end
 
   def all_by_genre
-    @books = Book.where("genre =  ?", params[:genre])
+    @books = Book.where("genre =  ? and donated = ?", params[:genre], false)
     @count = @books.count
     @books = @books.paginate(page: params[:page])
     @genre = params[:genre]
   end
 
   def all_by_tag
-    @books = Book.where("LOWER(tags) LIKE ?", "%#{params[:tags]}%")
+    @books = Book.where("LOWER(tags) LIKE ? and donated = ?", params[:tags], false)
     @count = @books.count
     @books = @books.paginate(page: params[:page])
     @tag = params[:tags]
@@ -166,7 +167,9 @@ class BooksController < ApplicationController
     @books = []
     @users.each do |u|
       u.books.each do |b|
-        @books |= [b]
+        if !b.donated
+          @books |= [b]
+        end
       end
     end
     @count = @books.count
@@ -179,7 +182,9 @@ class BooksController < ApplicationController
     @books = []
     @users.each do |u|
       u.books.each do |b|
-        @books.push(b)
+        if !b.donated
+          @books.push(b)
+        end
       end
     end
     @count = @books.count
@@ -207,7 +212,7 @@ class BooksController < ApplicationController
     end
 
     def book_params
-      params.require(:book).permit(:title, :author, :year, :description, :comment, :cover, :language, :quality, :genre, :googlebooks, :pages, :tags)
+      params.require(:book).permit(:title, :author, :year, :description, :comment, :cover, :language, :quality, :genre, :googlebooks, :pages, :tags, :donated)
     end
 
     def search_params

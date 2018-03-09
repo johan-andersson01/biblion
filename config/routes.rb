@@ -7,12 +7,13 @@ Rails.application.routes.draw do
 
   root 'pages#home'
   #pages
-  get '/about',     to: 'pages#about'
+  get 'about',     to: 'pages#about'
   post 'search',    to: 'books#search_book'
+  get 'donated',    to: 'pages#donated'
   #users
-  get '/signup',    to: 'users#new'
-  post '/signup',   to: 'users#create'
-  get '/users',     to: 'users#index'
+  get 'signup',    to: 'users#new'
+  post 'signup',   to: 'users#create'
+  get 'users',     to: 'users#index'
   #books
   get 'search',     to: 'books#search_book'
   get 'author',     to: 'books#all_by_author'
@@ -24,9 +25,10 @@ Rails.application.routes.draw do
   post 'books/new', to: 'books#create'
   get 'books/add',  to: 'books#add'
   post 'books/add', to: 'books#googlebooks_search'
+
   #session
-  get '/login',     to: 'sessions#new'
-  post '/login',    to: 'sessions#create'
+  get 'login',     to: 'sessions#new'
+  post 'login',    to: 'sessions#create'
   delete 'logout',  to: 'sessions#destroy'
 
   resources :users

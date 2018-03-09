@@ -8,8 +8,11 @@
           <%= image_tag("bookcover#{r}.png", alt: "Bokomslag för #{book.title}") %>
         <% else%>
           <%= image_tag(book.cover, alt: "Bokomslag för #{book.title}") unless book.cover.empty?%>
+        <% end %>
       <% end %>
-      <% end %>
+          <% if book.donated %>
+      <h6 class="donated">Donerad!</h6>
+    <% end %>
     </div>
     </div>
   </div>
@@ -17,6 +20,8 @@
 
     <h4 class="title"><%=link_to book.title, book%></h4>
     <h5 class="author"><%= link_to book.author, author_url(author: book.author) %></h5>
+
+
     <h6 class="author">Skick: <%=  book.quality %></h6>
     <% if book.language.nil? || book.language.empty? %>
       <h6 class="year">Språk: Ej angivet</h6>

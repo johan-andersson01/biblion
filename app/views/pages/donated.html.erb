@@ -1,0 +1,10 @@
+<% provide(:title, "Hem") %>
+<div class="col-md-12">
+    <h3>Alla donerade böcker (<%= @donated.count %>)</h3>
+    <ul class="books">
+      <%= render @donated %>
+    </ul>
+</div>
+<div class="pagination">
+  <%= will_paginate @donated, previous_label: t("föregående"), next_label: t("nästa")%>
+</div>

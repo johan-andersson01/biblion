@@ -73,8 +73,19 @@
         <form action="<%= edit_book_path(@book) %>">
           <input type="submit" class="btn btn-primary" value="Redigera bokinformation"></input>
         </form>
+        <% if @book.donated? %>
+          <button type="button" class="btn btn-success">
+            Boken är donerad
+          </button>
+        <% else %>
+          <%= form_for @book, method: :patch do |f| %>
+            <%= f.hidden_field :donated, value: true %>
+            <%= f.submit "Markera som donerad", data: { confirm: "Är du säker på att du vill markera boken som donerad?" }, class: "btn btn-primary btn-success" %>
+          <% end %>
+        <% end %>
+        
         <%= form_for @book, method: :delete do |f| %>
-          <%= f.submit "Radera den här boken", data: { confirm: "Är du säker?" }, class: "btn btn-primary btn-danger" %>
+          <%= f.submit "Radera den här boken", data: { confirm: "Är du säker på att du vill radera boken?" }, class: "btn btn-primary btn-danger" %>
         <% end %>
       <% end %>
       <% if current_user != @book.user %>
@@ -87,10 +98,15 @@
             Du har inte aktiverat ditt konto
           </button>
         <% else %>
+          <% if @book.donated? %>
+            <button type="button" class="btn btn-success">
+              Boken är donerad
+            </button>
+          <% else %>
           <button type="button" class="btn btn-primary" data-toggle="collapse" data-target="#request">
             Kontakta ägaren<span class="caret"></span>
           </button>
-          <div class="collapse users userinfo" id="request">
+          <div class="collapse users" id="request">
             <ul>
               <li><span>För att få boken måste du skicka ett mail till bokens ägare.</span></li>
               <li><span>Glöm inte att skriva i mailet att du gärna skulle vilja få boken <%= link_to @book.title, @book %>,
@@ -114,6 +130,7 @@
               
             </ul>
           </div>
+          <% end %>
         <% end %>
       <% end %>
     <% end %>

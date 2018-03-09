@@ -1,7 +1,7 @@
 <nav  class="navbar navbar-default navbar-fixed-bottom">
 
   <ul class="nav navbar-right navbar-nav footer">
-    <li><a href="https://sv.wikipedia.org/wiki/Delningsekonomi" target="_blank">Böcker. Från oss alla, till oss alla.</a></li>
+    <li><%= link_to "Antal donerade böcker: #{Book.where("donated = ?", true).count}", donated_path %></li>
     <li><%= link_to "Om Biblion", about_path %></li>
     <li><a href="https://github.com/johan-andersson01/biblion">Github</a></li>
   </ul>
