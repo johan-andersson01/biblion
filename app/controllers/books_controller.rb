@@ -156,7 +156,7 @@ class BooksController < ApplicationController
   end
 
   def all_by_tag
-    @books = Book.where("LOWER(tags) = ? and donated = ?", params[:tags], false)
+    @books = Book.where("LOWER(tags) LIKE ? and donated = ?", params[:tags], false)
     @count = @books.count
     @books = @books.paginate(page: params[:page])
     @tag = params[:tags]
