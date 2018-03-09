@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20180221201318) do
+ActiveRecord::Schema.define(version: 20180309125307) do
 
   create_table "books", force: :cascade do |t|
     t.string   "title"
@@ -18,8 +18,8 @@ ActiveRecord::Schema.define(version: 20180221201318) do
     t.datetime "year"
     t.text     "description"
     t.integer  "user_id"
-    t.datetime "created_at",               null: false
-    t.datetime "updated_at",               null: false
+    t.datetime "created_at",                  null: false
+    t.datetime "updated_at",                  null: false
     t.string   "cover"
     t.string   "language"
     t.string   "quality"
@@ -28,6 +28,11 @@ ActiveRecord::Schema.define(version: 20180221201318) do
     t.string   "genre"
     t.text     "comment"
     t.text     "tags"
+    t.boolean  "donated",     default: false
+    t.index ["author"], name: "index_books_on_author"
+    t.index ["donated"], name: "index_books_on_donated"
+    t.index ["genre"], name: "index_books_on_genre"
+    t.index ["tags"], name: "index_books_on_tags"
     t.index ["user_id", "created_at"], name: "index_books_on_user_id_and_created_at"
     t.index ["user_id"], name: "index_books_on_user_id"
   end

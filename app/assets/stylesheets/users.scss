@@ -19,10 +19,6 @@ $d-gray: hsl(0,0%,80%);
         color:hsl(0,0%, 50%);
       }
 
-      .btn-danger {
-
-      }
-
       .checkbox-field {
         display: flex;
         justify-content: space-between;
@@ -67,32 +63,6 @@ $d-gray: hsl(0,0%,80%);
 
 // show
 
-.user_info   {
-  #name {
-    font-size: 150%;
-    padding-right: 5px;
-  }
-  ul {
-    li {
-      display: flex;
-      justify-content:flex-start;
-    }
-
-    .attr {
-      width:150px;
-      padding-right: 20px;
-      font-weight: bold;
-      background:$l-gray;
-    }
-
-    .info {
-      width:200px;
-      padding-left:20px;
-      background: $d-gray;
-    }
-  }
-}
-
 .users {
   list-style: none;
   margin: 0;
@@ -112,9 +82,11 @@ $d-gray: hsl(0,0%,80%);
   }
 }
 
+// aside {
+//   height:100%;
+// }
+
 /* books */
-
-
 
 aside {
   textarea {

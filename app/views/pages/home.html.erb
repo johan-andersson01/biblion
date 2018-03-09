@@ -1,8 +1,10 @@
 <% provide(:title, "Hem") %>
 <div class="col-md-12">
-    <h3>Alla böcker (<%= @books.count %>)</h3>
+    <h3>Alla tillgängliga böcker (<%= @books.count %>)</h3>
     <ul class="books">
       <%= render @books %>
     </ul>
 </div>
-<%= will_paginate @books, previous_label: t("föregående"), next_label: t("nästa")%>
+<div class="pagination">
+  <%= will_paginate @books, previous_label: t("föregående"), next_label: t("nästa")%>
+</div>

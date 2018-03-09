@@ -1,9 +1,10 @@
 class PagesController < ApplicationController
   def home
-    @books = Book.all.paginate(page: params[:page])
+    @books = Book.where(donated: false).paginate(page: params[:page])
   end
 
-  def termsofservice
+  def donated
+    @donated = Book.where(donated: true).paginate(page: params[:page])
   end
 
 
