@@ -58,12 +58,8 @@ This can be easily deployed on Heroku for free. If you're interested in this, se
 
 Since this project has been built for Swedish users in mind, much of the interface is written in Swedish. Here are some tips if you want to port this project to another language & location:
 
-* Go through all files under `/app/views/` and look for Swedish words and sentences.
+* Go through all files under `/app/views/` and `/app/controllers/` and look for Swedish words and sentences.
 * Replace all instances of `CS.states(:se)` with your country of choice.
-
-## License
-
-You may use this software for whatever you wish as long as you comply with the licenses of the third party libraries in use.
 
 ## Acknowledgements
 
