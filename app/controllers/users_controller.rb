@@ -57,18 +57,22 @@ class UsersController < ApplicationController
       flash[:danger] = "Du har inte rätt behörighet"
       redirect_to root_url
     elsif @auth 
-      if @user.update_attributes(user_params_no_terms)
-        if current_user.admin?
+      if current_user.admin?
+        if @user.update_attributes(user_params_no_terms_admin)
           flash[:success] = "Användare #{@user.id}:s inställningar har nu uppdaterats"
           redirect_to users_url
         else
-          flash[:success] = "Dina inställningar har nu uppdaterats"
-          redirect_to @user
+          render 'edit'
         end
       else
-        render 'edit'
+        if @user.update_attributes(user_params_no_terms)
+          flash[:success] = "Dina inställningar har nu uppdaterats"
+          redirect_to @user
+        else
+          render 'edit'
+        end
       end
-    else !@auth
+    else
       flash[:danger] = "Fel lösenord"
       render 'edit'
     end
@@ -112,6 +116,11 @@ class UsersController < ApplicationController
     end
 
     def user_params_no_terms
+      params.require(:user).permit(:name, :location, :landscape, :email,
+       :password, :password_confirmation)
+    end
+
+    def user_params_no_terms_admin
       params.require(:user).permit(:name, :location, :landscape, :email,
        :password, :password_confirmation, :disabled)
     end

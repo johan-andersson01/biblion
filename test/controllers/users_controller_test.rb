@@ -64,11 +64,32 @@ test "should not allow the admin attribute to be edited via the web" do
    log_in_as(@other_user)
    assert_not @other_user.admin?
    patch user_path(@other_user), params: {
-                                   user: { password:              "password9000",
-                                           password_confirmation: "password9000",
+                                   user: { oldpassword: "password9000",
                                            admin: true } }
    assert_not @other_user.reload.admin?
  end
+
+
+ test "should not allow the disabled attribute to be edited via the web for non-admins" do
+  log_in_as(@other_user)
+  assert_not @other_user.admin?
+  prev_value = @other_user.disabled
+  assert_not prev_value
+  patch user_path(@other_user), params: {
+                                  user: { oldpassword: "password9000",
+                                          disabled: true } }
+  assert_equal(prev_value, @other_user.reload.disabled)
+end
+
+test "should allow the disabled attribute to be edited via the web for admins" do
+  log_in_as_admin(@admin)
+  assert @admin.admin?
+  assert_not @other_user.disabled
+  patch user_path(@other_user), params: {
+                                  user: { oldpassword: "foobar9000",
+                                          disabled: true } }
+  assert @other_user.reload.disabled
+end
 
  test "should redirect destroy when not logged in" do
    assert_no_difference 'User.count' do
