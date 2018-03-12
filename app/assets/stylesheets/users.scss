@@ -80,6 +80,10 @@ $d-gray: hsl(0,0%,80%);
       margin:10px 20px 10px 5px;
     }
   }
+
+  li:last-child {
+    margin-bottom:100px;
+  }
 }
 
 // aside {

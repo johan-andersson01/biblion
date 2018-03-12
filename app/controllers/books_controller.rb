@@ -131,9 +131,7 @@ class BooksController < ApplicationController
     if request.get?
       redirect_to root_url
     else
-      @query = search_params[:query].downcase!
-      params[:query] = search_params[:query]
-      @query = params[:query]
+      @query = search_params[:query]
       @books = Set.new Book.search(@query).order("created_at DESC").to_a().select { |b| !b.donated }
       @users = User.search(@query).order("created_at DESC").to_a()
       @users.each do |u|
@@ -149,14 +147,14 @@ class BooksController < ApplicationController
   end
 
   def all_by_genre
-    @books = Book.where("genre =  ? and donated = ?", params[:genre], false)
+    @books = Book.where("genre =  ? AND donated = ?", params[:genre], false)
     @count = @books.count
     @books = @books.paginate(page: params[:page])
     @genre = params[:genre]
   end
 
   def all_by_tag
-    @books = Book.where("LOWER(tags) = ? and donated = ?", params[:tags], false)
+    @books = Book.where("LOWER(tags) LIKE ? AND donated = ?", "%#{params[:tags]}%", false)
     @count = @books.count
     @books = @books.paginate(page: params[:page])
     @tag = params[:tags]
