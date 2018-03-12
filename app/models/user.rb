@@ -14,6 +14,7 @@ class User < ApplicationRecord
   has_many :books, dependent: :destroy
 
   def self.search(query)
+    query.strip.downcase!
     where("LOWER(location) LIKE ?", "%#{query}%").or(where("LOWER(landscape) LIKE ?", "%#{query}%"))
   end
 
