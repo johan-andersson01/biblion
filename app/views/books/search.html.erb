@@ -26,9 +26,7 @@ function escapeRegExp(text) {
 Source: https://j11y.io/snippets/highlighting-text-with-javascript/
 */
 function highlight(container,what,spanClass) {
-  console.log(what)
     what = escapeRegExp(what);
-    console.log(what)
     var content = container.innerHTML,
         pattern = new RegExp('(>[^<.]*)(' + what + ')([^<.]*)','gi'),
         replaceWith = '$1<span ' + ( spanClass ? 'class="' + spanClass + '"' : '' ) + '">$2</span>$3',
