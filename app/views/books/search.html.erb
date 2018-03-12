@@ -14,10 +14,21 @@
     <% end %>
 </div>
 <script>
+
+
+/* 
+Source: https://stackoverflow.com/questions/3115150/how-to-escape-regular-expression-special-characters-using-javascript
+*/
+function escapeRegExp(text) {
+  return text.replace(/[-[\]{}()*+?.,\\^$|#\s]/g, '\\$&');
+}
 /* 
 Source: https://j11y.io/snippets/highlighting-text-with-javascript/
 */
 function highlight(container,what,spanClass) {
+  console.log(what)
+    what = escapeRegExp(what);
+    console.log(what)
     var content = container.innerHTML,
         pattern = new RegExp('(>[^<.]*)(' + what + ')([^<.]*)','gi'),
         replaceWith = '$1<span ' + ( spanClass ? 'class="' + spanClass + '"' : '' ) + '">$2</span>$3',
