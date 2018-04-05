@@ -13,6 +13,13 @@ class UsersControllerTest < ActionDispatch::IntegrationTest
     assert_response :success
   end
 
+  test 'GET new when user is logged in redirects to root_path' do
+    log_in_as @user
+    get new_user_url
+
+    assert_redirected_to root_path
+  end
+
   test "should get signup" do
     get signup_url
     assert_response :success
