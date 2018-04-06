@@ -12,7 +12,8 @@ class Book < ApplicationRecord
   
   def self.search(query)
     unless query.nil?
-      query.strip.downcase!
+      query.downcase!
+      query.strip!
       query = "%#{query}%"
       where("LOWER(author) LIKE ?", query)
         .or(where("LOWER(title) LIKE ?", query))

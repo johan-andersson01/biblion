@@ -1,6 +1,6 @@
 <% provide(:title, "Profil") %>
 <aside class="col-lg-3 col-md-3 user_info">
-  <ul class="users">
+  <ul class="info-col-list">
     <% if current_user?(@user)||current_user.admin %>
       <li><span>Namn </span><span><%= @user.name %></span></li>
       <li><span>Email </span><span><%= @user.email %></span></li>

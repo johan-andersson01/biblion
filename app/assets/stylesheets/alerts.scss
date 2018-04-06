@@ -1,0 +1,38 @@
+.alert {
+    margin-top:20px;
+    margin-bottom: 50px;
+    width:100%;
+
+      ul li {
+        list-style: none;
+      }
+
+      h2 {
+        font-size:170%;
+      }
+}
+
+.alert-success {
+    outline:1px solid $success_color_dark;
+    background: $success_color_light;
+    color:#fff;
+    text-align: center;
+}
+
+.alert-danger {
+    background: $error_color_light;
+    color:#444;
+    outline: 1px solid $error_color_dark;
+    text-align:center;
+    color: #fff; 
+
+    li {
+        text-align: left;
+    }
+}
+
+#error {
+    width:100%;
+    display:flex;
+    justify-content: center;
+}

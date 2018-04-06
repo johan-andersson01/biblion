@@ -13,7 +13,7 @@ class UsersSignupTest < ActionDispatch::IntegrationTest
                                          password_confirmation: "bar",  terms_of_service: "1"  } }
     end
     assert_template 'users/new'
-    assert_select 'div.alert_danger'
+    assert_select 'div.alert-danger'
 
   end
 
@@ -45,6 +45,6 @@ class UsersSignupTest < ActionDispatch::IntegrationTest
                               password_confirmation: "password9000", terms_of_service: "0" } }
     end
     assert_template 'users/new'
-    assert_select 'div.alert_danger'
+    assert_select 'div.alert-danger'
   end
 end
