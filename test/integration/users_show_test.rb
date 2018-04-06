@@ -14,7 +14,7 @@ test "other user should not be able to show other user's full profile" do
   get user_path(@other_user)
   assert flash.empty?
   assert_equal request.path, user_path(@other_user)
-  assert_select ".users" do |e|
+  assert_select ".info-col-list" do |e|
     assert_select e, "li", 4
   end
 end
@@ -25,7 +25,7 @@ test "admin  should be able to show other user's full profile" do
   get user_path(@other_user)
   assert flash.empty?
   assert_equal request.path, user_path(@other_user)
-  assert_select ".users" do |e|
+  assert_select ".info-col-list" do |e|
     assert_select e, "li", 9
   end
 end
