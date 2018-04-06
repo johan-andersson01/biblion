@@ -3,9 +3,9 @@
 
 <div class="row">
   <div class="col-md-6 col-md-offset-3">
-    <div class="signup_form">
+    <div class="action-form">
     <%= form_for(:password_reset, url: password_resets_path) do |f| %>
-      <%= f.label :email, "Skicka en återställnigslänk till min email" %>
+      <%= f.label :email, "Skicka en återställningslänk till min email" %>
       <%= f.email_field :email, class: 'form-control' %>
 
       <%= f.submit "Skicka", class: "btn btn-primary" %>

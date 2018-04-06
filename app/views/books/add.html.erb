@@ -1,7 +1,7 @@
 <%= provide(:title, 'Lägg till en ny bok') %>
 <h1><%= yield(:title) %></h1>
 <div class="row">
-  <div class="signup_form">
+  <div class="action-form">
     <%= form_for(@book, url: {action: "googlebooks_search"}, method: :post) do |f| %>
       <%= f.label(:query, "Sök efter titel eller författare:") %>
       <%= f.text_field :query, autofocus: "true", onFocus: "this.select()", value: @query, class: "google-search",

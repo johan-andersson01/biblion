@@ -9,7 +9,7 @@ class PasswordResetsController < ApplicationController
       @user.create_reset_digest
       @user.send_password_reset_email
     end
-    flash[:success] = "Om din mail är registrerad på Biblion så kommer ett mail att skickas till din mail med instruktioner för att återställa ditt lösenord."
+    flash[:success] = "Ett mail kommer att skickas med instruktioner för att återställa ditt lösenord."
     redirect_to login_url
   end
 

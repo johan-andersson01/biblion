@@ -1,0 +1,156 @@
+input, textarea, select, .uneditable-input {
+    border: 1px solid #bbb;
+    width: 100%;
+    margin-bottom: 15px;
+}
+
+input {
+    height: auto !important;
+}
+
+@media screen and (min-width: 768px) {
+    .header-search-form {
+        li {
+            float:left;
+            list-style: none;
+            margin: 10px 0 0 20px;
+        }
+        li:nth-child(1) {
+            width:400px;
+        }
+        li:nth-child(2) {
+            width:40px;
+            background:hsla(0,0%,0%,0);
+        }
+        input {
+            border-radius: 2%;
+            padding:5px;
+            border:none;
+            background:none;
+            border-bottom:1px solid $ok;
+        }
+
+        input:focus {
+            outline:none;
+        }
+    }
+}
+
+@media screen and (max-width: 768px) {
+    .header-search-form {
+        li {
+            margin: 10px 0 0 5px;
+            float:left;
+            list-style: none;
+        }
+        li:nth-child(1) {
+            width:90%;
+        }
+        li:nth-child(2) {
+            width:20px;
+        }
+    }
+}
+
+.action-form {
+margin-bottom:70px;
+@include center_container;
+
+    form {
+        @include center_content;
+
+        .non-editable {
+            background: hsl(0,0%,95%);
+            color:hsl(0,0%, 50%);
+        }
+
+        .checkbox-field {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            width:100%;
+        }
+
+        .checkbox-label {
+            float: left;
+            font-weight: normal;
+        }
+
+        .checkbox {
+            width:10px;
+            margin: 10px 5px 10px 0px;
+            vertical-align: middle;
+            float:left;
+        }
+    }
+}
+
+
+
+.confirm {
+
+    .collapse {}
+
+    input:nth-of-type(2) {
+        margin-bottom: 0px;
+    }
+
+    input span {
+        font-size: 90%;
+    }
+
+    .btn {
+        // margin-top:10px;
+        margin-bottom:10px;
+        width:100%;
+    }
+}
+
+.header-search-form li:nth-child(2) {
+    input {
+        border: none;
+        background:hsla(0,0%,0%,0);
+        background-image:asset-url("searchblue.png");
+        background-size: contain;
+        background-repeat: no-repeat;
+    }
+}
+
+.field_with_errors input{
+    background:$error_color_light !important;
+    outline: 1px solid $error_color_dark !important;
+}
+
+.btn-static {
+    background-color: hsl(0,50%,95%);
+    border: 1px solid hsl(0,50%,65%);
+    cursor: default;
+}
+
+.btn-static:active {
+    -moz-box-shadow:    inset 0 0 0px white;
+    -webkit-box-shadow: inset 0 0 0px white;
+    box-shadow:         inset 0 0 0px white;
+}
+
+.info-col-list {
+    list-style: none;
+    margin: 0;
+
+    li {
+        display:flex;
+        justify-content: space-between;
+        align-items: center;
+        overflow: auto;
+        padding: 10px 0;
+        border-bottom: 1px solid $gray-lighter;
+
+        span {
+        margin:10px 20px 10px 5px;
+        }
+    }
+
+    li:last-child {
+        margin-bottom:100px;
+    }
+}

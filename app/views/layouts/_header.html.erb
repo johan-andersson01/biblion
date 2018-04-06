@@ -20,7 +20,7 @@
     </div>
     <div class="collapse navbar-collapse" id="collapse_me">
       <ul class="nav navbar-nav">
-        <ul class="list-form">
+        <ul class="header-search-form">
         <li>
             <%= form_for(Book.new, url: {controller: "books", action: "search_book"}, method: :post) do |f| %>
                 <%= f.text_field :query, value: params[:query], onFocus: "this.select()", placeholder: "Sök efter författare, titel, genre, tagg, stad, eller län" %>
