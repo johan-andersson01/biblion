@@ -43,12 +43,19 @@ class BooksControllerTest < ActionDispatch::IntegrationTest
     @unactivated.save!
   end
 
-  test "should get new" do
-    get new_book_url
-    assert_response :redirect
-    log_in_as(@user)
-    get new_book_url
-    assert_response :success
+  class New < ActionDispatch::IntegrationTest
+    test 'GET new_book_path when not logged in' do
+      get new_book_path
+      
+      assert_redirected_to login_path
+    end
+
+    test "GET new_book_path when logged in" do
+      log_in_as users :michael
+      get new_book_path
+
+      assert_response :success
+    end
   end
 
   class Show < ActionDispatch::IntegrationTest
