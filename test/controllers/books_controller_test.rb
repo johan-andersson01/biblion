@@ -72,24 +72,43 @@ class BooksControllerTest < ActionDispatch::IntegrationTest
     end
   end
 
-  test "should redirect edit for nonexisting book" do
-    log_in_as(@user)
-    get edit_book_path(@book_outside_db)
-    assert_redirected_to root_url
-  end
+  class Edit < ActionDispatch::IntegrationTest
+    test 'GET edit_book_path when not logged in' do
+      get edit_book_path books :one
 
-  test "should redirect edit when not logged in" do
-    get edit_book_path(@user_book)
-    assert_redirected_to login_url
-    log_in_as(@user)
-    get edit_book_path(@user_book)
-    assert_response :success
-  end
+      assert_redirected_to login_path
+    end
 
-  test "should redirect edit when logged in as wrong user" do
-    log_in_as(@other_user)
-    get edit_book_path(@user_book)
-    assert_redirected_to root_url
+    test 'Get edit_book_path when logged in and is the book owner' do
+      user = users :michael
+      # We should use factories to create these records.
+      book = user.books.create!(author: 'xxxx', title: 'xx', quality: 'x', genre: 'x', language: 'x')
+      log_in_as user
+      get edit_book_path book
+
+      assert_response :success
+    end
+
+    test 'GET edit_book_path when logged in with invalid book' do
+      log_in_as users :michael
+      get edit_book_path 0
+
+      assert_redirected_to root_path
+    end
+
+    test 'GET edit_book_path when logged in and is not the book owner' do
+      log_in_as users :michael
+      get edit_book_path books :one
+
+      assert_redirected_to root_path
+    end
+
+    test 'GET edit_book_path when logged in as admin' do
+      log_in_as_admin users :admin
+      get edit_book_path books :one
+
+      assert_response :success
+    end
   end
 
   test "should redirect update when not logged in" do

@@ -1,24 +1,18 @@
 class BooksController < ApplicationController
   require 'will_paginate/array'
-  before_action :logged_in_user, only: [:create, :new, :edit, :add, :googlebooks_search]
-  before_action :authorize_user, only: [:edit, :update, :destroy]
 
-  def show
-    @book = Book.find_by id: params[:id]
-    redirect_to root_url if @book.nil?
-  end
+  before_action :load_book_or_redirect, only: %i[show edit]
+  before_action :logged_in_user, only: [:create, :new, :edit, :add, :googlebooks_search]
+  before_action :authorize_user, only: [:update, :destroy]
+
+  def show; end
 
   def new
     @book = Book.new
   end
 
   def edit
-    @book = Book.find_by("id = ?", params[:id])
-    if @book.nil?
-      redirect_to root_url
-    elsif @book.user.id != current_user.id &&  !current_user.admin?
-      redirect_to root_url
-    end
+    redirect_to root_path unless allowed_to_edit?
   end
 
   def update
@@ -188,6 +182,15 @@ class BooksController < ApplicationController
   end
 
   private
+
+  def allowed_to_edit?
+    @book.user == current_user || current_user.admin?
+  end
+
+  def load_book_or_redirect
+    @book = Book.find_by id: params[:id]
+    redirect_to root_url if @book.nil?
+  end
 
     def logged_in_user
       unless logged_in?
