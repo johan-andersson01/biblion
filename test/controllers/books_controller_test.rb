@@ -51,14 +51,18 @@ class BooksControllerTest < ActionDispatch::IntegrationTest
     assert_response :success
   end
 
-  test "should show book" do
-    get book_path(@user_book)
-    assert_response :success
-  end
+  class Show < ActionDispatch::IntegrationTest
+    test "GET book_path with valid book" do
+      get book_path books :one
 
-  test "should redirect show for nonexisting book" do
-    get book_path(@book_outside_db)
-    assert_redirected_to root_url
+      assert_response :success
+    end
+
+    test 'GET book_path with invalid book' do
+      get book_path 0
+
+      assert_redirected_to root_url
+    end
   end
 
   test "should redirect edit for nonexisting book" do

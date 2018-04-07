@@ -4,11 +4,8 @@ class BooksController < ApplicationController
   before_action :authorize_user, only: [:edit, :update, :destroy]
 
   def show
-    @book = Book.find_by("id = ?", params[:id])
-    @user = current_user
-    if @book.nil?
-      redirect_to root_url
-    end
+    @book = Book.find_by id: params[:id]
+    redirect_to root_url if @book.nil?
   end
 
   def new
