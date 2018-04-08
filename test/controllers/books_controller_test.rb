@@ -79,7 +79,7 @@ class BooksControllerTest < ActionDispatch::IntegrationTest
       assert_redirected_to login_path
     end
 
-    test 'Get edit_book_path when logged in and is the book owner' do
+    test 'Get edit_book_path when logged in as the book owner' do
       user = users :michael
       # We should use factories to create these records.
       book = user.books.create!(author: 'xxxx', title: 'xx', quality: 'x', genre: 'x', language: 'x')
@@ -89,7 +89,7 @@ class BooksControllerTest < ActionDispatch::IntegrationTest
       assert_response :success
     end
 
-    test 'GET edit_book_path when logged in with invalid book' do
+    test 'GET edit_book_path for invalid book when logged in' do
       log_in_as users :michael
       get edit_book_path 0
 
@@ -225,11 +225,49 @@ class BooksControllerTest < ActionDispatch::IntegrationTest
     assert_response :success
   end
 
-  test "search for book" do
+  test "redirect book search if GET and search if POST" do
     get search_url({book: {query: "fantasy"}})
     assert_redirected_to root_url
     post search_url({book: {query: "fantasy"}})
     assert_response :success
+  end
+
+  test "should return book search results regardless of query us downcased or capitalized" do
+    post search_url({book: {query: "tesT-tag"}})
+    assert_response :success
+    assert_select ".books" do |e|
+      assert_select e, "li", 2
+    end
+
+    post search_url({book: {query: "TESt-TaG"}})
+    assert_response :success
+    assert_select ".books" do |e|
+      assert_select e, "li", 2
+    end
+  end
+
+  test "should return book search results that match substring query" do
+    post search_url({book: {query: "t-tag"}})
+    assert_response :success
+    assert_select ".books" do |e|
+      assert_select e, "li", 2
+    end
+  end
+
+  test "should return book search results that match unstripped substring query" do
+    post search_url({book: {query: " t-ta "}})
+    assert_response :success
+    assert_select ".books" do |e|
+      assert_select e, "li", 2
+    end
+  end
+
+  test "should return all books if search for books with empty query" do
+    post search_url({book: {query: ""}})
+    assert_response :success
+    assert_select ".books" do |e|
+      assert_select e, "li", 3
+    end
   end
 
   test "should not be able to reach add book without login" do 
