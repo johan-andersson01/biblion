@@ -101,7 +101,7 @@ $list-height: 300px;
 .show-book {
   margin:0px auto;
   max-width:1000px;
-  height:100%;
+  min-height:100%;
   img {
     width:100%;
     max-width:300px;
@@ -130,6 +130,12 @@ $list-height: 300px;
   .info {
     width:200px;
     padding-left:20px;
+  }
+  @media screen and (max-width: 768px) {
+    .description {
+      margin-bottom:100px;
+    }
+    margin-bottom:100px;
   }
 }
 
