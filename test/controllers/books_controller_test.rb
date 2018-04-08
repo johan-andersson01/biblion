@@ -43,42 +43,72 @@ class BooksControllerTest < ActionDispatch::IntegrationTest
     @unactivated.save!
   end
 
-  test "should get new" do
-    get new_book_url
-    assert_response :redirect
-    log_in_as(@user)
-    get new_book_url
-    assert_response :success
+  class New < ActionDispatch::IntegrationTest
+    test 'GET new_book_path when not logged in' do
+      get new_book_path
+      
+      assert_redirected_to login_path
+    end
+
+    test "GET new_book_path when logged in" do
+      log_in_as users :michael
+      get new_book_path
+
+      assert_response :success
+    end
   end
 
-  test "should show book" do
-    get book_path(@user_book)
-    assert_response :success
+  class Show < ActionDispatch::IntegrationTest
+    test "GET book_path with valid book" do
+      get book_path books :one
+
+      assert_response :success
+    end
+
+    test 'GET book_path with invalid book' do
+      get book_path 0
+
+      assert_redirected_to root_url
+    end
   end
 
-  test "should redirect show for nonexisting book" do
-    get book_path(@book_outside_db)
-    assert_redirected_to root_url
-  end
+  class Edit < ActionDispatch::IntegrationTest
+    test 'GET edit_book_path when not logged in' do
+      get edit_book_path books :one
 
-  test "should redirect edit for nonexisting book" do
-    log_in_as(@user)
-    get edit_book_path(@book_outside_db)
-    assert_redirected_to root_url
-  end
+      assert_redirected_to login_path
+    end
 
-  test "should redirect edit when not logged in" do
-    get edit_book_path(@user_book)
-    assert_redirected_to login_url
-    log_in_as(@user)
-    get edit_book_path(@user_book)
-    assert_response :success
-  end
+    test 'Get edit_book_path when logged in and is the book owner' do
+      user = users :michael
+      # We should use factories to create these records.
+      book = user.books.create!(author: 'xxxx', title: 'xx', quality: 'x', genre: 'x', language: 'x')
+      log_in_as user
+      get edit_book_path book
 
-  test "should redirect edit when logged in as wrong user" do
-    log_in_as(@other_user)
-    get edit_book_path(@user_book)
-    assert_redirected_to root_url
+      assert_response :success
+    end
+
+    test 'GET edit_book_path when logged in with invalid book' do
+      log_in_as users :michael
+      get edit_book_path 0
+
+      assert_redirected_to root_path
+    end
+
+    test 'GET edit_book_path when logged in and is not the book owner' do
+      log_in_as users :michael
+      get edit_book_path books :one
+
+      assert_redirected_to root_path
+    end
+
+    test 'GET edit_book_path when logged in as admin' do
+      log_in_as_admin users :admin
+      get edit_book_path books :one
+
+      assert_response :success
+    end
   end
 
   test "should redirect update when not logged in" do
