@@ -23,6 +23,19 @@ class BookTest < ActiveSupport::TestCase
     @book.save!
   end
 
+  test 'language' do
+    dup_book = @book.dup
+    dup_book.language = 'en'
+    dup_book.save
+
+    assert_equal 'Engelska', dup_book.language
+
+    dup_book.language = 'engelska'
+    dup_book.save
+
+    assert_equal 'Engelska', dup_book.language
+  end
+
   test "search_title" do
     sub1 = Book.search("Harry").first
     sub2 = Book.search("Potter").first

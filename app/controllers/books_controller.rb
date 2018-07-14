@@ -17,9 +17,7 @@ class BooksController < ApplicationController
 
   def update
     @book = Book.find_by("id = ?", params[:id])
-    unless @book.language.nil?
-       @book.language.capitalize!
-    end
+
     @auth = (current_user == @book.user || current_user.admin?)
     if @auth && @book.update_attributes(book_params)
       if current_user.admin
@@ -37,22 +35,7 @@ class BooksController < ApplicationController
   end
 
   def create
-
     @book = current_user.books.build(book_params)
-    unless @book.language.nil?
-       if @book.language == "sv"
-          @book.language = "svenska"
-       elsif @book.language == "en"
-          @book.language = "engelska"
-       elsif @book.language == "da"
-          @book.language = "danska"
-       elsif @book.language == "no"
-          @book.language = "norska"
-       elsif @book.language == "fi"
-          @book.language = "finska"
-       end
-       @book.language.capitalize!
-    end
 
     if current_user.disabled?
       flash[:danger] = "Du kan inte lägga upp böcker, eftersom ditt konto är avstängt"

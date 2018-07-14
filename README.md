@@ -1,5 +1,9 @@
 # Biblion.se
 
+![Screenshot of the home page](screenshots/index.png)
+
+*For more screenshots, look inside the screenshots folder.*
+
 ## Getting started
 
 ### Prerequisites

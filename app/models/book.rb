@@ -9,7 +9,9 @@ class Book < ApplicationRecord
   validates :genre, presence: true, length: {maximum: 30}
   validates :language, presence: true, length: {maximum: 30}
 
-  
+   before_validation { self.language = expand_language_code }
+   before_validation { self.language = language.capitalize if language.present? }
+
   def self.search(query)
     unless query.nil?
       query.downcase!
@@ -22,4 +24,22 @@ class Book < ApplicationRecord
     end
   end
 
+  private
+
+  def expand_language_code
+    case language
+    when 'sv'
+      'Svenska'
+    when 'en'
+      'Engelska'
+    when 'da'
+      'Danska'
+    when 'no'
+      'norska'
+    when 'fi'
+      'Finska'
+    else
+      language
+    end
+  end
 end
